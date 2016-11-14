@@ -1,4 +1,4 @@
-# MyGrading
-Projet de notation pour les enseignants de MASTER MIAGE
+# My E-TimeSheet
+Projet de dématérialisation du processus de vérification des présences étudiantes de MASTER MIAGE Evry
 
 
