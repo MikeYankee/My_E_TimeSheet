@@ -1,0 +1,3 @@
+connexion:
+    resource: "@ConnexionBundle/Resources/config/routing.yml"
+    prefix:   /
