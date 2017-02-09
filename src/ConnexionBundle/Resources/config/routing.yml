@@ -1,3 +1,11 @@
 connexion:
     path:   /
     defaults: { _controller: ConnexionBundle:Default:index }
+
+etudiant_123:
+    path:   /etudiant
+    defaults: { _controller: ConnexionBundle:Default:etudiant }
+
+enseignant:
+    path:   /enseignant
+    defaults: { _controller: ConnexionBundle:Default:enseignant }

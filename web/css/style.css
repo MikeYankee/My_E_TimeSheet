@@ -1,6 +1,10 @@
 body {
-    margin: 0; /* pour �viter les marges */
-    background-color: #DDE3E3;
+    margin:0px auto;
+    background-color:#000000;
+}
+
+#main{
+    background-color:#000000;
 }
 
 h1 {
