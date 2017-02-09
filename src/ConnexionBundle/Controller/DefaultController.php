@@ -10,12 +10,13 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        return $this->render('ConnexionBundle:Default:index.html.twig', array("maVar" => array("bananes"," fraise", "mangue")));
+        return $this->render('ConnexionBundle:Default:index.html.twig');
     }
 
-    public function etudiantAction()
+
+    public function signalerPresenceAction()
     {
-        echo "etudiant";
+        return $this->render('ConnexionBundle:Default:signaler_presence.html.twig');
     }
 
     public function enseignantAction()

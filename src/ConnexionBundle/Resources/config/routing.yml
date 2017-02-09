@@ -3,8 +3,8 @@ connexion:
     defaults: { _controller: ConnexionBundle:Default:index }
 
 etudiant_123:
-    path:   /etudiant
-    defaults: { _controller: ConnexionBundle:Default:etudiant }
+    path:   /signaler-presence
+    defaults: { _controller: ConnexionBundle:Default:signalerPresence }
 
 enseignant:
     path:   /enseignant

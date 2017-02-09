@@ -1,10 +1,22 @@
+html{
+    background-color: #DDE3E3;
+}
+
 body {
     margin:0px auto;
-    background-color:#000000;
+    background-color: #DDE3E3;
 }
 
 #main{
-    background-color:#000000;
+    background-color: #DDE3E3;
+}
+
+.container{
+    top: 30%;
+}
+
+.table table-striped{
+    top: 30%;
 }
 
 h1 {
