@@ -19,18 +19,6 @@ body {
     top: 30%;
 }
 
-h1 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 580px;
-    height: 200px;
-    margin-left: -240px; /* Cette valeur doit �tre la moiti� n�gative de la valeur du width */
-    margin-top: -100px; /* Cette valeur doit �tre la moiti� n�gative de la valeur du height */
-    color : rgb(255,255,255);
-    font-size: 40px;
-}
-
 .rectangle {
     position: absolute;
     margin: auto;
@@ -134,4 +122,11 @@ h1 {
 }
 .navbar-custom .navbar-link:hover {
     color: #ffffff;
+}
+
+.content_text{
+    margin-top:7%;
+    min-height:1px;
+    padding-left:15px;
+    padding-right:15px
 }
