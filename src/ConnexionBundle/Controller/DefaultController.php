@@ -16,7 +16,7 @@ class DefaultController extends Controller
 
     public function signalerPresenceAction()
     {
-        return $this->render('ConnexionBundle:Default:signaler_presence.html.twig');
+        return $this->render('ConnexionBundle:Default:gestion_promo.html.twig');
     }
 
     public function enseignantAction()

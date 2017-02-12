@@ -1,0 +1,74 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include 'ConnexionBundle:Default:menu.html.twig' %}
+        <div class="content_text">
+            <div class="container">
+                <h3>Gestion d'une promos</h3><br>
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Elèves</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Matières</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Responsable</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active" >
+                        <table class="table table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <td width="30%"><b>Nom</b></td>
+                                    <td width="30%"><b>Prénom</b></td>
+                                    <td width="30%"><b>Email</b></td>
+                                    <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>VALBON</td>
+                                    <td>Kévin</td>
+                                    <td>vk@mail.com</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-star"></span> BOURGUES</td>
+                                    <td>Yann</td>
+                                    <td>by@mail.com</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                                <tr>
+                                    <td>GARAPATI</td>
+                                    <td>Vivek</td>
+                                    <td>gv@mail.com</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                                <tr>
+                                    <td>GALVAN</td>
+                                    <td>Mélanie</td>
+                                    <td>gm@mail.com</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="menu1" class="tab-pane fade">
+                        <h3>Menu 1</h3>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+
+                    <div id="menu2" class="tab-pane fade">
+                        <h3>Menu 2</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
