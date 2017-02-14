@@ -2,10 +2,4 @@ connexion:
     path:   /
     defaults: { _controller: ConnexionBundle:Default:index }
 
-etudiant_123:
-    path:   /signaler-presence
-    defaults: { _controller: ConnexionBundle:Default:signalerPresence }
 
-enseignant:
-    path:   /enseignant
-    defaults: { _controller: ConnexionBundle:Default:enseignant }

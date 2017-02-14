@@ -7,20 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
-
     public function indexAction()
     {
         return $this->render('ConnexionBundle:Default:index.html.twig');
-    }
-
-
-    public function signalerPresenceAction()
-    {
-        return $this->render('ConnexionBundle:Default:gestion_promo.html.twig');
-    }
-
-    public function enseignantAction()
-    {
-        echo "enseignant";
     }
 }

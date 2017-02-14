@@ -1,0 +1,15 @@
+signalerPresence:
+    path:   /signaler-presence
+    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
+
+validerCours:
+    path:   /valider-cours
+    defaults: { _controller: UtilisateurBundle:ValiderCours:validerCours }
+
+accueilRespCFA:
+    path:   /accueil-respCFA
+    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
+
+accueilSecretaire:
+    path:   /accueil-secretaire
+    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }

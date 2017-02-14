@@ -1,3 +1,11 @@
 connexion:
     resource: "@ConnexionBundle/Resources/config/routing.yml"
     prefix:   /
+
+administrateur:
+    resource: "@AdministrateurBundle/Resources/config/routing.yml"
+    prefix:   /
+
+utilisateur:
+    resource: "@UtilisateurBundle/Resources/config/routing.yml"
+    prefix:   /

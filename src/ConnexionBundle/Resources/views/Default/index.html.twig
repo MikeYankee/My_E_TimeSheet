@@ -10,7 +10,11 @@
                     <input type="text" class="form-control" placeholder="Password" ><br>
                 </div>
                 <div class="col-md-8 col-sm-push-4">
-                    <a href="{{ path('etudiant_123') }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" style="color: #000;">Connexion</button></a>
+                    <a href="{{ path('accueilAdmin') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion admin</button></a>
+                    <a href="{{ path('signalerPresence') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion etudiant</button></a>
+                    <a href="{{ path('validerCours') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion enseignant</button></a>
+                    <a href="#"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion CFA</button></a>
+                    <a href="#"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion secrétaire</button></a>
                 </div>
             </div>
         </div>
