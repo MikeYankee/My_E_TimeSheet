@@ -6,6 +6,14 @@ validerCours:
     path:   /valider-cours
     defaults: { _controller: UtilisateurBundle:ValiderCours:validerCours }
 
+creerFeuillePresence:
+    path:   /creer-feuille-presence
+    defaults: { _controller: UtilisateurBundle:CreerFeuillePresence:creerFeuillePresence }
+
+historiqueAbsence:
+    path:   /historique-absence
+    defaults: { _controller: UtilisateurBundle:VisionnerHistoriqueAbsence:visionnerHistoriqueAbsence }
+
 accueilRespCFA:
     path:   /accueil-respCFA
     defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
@@ -13,3 +21,11 @@ accueilRespCFA:
 accueilSecretaire:
     path:   /accueil-secretaire
     defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
+
+profil:
+    path:   /profil
+    defaults: { _controller: UtilisateurBundle:Profil:profil }
+
+contact:
+    path:   /contact
+    defaults: { _controller: UtilisateurBundle:Contact:contacter }
