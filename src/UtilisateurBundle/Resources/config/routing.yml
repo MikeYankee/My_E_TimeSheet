@@ -22,6 +22,10 @@ accueilSecretaire:
     path:   /accueil-secretaire
     defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
 
+historiqueFeuillePresence:
+    path:   /historique-feuille-presence
+    defaults: { _controller: UtilisateurBundle:HistoriqueFeuillePresence:historiqueFeuillePresence }
+
 profil:
     path:   /profil
     defaults: { _controller: UtilisateurBundle:Profil:profil }
