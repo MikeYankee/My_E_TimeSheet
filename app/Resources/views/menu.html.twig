@@ -1,18 +1,30 @@
 <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
             </button>
             <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-heart"></i>&nbsp;MY E-TimeSheet</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Valider la feuille de présence<span class="sr-only">(current)</span></a></li>
-                <li><a href="{{ path('historiqueFeuillePresence') }}">Historique des absences</a></li>
+                <!--etudiant-->
+                <li><a class="active" href="{{ path('signaler_presence') }}">Signaler sa présence</a></li>
+
+                <!--delegue-->
+                <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer une feuille de présence</a></li>
+
+                <!--enseignant-->
+                <li><a class="active" href="{{ path('valider_cours') }}">Valider les cours</a></li>
+
+                <!--commun-->
+                <li><a href="{{ path('historique_absence') }}">Historique des absences</a></li>
+
+                <!--admin-->
+                <li><a class="active" href="{{ path('accueil_admin') }}">Accueil admin</a></li>
+                <li><a class="active" href="{{ path('liste_promotions') }}">Gérer les promos</a></li>
+                <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer le personnel</a></li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -20,6 +32,12 @@
                 <li><a href="{{ path('contact') }}">Contact&nbsp;<i class="glyphicon glyphicon-envelope"></i></a></li>
                 <li><a href="#">Déconnexion&nbsp;<i class="glyphicon glyphicon-off"></i></a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
+
+<script>
+    $(document).ready(function() {
+        $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+    });
+</script>

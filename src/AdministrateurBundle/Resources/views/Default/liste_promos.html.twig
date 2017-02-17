@@ -5,7 +5,40 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Liste des promos et btn ajout</h3><br>
+                <h3>Liste des promotions</h3><br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Libellé</th>
+                        <th>Nombre d'étudiants</th>
+                        <th>Reponsable(s)</th>
+                        <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="{{ path('gerer_promotion') }}">L3</a></td>
+                        <td>18</td>
+                        <td>D.DUPONT</td>
+                        <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('gerer_promotion') }}">M1</a></td>
+                        <td>24</td>
+                        <td>J.BENZAKKI, D.COURTAUD</td>
+                        <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('gerer_promotion') }}">M2</a></td>
+                        <td>21</td>
+                        <td>J.BENZAKKI</td>
+                        <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

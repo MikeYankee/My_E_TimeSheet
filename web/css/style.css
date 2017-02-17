@@ -75,6 +75,7 @@ body {
 .navbar-custom .navbar-nav > li > a {
     color: #ecf0f1;
 }
+.navbar-custom .navbar-nav > li > a:active,
 .navbar-custom .navbar-nav > li > a:hover,
 .navbar-custom .navbar-nav > li > a:focus {
     color: #049283;

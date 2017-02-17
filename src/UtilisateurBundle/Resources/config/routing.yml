@@ -1,30 +1,22 @@
-signalerPresence:
+signaler_presence:
     path:   /signaler-presence
-    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
+    defaults: { _controller: UtilisateurBundle:Cours:signalerPresence }
 
-validerCours:
+valider_cours:
     path:   /valider-cours
-    defaults: { _controller: UtilisateurBundle:ValiderCours:validerCours }
+    defaults: { _controller: UtilisateurBundle:Cours:validerCours }
 
-creerFeuillePresence:
+creer_feuille_presence:
     path:   /creer-feuille-presence
-    defaults: { _controller: UtilisateurBundle:CreerFeuillePresence:creerFeuillePresence }
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:creerFeuillePresence }
 
-historiqueAbsence:
+historique_absence:
     path:   /historique-absence
-    defaults: { _controller: UtilisateurBundle:VisionnerHistoriqueAbsence:visionnerHistoriqueAbsence }
+    defaults: { _controller: UtilisateurBundle:Cours:visionnerHistoriqueAbsence }
 
-accueilRespCFA:
-    path:   /accueil-respCFA
-    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
-
-accueilSecretaire:
-    path:   /accueil-secretaire
-    defaults: { _controller: UtilisateurBundle:SignalerPresence:signalerPresence }
-
-historiqueFeuillePresence:
+historique_feuille_presence:
     path:   /historique-feuille-presence
-    defaults: { _controller: UtilisateurBundle:HistoriqueFeuillePresence:historiqueFeuillePresence }
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:historiqueFeuillePresence }
 
 profil:
     path:   /profil

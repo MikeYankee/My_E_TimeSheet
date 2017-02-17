@@ -1,11 +1,15 @@
-accueilAdmin:
+accueil_admin:
     path:   /accueil-admin
     defaults: { _controller: AdministrateurBundle:Accueil:accueil }
 
-gererPromotion:
+liste_promotions:
+    path:   /liste-promotions
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:listePromos }
+
+gerer_promotion:
     path:   /gerer-promotion
     defaults: { _controller: AdministrateurBundle:GestionPromotion:gestionPromo }
 
-gererPersonnel:
+gerer_personnel:
     path:   /gerer-personnel
-    defaults: { _controller: AdministrateurBundle:GestionPersonnel:gestionPersonnel }
+    defaults: { _controller: AdministrateurBundle:GestionPersonnel:listePersonnel }

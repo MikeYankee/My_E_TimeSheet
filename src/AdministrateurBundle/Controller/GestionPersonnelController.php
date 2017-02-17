@@ -7,8 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class GestionPersonnelController extends Controller
 {
-    public function gestionPersonnelAction()
+    public function listePersonnelAction()
     {
-        return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
+        return $this->render('AdministrateurBundle:Default:liste_personnel.html.twig');
     }
 }

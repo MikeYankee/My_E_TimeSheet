@@ -1,0 +1,66 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include '::menu.html.twig' %}
+        <div class="content_text">
+            <div class="container">
+                <h3>Liste du personnel</h3><br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td><b>Nom</b></td>
+                            <td><b>Prénom</b></td>
+                            <td><b>Email</b></td>
+                            <td><b>Rôle(s)</b></td>
+                            <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>BENZAKKI</td>
+                            <td>Judith</td>
+                            <td>jb@mail.com</td>
+                            <td>Enseignant, Responsable</td>
+                            <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                        <tr>
+                            <td>COURTAUD</td>
+                            <td>Didier</td>
+                            <td>cd@mail.com</td>
+                            <td>Enseignant, Responsable</td>
+                            <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                        <tr>
+                            <td>PERRAUDIN</td>
+                            <td>Jean-Luc</td>
+                            <td>jlp@mail.com</td>
+                            <td>Enseignant</td>
+                            <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                        <tr>
+                            <td>CRENN</td>
+                            <td>Xavier</td>
+                            <td>xc@mail.com</td>
+                            <td>Responsalbe CFA</td>
+                            <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                        <tr>
+                            <td>GIRARD</td>
+                            <td>Carole</td>
+                            <td>cg@mail.com</td>
+                            <td>Secrétaire</td>
+                            <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
