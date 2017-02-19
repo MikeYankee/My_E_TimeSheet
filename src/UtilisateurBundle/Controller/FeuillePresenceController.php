@@ -16,4 +16,9 @@ class FeuillePresenceController extends Controller
     {
         return $this->render('UtilisateurBundle:Default:historique_ets.html.twig');
     }
+
+    public function visionnerFeuillePresenceAction()
+    {
+        return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig');
+    }
 }
