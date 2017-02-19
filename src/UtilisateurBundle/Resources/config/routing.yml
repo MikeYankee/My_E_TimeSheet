@@ -18,6 +18,10 @@ historique_feuille_presence:
     path:   /historique-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:historiqueFeuillePresence }
 
+visionnerFeuillePresence:
+    path:   /visionner-feuille-presence
+    defaults: { _controller: UtilisateurBundle:VisionnerFeuillePresence:visionnerFeuillePresence }
+
 profil:
     path:   /profil
     defaults: { _controller: UtilisateurBundle:Profil:profil }
