@@ -21,4 +21,9 @@ class FeuillePresenceController extends Controller
     {
         return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig');
     }
+
+    public function visionnerHistoriqueAbsencesPromosAction()
+    {
+        return $this->render('UtilisateurBundle:Default:recap_absences.html.twig');
+    }
 }

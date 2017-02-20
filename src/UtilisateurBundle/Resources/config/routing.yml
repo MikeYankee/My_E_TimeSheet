@@ -14,6 +14,10 @@ historique_absence:
     path:   /historique-absence
     defaults: { _controller: UtilisateurBundle:Cours:visionnerHistoriqueAbsence }
 
+historique_absence_promos:
+    path:   /historique-absence_promos
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:visionnerHistoriqueAbsencesPromos }
+
 historique_feuille_presence:
     path:   /historique-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:historiqueFeuillePresence }
