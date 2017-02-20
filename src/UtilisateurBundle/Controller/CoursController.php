@@ -21,4 +21,9 @@ class CoursController extends Controller
     {
         return $this->render('UtilisateurBundle:Default:historique_absence.html.twig');
     }
+
+    public function visionnerDetailsHeuresAction()
+    {
+        return $this->render('UtilisateurBundle:Default:details_heures.html.twig');
+    }
 }

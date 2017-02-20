@@ -26,6 +26,10 @@ visionnerFeuillePresence:
     path:   /visionner-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:visionnerFeuillePresence }
 
+visionnerDetailsHeures:
+    path:   /visionner-details-heures
+    defaults: { _controller: UtilisateurBundle:Cours:visionnerDetailsHeures }
+
 profil:
     path:   /profil
     defaults: { _controller: UtilisateurBundle:Profil:profil }

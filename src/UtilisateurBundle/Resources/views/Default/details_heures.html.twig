@@ -1,0 +1,335 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include '::menu.html.twig' %}
+        <div class="content_text">
+            <div class="container">
+                <h3>Horaire par matière</h3><br>
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#L3">L3</a></li>
+                    <li><a data-toggle="tab" href="#M1">M1</a></li>
+                    <li><a data-toggle="tab" href="#M2">M2</a></li>
+                </ul>
+                <div class="tab-content">
+
+                    <div id="L3" class="tab-pane fade in active" >
+                        <table class="table table-bordered" style="background-color: white">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th style="text-align: center">Septembre</th>
+                                <th style="text-align: center">Octobre</th>
+                                <th style="text-align: center">Novembre</th>
+                                <th style="text-align: center">Décembre</th>
+                                <th style="text-align: center">Janvier</th>
+                                <th style="text-align: center">Février</th>
+                                <th style="text-align: center">Mars</th>
+                                <th style="text-align: center">Avril</th>
+                                <th style="text-align: center">Mai</th>
+                                <th style="text-align: center">Juin</th>
+                                <th style="text-align: center">Juillet</th>
+                                <th style="text-align: center">Total effectuées</th>
+                                <th style="text-align: center">Total prévu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Projet</th>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">99</td>
+                                <td style="text-align: center">105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Statistiques</th>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">99</td>
+                                <td style="text-align: center">105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">DroitNum</th>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">99</td>
+                                <td style="text-align: center">105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">COOL</th>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">9</td>
+                                <td style="text-align: center">99</td>
+                                <td style="text-align: center">105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total effectuées</th>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">36</td>
+                                <td style="text-align: center">396</td>
+                                <td style="text-align: center">420</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="M1" class="tab-pane fade">
+                        <table class="table table-bordered" style="background-color: white">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Septembre</th>
+                                <th>Octobre</th>
+                                <th>Novembre</th>
+                                <th>Décembre</th>
+                                <th>Janvier</th>
+                                <th>Février</th>
+                                <th>Mars</th>
+                                <th>Avril</th>
+                                <th>Mai</th>
+                                <th>Juin</th>
+                                <th>Juillet</th>
+                                <th>Total effectuées</th>
+                                <th>Total prévu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Projet</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Statistiques</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">DroitNum</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">COOL</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total effectuées</th>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>396</td>
+                                <td>420</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="M2" class="tab-pane fade" style="background-color: white">
+                        <table class="table table-bordered" style="background-color: white">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Septembre</th>
+                                <th>Octobre</th>
+                                <th>Novembre</th>
+                                <th>Décembre</th>
+                                <th>Janvier</th>
+                                <th>Février</th>
+                                <th>Mars</th>
+                                <th>Avril</th>
+                                <th>Mai</th>
+                                <th>Juin</th>
+                                <th>Juillet</th>
+                                <th>Total effectuées</th>
+                                <th>Total prévu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Projet</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Statistiques</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">DroitNum</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">COOL</th>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>99</td>
+                                <td>105</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total effectuées</th>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>36</td>
+                                <td>396</td>
+                                <td>420</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
