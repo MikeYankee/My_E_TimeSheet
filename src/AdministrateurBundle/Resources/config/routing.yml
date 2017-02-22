@@ -14,6 +14,10 @@ ajouter_etudiant:
     path:   /ajouter-etudiant
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutEtudiant }
 
+ajouter_matiere:
+    path:   /ajouter-matiere
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutMatiere }
+
 gerer_personnel:
     path:   /gerer-personnel
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:listePersonnel }

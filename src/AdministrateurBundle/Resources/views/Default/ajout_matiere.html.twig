@@ -5,10 +5,77 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Ajouter une matière</h3><br>
+                <h3>Ajout d'une matière</h3><br>
 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">Libellé : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Nombres d'heure de TD : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nombres d'heure de cours : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Nombres d'heure d'examen : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nombres d'heure de soutenance : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">Enseignant(s) : </label>
+                            <div class="has-feedback">
+                                <select id="enseignant" multiple="multiple">
+                                    <option value="1">J.BENZAKKI</option>
+                                    <option value="2">D.COURTAUD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br><br>
+
+                <div class="pull-right">
+                    <a href="{{ path('gerer_promotion') }}" class="btn btn-default">Annuler</a>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
             </div>
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#enseignant").select2();
+        });
+    </script>
 {% endblock %}

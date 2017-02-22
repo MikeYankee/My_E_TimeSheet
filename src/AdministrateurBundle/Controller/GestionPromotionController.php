@@ -21,4 +21,9 @@ class GestionPromotionController extends Controller
     {
         return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
     }
+
+    public function ajoutMatiereAction()
+    {
+        return $this->render('AdministrateurBundle:Default:ajout_matiere.html.twig');
+    }
 }
