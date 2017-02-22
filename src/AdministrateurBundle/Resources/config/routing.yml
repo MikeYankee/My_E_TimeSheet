@@ -10,6 +10,10 @@ gerer_promotion:
     path:   /gerer-promotion
     defaults: { _controller: AdministrateurBundle:GestionPromotion:gestionPromo }
 
+ajouter_etudiant:
+    path:   /ajouter-etudiant
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutEtudiant }
+
 gerer_personnel:
     path:   /gerer-personnel
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:listePersonnel }
