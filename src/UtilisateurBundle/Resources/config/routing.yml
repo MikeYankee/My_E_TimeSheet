@@ -22,11 +22,11 @@ historique_feuille_presence:
     path:   /historique-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:historiqueFeuillePresence }
 
-visionnerFeuillePresence:
+visionner_feuille_presence:
     path:   /visionner-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:visionnerFeuillePresence }
 
-visionnerDetailsHeures:
+visionner_details_heures:
     path:   /visionner-details-heures
     defaults: { _controller: UtilisateurBundle:Cours:visionnerDetailsHeures }
 

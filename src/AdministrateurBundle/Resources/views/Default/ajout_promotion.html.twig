@@ -5,8 +5,37 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Ajouter une promotion</h3><br>
+                <h3>Ajout d'une promotion</h3><br>
 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Libellé : </label>
+                            <div class="has-feedback">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Enseignant(s) : </label>
+                            <div class="has-feedback">
+                                <select id="enseignant" multiple="multiple">
+                                    <option value="1">J.BENZAKKI</option>
+                                    <option value="2">D.COURTAUD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br><br><br><br>
+
+                <div class="pull-right">
+                    <a href="{{ path('gerer_promotion') }}" class="btn btn-default">Annuler</a>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
             </div>
         </div>
     </div>

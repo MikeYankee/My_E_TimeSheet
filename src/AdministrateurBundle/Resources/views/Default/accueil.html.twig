@@ -13,7 +13,7 @@
 -o-box-shadow: 0px 0px 12px 0px #656565;
 box-shadow: 0px 0px 12px 0px #656565;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=12);">
-                            <a href="{{ path('gerer_promotion') }}" class="btn bouton-accueil-admin "><span class="glyphicon glyphicon-list-alt" style="font-size: 50px"></span></a>
+                            <a href="{{ path('liste_promotions') }}" class="btn bouton-accueil-admin "><span class="glyphicon glyphicon-list-alt" style="font-size: 50px"></span></a>
                             <div class="caption">
                                 <h3 style="text-align: center">Gérer les promotions</h3>
                                 <p>Ajoutez ou supprimez des promotions, ajoutez leurs des étudiants, des matières, un responsable de filière ...</p>
@@ -34,9 +34,74 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, St
                         </div>
                     </div>
                 </div>
+
+                <table id="tableToggle">
+                    <caption>Passagers du vol 377</caption>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Âge</th>
+                        <th>Pays</th>
+                    </tr>
+                    <tr>
+                        <td><div class="tableToggleButton">Carmen</div></td>
+                        <td>33 ans</td>
+                        <td>Espagne</td>
+                    </tr>
+                    <tr class="toggleable">
+                        <td>CarmenSOEUR_1</td>
+                        <td>33 ans_1</td>
+                        <td>Espagne_1</td>
+                    </tr>
+                    <tr class="toggleable">
+                        <td>CarmenSOEUR_2</td>
+                        <td>33 ans_2</td>
+                        <td>Espagne_2</td>
+                    </tr>
+
+                    <tr>
+                        <td><div class="tableToggleButton">Michelle</div></td>
+                        <td>26 ans</td>
+                        <td>États-Unis</td>
+                    </tr>
+
+                    <tr class="toggleable">
+                        <td>MichelleSOEUR_1</td>
+                        <td>26 ans_1</td>
+                        <td>États-Unis_1</td>
+                    </tr>
+                    <tr class="toggleable">
+                        <td>MichelleSOEUR_2</td>
+                        <td>26 ans_2</td>
+                        <td>États-Unis_2</td>
+                    </tr>
+
+                </table>
+
+
+
+
+
             </div>
         </div>
     </div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#tableToggle tr.toggleable" ).hide();
+
+            $("#tableToggle .tableToggleButton" ).click(function(){
+                var next = $(this).parent().parent().nextAll('tr:has(div.tableToggleButton)').first();
+
+                $(this).parent().parent().nextUntil(next, ".toggleable").slideToggle('medium');
+            });
+        });
+
+    </script>
 {% endblock %}

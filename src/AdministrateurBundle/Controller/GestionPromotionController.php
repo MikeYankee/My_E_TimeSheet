@@ -17,6 +17,11 @@ class GestionPromotionController extends Controller
         return $this->render('AdministrateurBundle:Default:gestion_promo.html.twig');
     }
 
+    public function ajoutPromoAction()
+    {
+        return $this->render('AdministrateurBundle:Default:ajout_promotion.html.twig');
+    }
+
     public function ajoutEtudiantAction()
     {
         return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
