@@ -57,5 +57,6 @@
         "branch-alias": {
             "dev-master": "2.8-dev"
         }
-    }
+    },
+    "friendsofsymfony/user-bundle": "~2.0@dev"
 }
