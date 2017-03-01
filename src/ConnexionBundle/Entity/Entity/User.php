@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="entity_utilisateur")
  * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\UtilisateurRepository")
  */
-class Utilisateur extends BaseUser
+class User extends BaseUser
 {
     /**
      * @var int
@@ -20,35 +20,35 @@ class Utilisateur extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $nom;
+    protected $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      */
-    private $prenom;
+    protected $prenom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="tel", type="string", length=10)
      */
-    private $tel;
+    protected $tel;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
      */
-    private $mail;
+    protected $mail;
 
 
     /**
