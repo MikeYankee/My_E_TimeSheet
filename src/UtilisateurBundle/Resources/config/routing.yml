@@ -18,6 +18,10 @@ historique_absence_promos:
     path:   /historique-absence_promos
     defaults: { _controller: UtilisateurBundle:FeuillePresence:visionnerHistoriqueAbsencesPromos }
 
+historique_facture:
+    path:   /historique-facture
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:visionnerHistoriqueFacture }
+
 historique_feuille_presence:
     path:   /historique-feuille-presence
     defaults: { _controller: UtilisateurBundle:FeuillePresence:historiqueFeuillePresence }

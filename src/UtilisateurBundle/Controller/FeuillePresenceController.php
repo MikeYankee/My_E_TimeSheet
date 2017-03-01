@@ -26,4 +26,10 @@ class FeuillePresenceController extends Controller
     {
         return $this->render('UtilisateurBundle:Default:recap_absences.html.twig');
     }
+
+    public function visionnerHistoriqueFacture()
+    {
+        return $this->render('UtilisateurBundle:Default:historique_facture.html.twig');
+    }
+
 }

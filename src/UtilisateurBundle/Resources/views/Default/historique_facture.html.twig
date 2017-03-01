@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include '::menu.html.twig' %}
+        <div class="content_text">
+            <div class="container">
+                <h3>Historique des factures</h3><br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Feuille de présence</th>
+                        <th>Télécharger</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>15 Novembre 2017</td>
+                        <td><a href="#" target="_blank">Voir la facture</a></td>
+                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+
+                    </tr>
+                    <tr>
+                        <td>15 Mars 2017</td>
+                        <td><a href="#" target="_blank">Voir la facture</a></td>
+                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>15 Novembre 2016</td>
+                        <td><a href="#" target="_blank">Voir la facture</a></td>
+                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
