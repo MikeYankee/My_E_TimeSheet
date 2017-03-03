@@ -9,21 +9,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <!--etudiant-->
-                <li><a class="active" href="{{ path('signaler_presence') }}">Signaler sa présence</a></li>
+                <li><a class="active" href="{{ path('signaler_presence') }}">Signaler présence</a></li>
 
                 <!--delegue-->
-                <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer une feuille de présence</a></li>
+                <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer ets</a></li>
 
                 <!--enseignant-->
-                <li><a class="active" href="{{ path('valider_cours') }}">Valider les cours</a></li>
+                <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
+
+                <!--Responsable-->
+                <li><a class="active" href="{{ path('visionner_details_heures') }}">Récap heures</a></li>
 
                 <!--commun-->
                 <li><a href="{{ path('historique_feuille_presence') }}">Historique des ets</a></li>
 
                 <!--admin-->
                 <li><a class="active" href="{{ path('accueil_admin') }}">Accueil admin</a></li>
-                <li><a class="active" href="{{ path('liste_promotions') }}">Gérer les promos</a></li>
-                <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer le personnel</a></li>
+                <li><a class="active" href="{{ path('liste_promotions') }}">Gérer promos</a></li>
+                <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer personnel</a></li>
 
             </ul>
 
