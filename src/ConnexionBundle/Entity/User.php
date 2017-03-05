@@ -1,6 +1,6 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateur
  *
- * @ORM\Table(name="entity_utilisateur")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\UtilisateurRepository")
+ * @ORM\Table(name="Utilisateur")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\UtilisateurRepository")
  */
 class User extends BaseUser
 {
@@ -50,6 +50,36 @@ class User extends BaseUser
      */
     protected $mail;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motdepasse", type="string", length=255)
+     */
+    protected $motdepasse;
+
+    /**
+     * Many Users have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesUtilisateurs")
+     */
+    private $promotion;
+
+    /**
+     * Many Users have Many Cours.
+     * @ORM\ManyToMany(targetEntity="Cours", inversedBy="lesEtudiants")
+     */
+    private $lesCoursEtudiants;
+
+    /**
+     * Many Users have Many Matieres.
+     * @ORM\ManyToMany(targetEntity="Matiere", inversedBy="lesEnseignants")
+     */
+    private $lesMatieres;
+
+    /**
+     * One User has Many Cours.
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="enseignant")
+     */
+    private $lesCoursEnseignants;
 
     /**
      * Get id

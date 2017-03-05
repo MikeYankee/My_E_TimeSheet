@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Cours
  *
- * @ORM\Table(name="entity_cours")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\CoursRepository")
+ * @ORM\Table(name="Cours")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\CoursRepository")
  */
 class Cours
 {
@@ -43,39 +43,35 @@ class Cours
     private $estValide;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="enseignant", type="string", length=255)
+     * Many Cours have One Enseignant.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesCoursEnseignants")
      */
     private $enseignant;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="matiere", type="string", length=255)
+     * Many Cours have One Matiere.
+     * @ORM\ManyToOne(targetEntity="Matiere", inversedBy="lesCours")
      */
     private $matiere;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ets", type="string", length=255)
+     * Many Cours have One ETimeSheet.
+     * @ORM\ManyToOne(targetEntity="ETimeSheet", inversedBy="lesCours")
      */
     private $ets;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
+     * One Cours has One Type.
+     * @ORM\OneToOne(targetEntity="Type")
      */
     private $type;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesEtudiants", type="string", length=255)
+     * Many Cours have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="lesCoursEtudiants")
      */
     private $lesEtudiants;
+
 
 
     /**

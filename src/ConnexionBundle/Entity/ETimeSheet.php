@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ETimeSheet
  *
- * @ORM\Table(name="entity_e_time_sheet")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\ETimeSheetRepository")
+ * @ORM\Table(name="E_time_sheet")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\ETimeSheetRepository")
  */
 class ETimeSheet
 {
@@ -36,16 +36,14 @@ class ETimeSheet
     private $commentaire;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="promo", type="string", length=255)
+     * Many ETimeSheets have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesETS")
      */
-    private $promo;
+    private $promotion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesCours", type="string", length=255)
+     * One ETimeSheets has Many Cours.
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="ets")
      */
     private $lesCours;
 
