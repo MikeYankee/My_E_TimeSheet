@@ -1,4 +1,11 @@
 services:
+    redirect.after.login:
+        class: ConnexionBundle\Redirection\AfterLoginRedirection
+        arguments: [@router]
+
+    redirect.after.logout:
+        class: ConnexionBundle\Redirection\AfterLogoutRedirection
+        arguments: [@router, @security.context]
 #    connexion.example:
 #        class: ConnexionBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

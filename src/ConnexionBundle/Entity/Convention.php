@@ -100,23 +100,23 @@ class Convention
     /**
      * Set promo
      *
-     * @param string $promo
+     * @param string $promotion
      * @return Convention
      */
-    public function setPromo($promo)
+    public function setPromotion($promotion)
     {
-        $this->promo = $promo;
+        $this->promotion = $promotion;
 
         return $this;
     }
 
     /**
-     * Get promo
+     * Get promotion
      *
      * @return string 
      */
-    public function getPromo()
+    public function getPromotion()
     {
-        return $this->promo;
+        return $this->promotion;
     }
 }
