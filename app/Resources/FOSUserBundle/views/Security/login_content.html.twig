@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends '::base.html.twig' %}
+{% block body %}
+{% if error %}
+    <div>{{ error|trans}}</div>
+{% endif %}
+    <div id="main">
+        <div class="rectangle rec4">
+            <div class="row">
+                <h1 style="text-align: center; color:white">MY E-TimeSheet</h1>
+
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% endif %}
+                    <div class="col-md-8 col-sm-push-2"><br><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"  class="form-control" placeholder="Email"/>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" id="password" name="_password" required="required"  class="form-control" placeholder="Password" />
+                        </div>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <label for="remember_me">Se souvenir de moi</label>
+                    </div>
+                    <div class="col-md-8 col-sm-push-4">
+                        <input type="submit" id="_submit" name="_submit" value="Connexion OFFICIELLE" class="btn btn-secondary" style="color: #000;" />
+                        <a href="{{ path('accueil_admin') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion admin</button></a>
+                        <a href="{{ path('signaler_presence') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion etudiant</button></a>
+                        <a href="{{ path('valider_cours') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion enseignant</button></a>
+                        <a href="{{ path('creer_feuille_presence') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion delegue</button></a>
+                        <a href="{{ path('visionner_details_heures') }}"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion Resp MIAGE</button></a>
+                        <a href="#"><button type="button" class="btn btn-secondary" style="color: #000;">Connexion secrétaire</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="rectangle rec1"></div>
+        <div class="rectangle rec2"></div>
+        <div class="rectangle rec3"></div>
+    </div>
+{% endblock %}
