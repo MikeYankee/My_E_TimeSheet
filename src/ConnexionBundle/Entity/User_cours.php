@@ -37,13 +37,13 @@ class User_cours
 
     /**
      * Many User_cours have One Cours.
-     * @ORM\ManyToOne(targetEntity="Cours", inversedBy="lesEtudiantsPresents")
+     * @ORM\ManyToOne(targetEntity="Cours", inversedBy="lesEtudiants")
      */
     private $leCours;
 
     /**
      * Many Users have One User.
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesEtudiantsPresents")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesEtudiants")
      */
     private $lEtudiant;
 

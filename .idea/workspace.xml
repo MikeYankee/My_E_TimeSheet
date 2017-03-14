@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0aa6e8a-bb8b-4107-bf5d-5f927a7feffe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Convention.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Convention.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,8 +44,8 @@
       <file leaf-file-name="User_cours.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+            <state relative-caret-position="357">
+              <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -56,8 +54,8 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="50" selection-end-column="23" />
+            <state relative-caret-position="445">
+              <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -66,8 +64,8 @@
       <file leaf-file-name="Cours.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="70" column="41" lean-forward="false" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+            <state relative-caret-position="263">
+              <caret line="62" column="7" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -202,9 +200,9 @@
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Redirection/AfterLoginRedirection.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Convention.php" />
-        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php" />
-        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php" />
+        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php" />
       </list>
     </option>
   </component>
@@ -580,12 +578,12 @@
       <workItem from="1488577280851" duration="9012000" />
       <workItem from="1488659291016" duration="6465000" />
       <workItem from="1489436576398" duration="7584000" />
-      <workItem from="1489480464958" duration="5103000" />
+      <workItem from="1489480464958" duration="6411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149658000" />
+    <option name="totallyTimeSpent" value="150966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -970,24 +968,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/Cours.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="70" column="41" lean-forward="false" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+        <state relative-caret-position="263">
+          <caret line="62" column="7" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="50" selection-end-column="23" />
+        <state relative-caret-position="445">
+          <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="357">
+          <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
           <folding />
         </state>
       </provider>

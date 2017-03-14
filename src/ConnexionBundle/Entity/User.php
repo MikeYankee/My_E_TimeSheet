@@ -60,7 +60,7 @@ class User extends BaseUser
      * One User has Many User_cours.
      * @ORM\OneToMany(targetEntity="User_cours", mappedBy="lEtudiant")
      */
-    private $lesEtudiantsPresents;
+    private $lesEtudiants;
 
     /**
      * Get id

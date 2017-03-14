@@ -70,7 +70,7 @@ class Cours
      * One Cours has Many User_cours.
      * @ORM\OneToMany(targetEntity="User_cours", mappedBy="leCours")
      */
-    private $lesEtudiantsPresents;
+    private $lesEtudiants;
 
 
     /**
