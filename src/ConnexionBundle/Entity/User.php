@@ -51,16 +51,16 @@ class User extends BaseUser
     private $promotion;
 
     /**
-     * Many Users have Many Cours.
-     * @ORM\ManyToMany(targetEntity="Cours", inversedBy="lesEtudiants")
-     */
-    private $lesCoursEtudiants;
-
-    /**
      * Many Users have Many Matieres.
      * @ORM\ManyToMany(targetEntity="Matiere", inversedBy="lesEnseignants")
      */
     private $lesMatieres;
+
+    /**
+     * One User has Many User_cours.
+     * @ORM\OneToMany(targetEntity="User_cours", mappedBy="lEtudiant")
+     */
+    private $lesEtudiantsPresents;
 
     /**
      * Get id

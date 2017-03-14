@@ -67,11 +67,10 @@ class Cours
     private $type;
 
     /**
-     * Many Cours have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="lesCoursEtudiants")
+     * One Cours has Many User_cours.
+     * @ORM\OneToMany(targetEntity="User_cours", mappedBy="leCours")
      */
-    private $lesEtudiants;
-
+    private $lesEtudiantsPresents;
 
 
     /**
