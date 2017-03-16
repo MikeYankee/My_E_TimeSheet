@@ -8,34 +8,34 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <!--etudiant-->
-                <li><a class="active" href="{{ path('signaler_presence') }}">Signaler présence</a></li>
-
-                <!--delegue-->
-                <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer ets</a></li>
-
-                <!--enseignant-->
-                <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
-
-                <!--Responsable & CFA-->
-                <li><a class="active" href="{{ path('visionner_details_heures') }}">Récap heures</a></li>
-                <li><a class="active" href="{{ path('historique_facture') }}">Histo factures</a></li>
-
-                <!--commun-->
-                <li><a href="{{ path('historique_feuille_presence') }}">Histo ets</a></li>
-                <li><a href="{{ path('historique_absence') }}">Histo absences</a></li>
-
-                <!--admin-->
-                <li><a class="active" href="{{ path('accueil_admin') }}">Accueil admin</a></li>
-                <li><a class="active" href="{{ path('liste_promotions') }}">Gérer promos</a></li>
-                <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer personnel</a></li>
-
+                {% if is_granted("ROLE_ETUDIANT") %}
+                    <li><a class="active" href="{{ path('signaler_presence') }}">Signaler présence</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_DELEGUE") %}
+                    <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer ets</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_ENSEIGNANT") %}
+                    <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_CFA") or is_granted("ROLE_SECRETAIRE") %}
+                    <li><a class="active" href="{{ path('visionner_details_heures') }}">Récap heures</a></li>
+                    <li><a class="active" href="{{ path('historique_facture') }}">Histo factures</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_USER") and (is_granted("ROLE_ADMIN") == false) %}
+                    <li><a href="{{ path('historique_feuille_presence') }}">Histo ets</a></li>
+                    <li><a href="{{ path('historique_absence') }}">Histo absences</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li><a class="active" href="{{ path('accueil_admin') }}">Accueil admin</a></li>
+                    <li><a class="active" href="{{ path('liste_promotions') }}">Gérer promos</a></li>
+                    <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer personnel</a></li>
+                {% endif %}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ path('profil') }}">Profil&nbsp;<i class="glyphicon glyphicon-user"></i></a></li>
                 <li><a href="{{ path('contact') }}">Contact&nbsp;<i class="glyphicon glyphicon-envelope"></i></a></li>
-                <li><a href="#">Déco&nbsp;<i class="glyphicon glyphicon-off"></i></a></li>
+                <li><a href="{{ path('deconnexion') }}">Déco&nbsp;<i class="glyphicon glyphicon-off"></i></a></li>
             </ul>
         </div>
     </div>
