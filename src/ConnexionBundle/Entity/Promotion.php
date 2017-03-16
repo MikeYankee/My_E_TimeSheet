@@ -32,7 +32,7 @@ class Promotion
      * One Promotion has Many Conventions.
      * @ORM\OneToMany(targetEntity="Convention", mappedBy="promotion")
      */
-    private $convention;
+    private $lesConventions;
 
     /**
      * One Promotion has Many ETimeSheets.

@@ -36,7 +36,7 @@ class Convention
 
     /**
      * Many Conventions have One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="convention")
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesConventions")
      */
     private $promotion;
 
