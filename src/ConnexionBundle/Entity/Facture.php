@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Facture
  *
- * @ORM\Table(name="entity_facture")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\FactureRepository")
+ * @ORM\Table(name="Facture")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\FactureRepository")
  */
 class Facture
 {
@@ -43,11 +43,10 @@ class Facture
     private $dateFin;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="promo", type="string", length=255)
+     * Many Factures have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesFactures")
      */
-    private $promo;
+    private $promotion;
 
 
     /**

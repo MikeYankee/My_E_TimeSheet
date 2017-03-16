@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * promotion
  *
- * @ORM\Table(name="entitypromotion")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\promotionRepository")
+ * @ORM\Table(name="Promotion")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\promotionRepository")
  */
 class Promotion
 {
@@ -29,37 +29,32 @@ class Promotion
     private $libelle;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="convention", type="string", length=255)
+     * One Promotion has Many Conventions.
+     * @ORM\OneToMany(targetEntity="Convention", mappedBy="promotion")
      */
-    private $convention;
+    private $lesConventions;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesETS", type="string", length=255)
+     * One Promotion has Many ETimeSheets.
+     * @ORM\OneToMany(targetEntity="ETimeSheet", mappedBy="promotion")
      */
     private $lesETS;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesMatieres", type="string", length=255)
+     * One Promotion has Many Matieres.
+     * @ORM\OneToMany(targetEntity="Matiere", mappedBy="promotion")
      */
     private $lesMatieres;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesUtilisateurs", type="string", length=255)
+     * One Promotion has Many Users.
+     * @ORM\OneToMany(targetEntity="User", mappedBy="promotion")
      */
     private $lesUtilisateurs;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesFactures", type="string", length=255)
+     * One Promotion has Many Factures.
+     * @ORM\OneToMany(targetEntity="Facture", mappedBy="promotion")
      */
     private $lesFactures;
 

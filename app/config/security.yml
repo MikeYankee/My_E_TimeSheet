@@ -12,7 +12,13 @@ security:
             id: fos_user.user_provider.username
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ETUDIANT: ROLE_USER
+        ROLE_DELEGUE: ROLE_ETUDIANT
+        ROLE_ENSEIGNANT: ROLE_USER
+        ROLE_RESPONSABLE: ROLE_ENSEIGNANT
+        ROLE_CFA: ROLE_USER
+        ROLE_SECRETAIRE: ROLE_USER
+        ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     firewalls:
@@ -25,8 +31,11 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager
+                success_handler: redirect.after.login
 
-            logout:       true
+            logout:
+                success_handler: redirect.after.logout
+                path:   /logout
             anonymous:    true
 
     access_control:

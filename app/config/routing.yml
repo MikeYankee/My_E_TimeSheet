@@ -1,6 +1,12 @@
 connexion:
-    resource: "@ConnexionBundle/Resources/config/routing.yml"
-    prefix:   /
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /login
+        permanent: true
+
+deconnexion:
+    path: /logout
 
 administrateur:
     resource: "@AdministrateurBundle/Resources/config/routing.yml"

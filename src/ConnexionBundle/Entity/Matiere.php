@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Matiere
  *
- * @ORM\Table(name="entity_matiere")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\MatiereRepository")
+ * @ORM\Table(name="Matiere")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\MatiereRepository")
  */
 class Matiere
 {
@@ -57,26 +57,22 @@ class Matiere
     private $nbHeuresMaquetteSoutenance;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesCours", type="string", length=255)
+     * One Matiere has Many Cours.
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="matiere")
      */
     private $lesCours;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="promo", type="string", length=255)
+     * Many Matieres have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesMatieres")
      */
-    private $promo;
+    private $promotion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lesEnseignants", type="string", length=255)
+     * Many Matieres have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="lesMatieres")
      */
     private $lesEnseignants;
-
 
     /**
      * Get id

@@ -1,15 +1,15 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Utilisateur
  *
- * @ORM\Table(name="entity_utilisateur")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\UtilisateurRepository")
+ * @ORM\Table(name="User")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\UtilisateurRepository")
  */
 class User extends BaseUser
 {
@@ -25,31 +25,42 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", nullable=true, length=255)
      */
     protected $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", nullable=true, length=255)
      */
     protected $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel", type="string", length=10)
+     * @ORM\Column(name="tel", type="string", nullable=true, length=10)
      */
     protected $tel;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255)
-     */
-    protected $mail;
 
+    /**
+     * Many Users have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesUtilisateurs")
+     */
+    private $promotion;
+
+    /**
+     * Many Users have Many Matieres.
+     * @ORM\ManyToMany(targetEntity="Matiere", inversedBy="lesEnseignants")
+     */
+    private $lesMatieres;
+
+    /**
+     * One User has Many User_cours.
+     * @ORM\OneToMany(targetEntity="User_cours", mappedBy="lEtudiant")
+     */
+    private $lesEtudiants;
 
     /**
      * Get id
@@ -65,7 +76,7 @@ class User extends BaseUser
      * Set nom
      *
      * @param string $nom
-     * @return Utilisateur
+     * @return User
      */
     public function setNom($nom)
     {
@@ -88,7 +99,7 @@ class User extends BaseUser
      * Set prenom
      *
      * @param string $prenom
-     * @return Utilisateur
+     * @return User
      */
     public function setPrenom($prenom)
     {
@@ -111,7 +122,7 @@ class User extends BaseUser
      * Set tel
      *
      * @param string $tel
-     * @return Utilisateur
+     * @return User
      */
     public function setTel($tel)
     {
@@ -134,7 +145,7 @@ class User extends BaseUser
      * Set mail
      *
      * @param string $mail
-     * @return Utilisateur
+     * @return User
      */
     public function setMail($mail)
     {

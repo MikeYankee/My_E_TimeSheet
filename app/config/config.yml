@@ -61,7 +61,7 @@ doctrine:
         auto_mapping: true
 
 fos_user:
-    user_class: ConnexionBundle\Entity\Entity\User
+    user_class: ConnexionBundle\Entity\User
 
 framework:
     translator: ~

@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Convention
  *
- * @ORM\Table(name="entity_convention")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\ConventionRepository")
+ * @ORM\Table(name="Convention")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\ConventionRepository")
  */
 class Convention
 {
@@ -29,18 +29,16 @@ class Convention
     private $prixHeure;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
+     * One Convention has One Type.
+     * @ORM\OneToOne(targetEntity="Type")
      */
     private $type;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="promo", type="string", length=255)
+     * Many Conventions have One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesConventions")
      */
-    private $promo;
+    private $promotion;
 
 
     /**
@@ -102,23 +100,23 @@ class Convention
     /**
      * Set promo
      *
-     * @param string $promo
+     * @param string $promotion
      * @return Convention
      */
-    public function setPromo($promo)
+    public function setPromotion($promotion)
     {
-        $this->promo = $promo;
+        $this->promotion = $promotion;
 
         return $this;
     }
 
     /**
-     * Get promo
+     * Get promotion
      *
      * @return string 
      */
-    public function getPromo()
+    public function getPromotion()
     {
-        return $this->promo;
+        return $this->promotion;
     }
 }

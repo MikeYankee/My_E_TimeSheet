@@ -1,14 +1,14 @@
 <?php
 
-namespace ConnexionBundle\Entity\Entity;
+namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Type
  *
- * @ORM\Table(name="entity_type")
- * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\Entity\TypeRepository")
+ * @ORM\Table(name="Type")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\TypeRepository")
  */
 class Type
 {
