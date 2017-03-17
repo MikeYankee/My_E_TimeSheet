@@ -70,7 +70,7 @@ class Matiere
 
     /**
      * Many Matieres have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="lesMatieres")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="lesMatieres")
      */
     private $lesEnseignants;
 
@@ -251,8 +251,8 @@ class Matiere
      * @param \ConnexionBundle\Entity\User $user
      * @return Matiere
      */
-    public function addLesEnseignant(\ConnexionBundle\Entity\User $lesEnseignants) {
-        $this->lesEnseignants[] = $lesEnseignants;
+    public function addLesEnseignant(\ConnexionBundle\Entity\User $user) {
+        $this->users[] = $user;
 
         return $this;
     }
@@ -264,7 +264,7 @@ class Matiere
      * @return Matiere
      */
     public function setLesEnseignants($enseignants) {
-        $this->lesEnseignants = $enseignants;
+        $this->lesEnseignants[] = $enseignants;
 
         return $this;
     }
@@ -286,49 +286,5 @@ class Matiere
     public function getLesEnseignants()
     {
         return $this->lesEnseignants;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->lesCours = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lesEnseignants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add lesCours
-     *
-     * @param \ConnexionBundle\Entity\Cours $lesCours
-     * @return Matiere
-     */
-    public function addLesCour(\ConnexionBundle\Entity\Cours $lesCours)
-    {
-        $this->lesCours[] = $lesCours;
-
-        return $this;
-    }
-
-    /**
-     * Remove lesCours
-     *
-     * @param \ConnexionBundle\Entity\Cours $lesCours
-     */
-    public function removeLesCour(\ConnexionBundle\Entity\Cours $lesCours)
-    {
-        $this->lesCours->removeElement($lesCours);
-    }
-
-    /**
-     * Set promotion
-     *
-     * @param \ConnexionBundle\Entity\Promotion $promotion
-     * @return Matiere
-     */
-    public function setPromotion(\ConnexionBundle\Entity\Promotion $promotion = null)
-    {
-        $this->promotion = $promotion;
-
-        return $this;
     }
 }
