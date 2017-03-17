@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.libelle) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.libelle) }}
+                                {{ form_widget(form.libelle, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                     </div>
@@ -22,13 +22,13 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.nbHeuresMaquetteTD) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.nbHeuresMaquetteTD) }}
+                                {{ form_widget(form.nbHeuresMaquetteTD, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.nbHeuresMaquetteCours) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.nbHeuresMaquetteCours) }}
+                                {{ form_widget(form.nbHeuresMaquetteCours, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                     </div>
@@ -36,13 +36,13 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.nbHeuresMaquetteExam) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.nbHeuresMaquetteExam) }}
+                                {{ form_widget(form.nbHeuresMaquetteExam, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.nbHeuresMaquetteSoutenance) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.nbHeuresMaquetteSoutenance, {'class':'form-control'}) }}
+                                {{ form_widget(form.nbHeuresMaquetteSoutenance, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.lesEnseignants) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.lesEnseignants, {'id': 'enseignant'}) }}
+                                {{ form_widget(form.lesEnseignants, { 'attr': {'class': 'form-control'}, 'id': 'enseignant'}) }}
                             </div>
                         </div>
                     </div>
