@@ -25,36 +25,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>VALBON</td>
-                                    <td>Kévin</td>
-                                    <td>vk@mail.com</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-star" data-toggle="popover" data-placement="left" data-content="Délégué"></span>
-                                        BOURGUES</td>
-                                    <td>Yann</td>
-                                    <td>by@mail.com</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                                <tr>
-                                    <td>GARAPATI</td>
-                                    <td>Vivek</td>
-                                    <td>gv@mail.com</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                                <tr>
-                                    <td>GALVAN</td>
-                                    <td>Mélanie</td>
-                                    <td>gm@mail.com</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
+
+                            {% if(lesEtudiants|length > 0) %}
+                                {% for etudiant in lesEtudiants %}
+                                    <tr>
+                                        <td>{{ etudiant.nom|upper }}</td>
+                                        <td>{{ etudiant.prenom }}</td>
+                                        <td>{{ etudiant.email }}</td>
+                                        <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr><td colspan="5">Aucun étudiant n'est encore affilié à la promotion.</td></tr>
+                            {% endif %}
+
+
                             </tbody>
                         </table>
                     </div>
@@ -66,31 +52,22 @@
                                 <td width="40%"><b>Libellé</b></td>
                                 <td><b>Heures de TD</b></td>
                                 <td><b>Heures de Cours</b></td>
+                                <td><b>Enseignant(s)</b></td>
                                 <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_matiere', {'id':1}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Projet</td>
-                                <td>6</td>
-                                <td>27</td>
-                                <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':7}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                            </tr>
-                            <tr>
-                                <td>BADA</td>
-                                <td>21</td>
-                                <td>18</td>
-                                <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':11}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                            </tr>
-                            <tr>
-                                <td>Anglais</td>
-                                <td>27</td>
-                                <td>0</td>
-                                <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':10}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                            </tr>
+
+                            {% for matiere in lesMatieres %}
+                                <tr>
+                                    <td>{{ matiere.libelle }}</td>
+                                    <td>{{ matiere.nbHeuresMaquetteTD }}</td>
+                                    <td>{{ matiere.nbHeuresMaquetteCours }}</td>
+                                    <td>{{ matiere.lesEnseignants|join(', ') }}</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':matiere.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

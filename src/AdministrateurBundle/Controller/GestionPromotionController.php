@@ -17,9 +17,23 @@ class GestionPromotionController extends Controller
         return $this->render('AdministrateurBundle:Default:liste_promos.html.twig');
     }
 
-    public function gestionPromoAction(/*une promo*/)
+    public function gestionPromoAction(Promotion $promotion = null)
     {
-        return $this->render('AdministrateurBundle:Default:gestion_promo.html.twig');
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
+        if(is_null($promotion)){
+            return $this->redirect($this->generateUrl("liste_promotions"));
+        }
+
+        $les_etudiants = $promotion->getLesUtilisateurs();
+        $les_matieres = $promotion->getLesMatieres();
+
+
+        return $this->render('AdministrateurBundle:Default:gestion_promo.html.twig', array(
+            'lesEtudiants' => $les_etudiants,
+            'lesMatieres' => $les_matieres,
+        ));
     }
 
     public function ajoutPromoAction()
@@ -36,19 +50,17 @@ class GestionPromotionController extends Controller
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
-        $user = $this->getUser();
-
         // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
         if(is_null($promotion)){
-            return $this->redirect($this->generateUrl("gerer_promotion"));
+            return $this->redirectToRoute("gerer_promotion", array('id' => $promotion->getId()));
         }
 
-        $lesEnseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
 
         $matiere = new Matiere();
         $matiere->setPromo($promotion);
 
-        $form = $this->createForm(new MatiereType($lesEnseignants), $matiere);
+        $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
 
         $form->handleRequest($request);
@@ -58,7 +70,7 @@ class GestionPromotionController extends Controller
                 $em->persist($matiere);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl("gerer_promotion"));
+                return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
 
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
@@ -66,20 +78,21 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:ajout_matiere.html.twig', array(
             'form' => $form->createView(),
+            'matiere' => $matiere
         ));
     }
+
     public function modificationMatiereAction(Request $request, Matiere $matiere = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
-        $user = $this->getUser();
-
         if(is_null($matiere)){
-            return $this->redirect($this->generateUrl("gerer_promotion"));
+            //return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId())));
+            //return $this->redirectToRoute("gerer_promotion", array('id' => $matiere->getPromotion()->getId()));
         }
 
-        $lesEnseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
-        $form = $this->createForm(new MatiereType($lesEnseignants), $matiere);
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -87,14 +100,15 @@ class GestionPromotionController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
 
-                return $this->redirect($this->generateUrl("gerer_promotion"));
+                return $this->redirectToRoute("gerer_promotion", array('id' => $matiere->getPromotion()->getId()));
 
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }
 
-        return $this->render('AdministrateurBundle:Default:ajout_matiere.html.twig', array(
+        return $this->render('AdministrateurBundle:Default:modification_matiere.html.twig', array(
             'form' => $form->createView(),
+            'matiere' => $matiere
         ));
     }
 }

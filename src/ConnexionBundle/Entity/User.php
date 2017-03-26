@@ -252,4 +252,20 @@ class User extends BaseUser
     {
         return $this->lesEtudiants;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        if(!is_null($this->prenom) or !is_null($this->nom)){
+            $return = $this->prenom." ".strtoupper($this->nom);
+        }
+        else{
+            $return = $this->email;
+        }
+        return $return;
+    }
 }
