@@ -23,6 +23,11 @@ ajouter_matiere:
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutMatiere }
     requirements:
         id: \d+
+modifier_matiere:
+    path:   /modifier-matiere/{id}
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:modificationMatiere }
+    requirements:
+        id: \d+
 
 gerer_personnel:
     path:   /gerer-personnel

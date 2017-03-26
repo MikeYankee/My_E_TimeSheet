@@ -68,4 +68,33 @@ class GestionPromotionController extends Controller
             'form' => $form->createView(),
         ));
     }
+    public function modificationMatiereAction(Request $request, Matiere $matiere = null)
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
+
+        if(is_null($matiere)){
+            return $this->redirect($this->generateUrl("gerer_promotion"));
+        }
+
+        $lesEnseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $form = $this->createForm(new MatiereType($lesEnseignants), $matiere);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_promotion"));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+
+        return $this->render('AdministrateurBundle:Default:ajout_matiere.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 }
