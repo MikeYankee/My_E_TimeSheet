@@ -32,19 +32,21 @@ class GestionPromotionController extends Controller
         return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
     }
 
-    public function ajoutMatiereAction(Request $request, Promotion $promo)
+    public function ajoutMatiereAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
         $user = $this->getUser();
 
-        // Check if promo exist to add matiere
-        //$promos = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->find($promo);
+        // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
+        if(is_null($promotion)){
+            return $this->redirect($this->generateUrl("gerer_promotion"));
+        }
 
         $lesEnseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
 
         $matiere = new Matiere();
-        $matiere->setPromo($promo);
+        $matiere->setPromo($promotion);
 
         $form = $this->createForm(new MatiereType($lesEnseignants), $matiere);
 
