@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class UtilisateurRepository extends EntityRepository
 {
+    public function findByRole($role) {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('u')
+            ->from($this->_entityName, 'u')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%"' . $role . '"%');
+        return $query->getQuery()->getResult();
+    }
 }

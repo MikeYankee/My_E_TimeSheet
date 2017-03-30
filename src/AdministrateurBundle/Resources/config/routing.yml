@@ -7,8 +7,10 @@ liste_promotions:
     defaults: { _controller: AdministrateurBundle:GestionPromotion:listePromos }
 
 gerer_promotion:
-    path:   /gerer-promotion
-    defaults: { _controller: AdministrateurBundle:GestionPromotion:gestionPromo }
+    path:   /gerer-promotion/{id}
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:gestionPromo, id:null }
+    requirements:
+        id: \d+
 
 ajouter_promo:
     path:   /ajouter-promo
@@ -19,8 +21,15 @@ ajouter_etudiant:
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutEtudiant }
 
 ajouter_matiere:
-    path:   /ajouter-matiere
+    path:   /ajouter-matiere/{id}
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutMatiere }
+    requirements:
+        id: \d+
+modifier_matiere:
+    path:   /modifier-matiere/{id}
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:modificationMatiere }
+    requirements:
+        id: \d+
 
 gerer_personnel:
     path:   /gerer-personnel
