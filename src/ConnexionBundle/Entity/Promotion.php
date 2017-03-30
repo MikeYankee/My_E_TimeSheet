@@ -50,13 +50,19 @@ class Promotion
      * One Promotion has Many Users.
      * @ORM\OneToMany(targetEntity="User", mappedBy="promotion")
      */
-    private $lesUtilisateurs;
+    private $lesEtudiants;
 
     /**
      * One Promotion has Many Factures.
      * @ORM\OneToMany(targetEntity="Facture", mappedBy="promotion")
      */
     private $lesFactures;
+
+    /**
+     * One Promotion has Many Users.
+     * @ORM\OneToMany(targetEntity="User", mappedBy="promotionResp")
+     */
+    private $lesResponsables;
 
 
     /**
@@ -341,5 +347,71 @@ class Promotion
     public function removeLesFacture(\ConnexionBundle\Entity\Facture $lesFactures)
     {
         $this->lesFactures->removeElement($lesFactures);
+    }
+
+    /**
+     * Add lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
+     * @return Promotion
+     */
+    public function addLesEtudiant(\ConnexionBundle\Entity\User $lesEtudiants)
+    {
+        $this->lesEtudiants[] = $lesEtudiants;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
+     */
+    public function removeLesEtudiant(\ConnexionBundle\Entity\User $lesEtudiants)
+    {
+        $this->lesEtudiants->removeElement($lesEtudiants);
+    }
+
+    /**
+     * Get lesEtudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesEtudiants()
+    {
+        return $this->lesEtudiants;
+    }
+
+    /**
+     * Add lesResponsables
+     *
+     * @param \ConnexionBundle\Entity\User $lesResponsables
+     * @return Promotion
+     */
+    public function addLesResponsable(\ConnexionBundle\Entity\User $lesResponsables)
+    {
+        $this->lesResponsables[] = $lesResponsables;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesResponsables
+     *
+     * @param \ConnexionBundle\Entity\User $lesResponsables
+     */
+    public function removeLesResponsable(\ConnexionBundle\Entity\User $lesResponsables)
+    {
+        $this->lesResponsables->removeElement($lesResponsables);
+    }
+
+    /**
+     * Get lesResponsables
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesResponsables()
+    {
+        return $this->lesResponsables;
     }
 }

@@ -60,7 +60,13 @@ class User extends BaseUser
      * One User has Many User_cours.
      * @ORM\OneToMany(targetEntity="User_cours", mappedBy="lEtudiant")
      */
-    private $lesEtudiants;
+    private $lesCours;
+
+    /**
+     * Many User has One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesResponsables")
+     */
+    private $promotionResp;
 
     /**
      * Get id
@@ -267,5 +273,61 @@ class User extends BaseUser
             $return = $this->email;
         }
         return $return;
+    }
+
+    /**
+     * Add lesCours
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesCours
+     * @return User
+     */
+    public function addLesCour(\ConnexionBundle\Entity\User_cours $lesCours)
+    {
+        $this->lesCours[] = $lesCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesCours
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesCours
+     */
+    public function removeLesCour(\ConnexionBundle\Entity\User_cours $lesCours)
+    {
+        $this->lesCours->removeElement($lesCours);
+    }
+
+    /**
+     * Get lesCours
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesCours()
+    {
+        return $this->lesCours;
+    }
+
+    /**
+     * Set promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     * @return User
+     */
+    public function setPromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp = null)
+    {
+        $this->promotionResp = $promotionResp;
+
+        return $this;
+    }
+
+    /**
+     * Get promotionResp
+     *
+     * @return \ConnexionBundle\Entity\Promotion 
+     */
+    public function getPromotionResp()
+    {
+        return $this->promotionResp;
     }
 }

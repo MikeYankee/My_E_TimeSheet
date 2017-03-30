@@ -52,7 +52,7 @@ class User extends BaseUser
 
     /**
      * Many Users have Many Matieres.
-     * @ORM\ManyToMany(targetEntity="Matiere", inversedBy="lesEnseignants")
+     * @ORM\ManyToMany(targetEntity="Matiere", mappedBy="lesEnseignants")
      */
     private $lesMatieres;
 
@@ -60,7 +60,13 @@ class User extends BaseUser
      * One User has Many User_cours.
      * @ORM\OneToMany(targetEntity="User_cours", mappedBy="lEtudiant")
      */
-    private $lesEtudiants;
+    private $lesCours;
+
+    /**
+     * Many User has One Promotion.
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesResponsables")
+     */
+    private $promotionResp;
 
     /**
      * Get id
@@ -162,5 +168,110 @@ class User extends BaseUser
     public function getMail()
     {
         return $this->mail;
+    }
+
+    /**
+     * Set promotion
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotion
+     * @return User
+     */
+    public function setPromotion(\ConnexionBundle\Entity\Promotion $promotion = null)
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
+    /**
+     * Get promotion
+     *
+     * @return \ConnexionBundle\Entity\Promotion 
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * Add lesMatieres
+     *
+     * @param \ConnexionBundle\Entity\Matiere $lesMatieres
+     * @return User
+     */
+    public function addLesMatiere(\ConnexionBundle\Entity\Matiere $lesMatieres)
+    {
+        $this->lesMatieres[] = $lesMatieres;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesMatieres
+     *
+     * @param \ConnexionBundle\Entity\Matiere $lesMatieres
+     */
+    public function removeLesMatiere(\ConnexionBundle\Entity\Matiere $lesMatieres)
+    {
+        $this->lesMatieres->removeElement($lesMatieres);
+    }
+
+    /**
+     * Get lesMatieres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesMatieres()
+    {
+        return $this->lesMatieres;
+    }
+
+    /**
+     * Add lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
+     * @return User
+     */
+    public function addLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
+    {
+        $this->lesEtudiants[] = $lesEtudiants;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
+     */
+    public function removeLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
+    {
+        $this->lesEtudiants->removeElement($lesEtudiants);
+    }
+
+    /**
+     * Get lesEtudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesEtudiants()
+    {
+        return $this->lesEtudiants;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        if(!is_null($this->prenom) or !is_null($this->nom)){
+            $return = $this->prenom." ".strtoupper($this->nom);
+        }
+        else{
+            $return = $this->email;
+        }
+        return $return;
     }
 }

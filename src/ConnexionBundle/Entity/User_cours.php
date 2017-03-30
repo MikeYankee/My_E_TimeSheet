@@ -42,8 +42,8 @@ class User_cours
     private $leCours;
 
     /**
-     * Many Users have One User.
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesEtudiants")
+     * Many User_cours have One User.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesCours")
      */
     private $lEtudiant;
 

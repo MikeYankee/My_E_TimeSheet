@@ -42,8 +42,8 @@ class User_cours
     private $leCours;
 
     /**
-     * Many Users have One User.
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesEtudiants")
+     * Many User_cours have One User.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="lesCours")
      */
     private $lEtudiant;
 
@@ -148,5 +148,51 @@ class User_cours
     public function getLesCours()
     {
         return $this->lesCours;
+    }
+
+    /**
+     * Set leCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $leCours
+     * @return User_cours
+     */
+    public function setLeCours(\ConnexionBundle\Entity\Cours $leCours = null)
+    {
+        $this->leCours = $leCours;
+
+        return $this;
+    }
+
+    /**
+     * Get leCours
+     *
+     * @return \ConnexionBundle\Entity\Cours 
+     */
+    public function getLeCours()
+    {
+        return $this->leCours;
+    }
+
+    /**
+     * Set lEtudiant
+     *
+     * @param \ConnexionBundle\Entity\User $lEtudiant
+     * @return User_cours
+     */
+    public function setLEtudiant(\ConnexionBundle\Entity\User $lEtudiant = null)
+    {
+        $this->lEtudiant = $lEtudiant;
+
+        return $this;
+    }
+
+    /**
+     * Get lEtudiant
+     *
+     * @return \ConnexionBundle\Entity\User 
+     */
+    public function getLEtudiant()
+    {
+        return $this->lEtudiant;
     }
 }

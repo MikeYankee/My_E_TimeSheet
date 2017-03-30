@@ -150,4 +150,27 @@ class Facture
     {
         return $this->promo;
     }
+
+    /**
+     * Set promotion
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotion
+     * @return Facture
+     */
+    public function setPromotion(\ConnexionBundle\Entity\Promotion $promotion = null)
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
+    /**
+     * Get promotion
+     *
+     * @return \ConnexionBundle\Entity\Promotion 
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
 }
