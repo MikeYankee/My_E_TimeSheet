@@ -86,9 +86,8 @@ class GestionPromotionController extends Controller
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
-        if(is_null($matiere)){
-            //return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId())));
-            //return $this->redirectToRoute("gerer_promotion", array('id' => $matiere->getPromotion()->getId()));
+        if(is_null($matiere)){ //la matière n'existe pas
+            return $this->redirectToRoute("liste_promotions");
         }
 
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
