@@ -330,4 +330,21 @@ class User extends BaseUser
     {
         return $this->promotionResp;
     }
+    
+    /**
+     * Afficher roles
+     * 
+     * @return string
+     */
+    public function afficherRoles(){
+        foreach ($this->getRoles() as $role) {
+            if($role != 'ROLE_USER'){
+                //Permet d'enlever la partie 'role_' de la variable
+                // et de mettre la première lettre en majuscule et le reste en minuscule pour l'affichage
+                $roles[] = ucwords(strtolower(substr($role, 5, strlen($role))));
+            }
+        }
+
+        return implode(', ', $roles);
+    }
 }

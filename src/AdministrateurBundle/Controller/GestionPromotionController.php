@@ -26,7 +26,7 @@ class GestionPromotionController extends Controller
             return $this->redirect($this->generateUrl("liste_promotions"));
         }
 
-        $les_etudiants = $promotion->getLesUtilisateurs();
+        $les_etudiants = $promotion->getLesEtudiants();
         $les_matieres = $promotion->getLesMatieres();
 
 
@@ -55,7 +55,7 @@ class GestionPromotionController extends Controller
             return $this->redirectToRoute("gerer_promotion", array('id' => $promotion->getId()));
         }
 
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
         $matiere = new Matiere();
         $matiere->setPromo($promotion);
@@ -90,7 +90,7 @@ class GestionPromotionController extends Controller
             return $this->redirectToRoute("liste_promotions");
         }
 
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
         $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
         $form->handleRequest($request);

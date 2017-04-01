@@ -168,29 +168,6 @@ class Promotion
     }
 
     /**
-     * Set lesUtilisateurs
-     *
-     * @param string $lesUtilisateurs
-     * @return promotion
-     */
-    public function setLesUtilisateurs($lesUtilisateurs)
-    {
-        $this->lesUtilisateurs = $lesUtilisateurs;
-
-        return $this;
-    }
-
-    /**
-     * Get lesUtilisateurs
-     *
-     * @return string 
-     */
-    public function getLesUtilisateurs()
-    {
-        return $this->lesUtilisateurs;
-    }
-
-    /**
      * Set lesFactures
      *
      * @param string $lesFactures
@@ -220,7 +197,7 @@ class Promotion
         $this->lesConventions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesETS = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesMatieres = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lesUtilisateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lesEtudiants = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesFactures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -301,29 +278,6 @@ class Promotion
     public function removeLesMatiere(\ConnexionBundle\Entity\Matiere $lesMatieres)
     {
         $this->lesMatieres->removeElement($lesMatieres);
-    }
-
-    /**
-     * Add lesUtilisateurs
-     *
-     * @param \ConnexionBundle\Entity\User $lesUtilisateurs
-     * @return Promotion
-     */
-    public function addLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
-    {
-        $this->lesUtilisateurs[] = $lesUtilisateurs;
-
-        return $this;
-    }
-
-    /**
-     * Remove lesUtilisateurs
-     *
-     * @param \ConnexionBundle\Entity\User $lesUtilisateurs
-     */
-    public function removeLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
-    {
-        $this->lesUtilisateurs->removeElement($lesUtilisateurs);
     }
 
     /**
