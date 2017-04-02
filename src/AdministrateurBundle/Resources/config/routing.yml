@@ -34,3 +34,11 @@ modifier_matiere:
 gerer_personnel:
     path:   /gerer-personnel
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:listePersonnel }
+
+ajouter_personnel:
+    path:   /ajouter-personnel
+    defaults: { _controller: AdministrateurBundle:GestionPersonnel:ajoutPersonnel }
+
+modifier_personnel:
+    path:   /modifier-personnel
+    defaults: { _controller: AdministrateurBundle:GestionPersonnel:modificationPersonnel }
