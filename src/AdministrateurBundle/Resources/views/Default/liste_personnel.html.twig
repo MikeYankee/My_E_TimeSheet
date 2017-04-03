@@ -23,7 +23,7 @@
                                 <td>{{ personnel.prenom }}</td>
                                 <td>{{ personnel.email }}</td>
                                 <td>{{ personnel.afficherRoles }}</td>
-                                <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_personnel', {'id': personnel.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
                                 <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
                             </tr>
                         {% endfor %}

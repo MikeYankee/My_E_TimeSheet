@@ -5,7 +5,7 @@ namespace AdministrateurBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AdministrateurBundle\Form\PersonnelType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use ConnexionBundle\Entity\User;
 
 class GestionPersonnelController extends Controller
 {
@@ -48,6 +48,41 @@ class GestionPersonnelController extends Controller
         }
 
         return $this->render('AdministrateurBundle:Default:ajout_personnel.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    public function modificationPersonnelAction(Request $request, User $le_personnel = null)
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+        if(is_null($le_personnel)){ //la matière n'existe pas
+            return $this->redirectToRoute("liste_promotions");
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $form = $this->createForm(new PersonnelType(), $le_personnel);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $username = substr($le_personnel->getPrenom(),0,1)."".substr($le_personnel->getNom(),0,strlen($le_personnel->getNom()));
+
+                $le_personnel->setUsername($username);
+                $le_personnel->setPlainPassword($username);
+                $le_personnel  ->setEnabled(true);
+
+                $em = $this->getDoctrine()->getManager();
+                $userManager->updateUser($le_personnel, true);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_personnel"));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+
+        return $this->render('AdministrateurBundle:Default:modification_personnel.html.twig', array(
             'form' => $form->createView()
         ));
     }
