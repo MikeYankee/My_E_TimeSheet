@@ -59,8 +59,8 @@ class Promotion
     private $lesFactures;
 
     /**
-     * One Promotion has Many Users.
-     * @ORM\OneToMany(targetEntity="User", mappedBy="promotionResp")
+     * Many Promotion has Many Users.
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="promotionResp")
      */
     private $lesResponsables;
 
@@ -168,26 +168,16 @@ class Promotion
     }
 
     /**
-     * Set lesUtilisateurs
+     * Set lesEtudiants
      *
-     * @param string $lesUtilisateurs
+     * @param string $lesEtudiants
      * @return promotion
      */
-    public function setLesUtilisateurs($lesUtilisateurs)
+    public function setLesEtudiants($lesEtudiants)
     {
-        $this->lesUtilisateurs = $lesUtilisateurs;
+        $this->lesEtudiants = lesEtudiants;
 
         return $this;
-    }
-
-    /**
-     * Get lesUtilisateurs
-     *
-     * @return string 
-     */
-    public function getLesUtilisateurs()
-    {
-        return $this->lesUtilisateurs;
     }
 
     /**
@@ -309,9 +299,9 @@ class Promotion
      * @param \ConnexionBundle\Entity\User $lesUtilisateurs
      * @return Promotion
      */
-    public function addLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
+    public function addLesEtudiants(\ConnexionBundle\Entity\User $lesEtudiants)
     {
-        $this->lesUtilisateurs[] = $lesUtilisateurs;
+        $this->lesEtudiants[] = $lesEtudiants;
 
         return $this;
     }
@@ -321,9 +311,9 @@ class Promotion
      *
      * @param \ConnexionBundle\Entity\User $lesUtilisateurs
      */
-    public function removeLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
+    public function removeLesEtudiants(\ConnexionBundle\Entity\User $lesEtudiants)
     {
-        $this->lesUtilisateurs->removeElement($lesUtilisateurs);
+        $this->lesEtudiants->removeElement($lesEtudiants);
     }
 
     /**
