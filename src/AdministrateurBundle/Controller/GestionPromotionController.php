@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AdministrateurBundle\Form\MatiereType;
+use AdministrateurBundle\Form\EtudiantType;
 use ConnexionBundle\Entity\Promotion;
+use ConnexionBundle\Entity\User;
 
 class GestionPromotionController extends Controller
 {
@@ -17,7 +19,7 @@ class GestionPromotionController extends Controller
         return $this->render('AdministrateurBundle:Default:liste_promos.html.twig');
     }
 
-    public function gestionPromoAction(Promotion $promotion = null)
+    public function gestionPromoAction(Promotion $promotion)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
@@ -41,9 +43,57 @@ class GestionPromotionController extends Controller
         return $this->render('AdministrateurBundle:Default:ajout_promotion.html.twig');
     }
 
-    public function ajoutEtudiantAction()
+    public function ajoutEtudiantAction(Request $request)
     {
-        return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $etudiant = $userManager->createUser();
+
+        $form = $this->createForm(new EtudiantType(), $etudiant);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $username = substr($etudiant->getPrenom(),0,1)."".substr($etudiant->getNom(),0,strlen($etudiant->getNom()));
+
+                $role = $request->get("role");
+                if($role == "on"){
+                    $etudiant->addRole("ROLE_ETUDIANT");
+                }
+                else{
+                    $etudiant->addRole("ROLE_DELEGUE");
+                    $etudiant->addRole("ROLE_ETUDIANT");
+                }
+                $etudiant->addRole($role);
+
+                $etudiant->setUsername($username);
+                $etudiant->setPlainPassword($username);
+                $etudiant  ->setEnabled(true);
+
+                $em = $this->getDoctrine()->getManager();
+                $userManager->updateUser($etudiant, true);
+                //$em->persist($etudiant);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_promotion"));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+
+        return $this->render('AdministrateurBundle:Default:ajout_etudiant.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    public function listeEtudiantAction()
+    {
+        $liste_etudiant = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ETUDIANT'));
+
+        return $this->render('AdministrateurBundle:Default:liste_etudiant.html.twig', array(
+            'liste_etudiant' => $liste_etudiant
+        ));
     }
 
     public function ajoutMatiereAction(Request $request, Promotion $promotion = null)

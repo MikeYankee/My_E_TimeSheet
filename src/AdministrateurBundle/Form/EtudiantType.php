@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use ConnexionBundle\Entity\Matiere;
 
-class PersonnelType extends AbstractType {
+class EtudiantType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -19,23 +19,6 @@ class PersonnelType extends AbstractType {
             ))
             ->add('email', 'email', array(
                 "label" => "Email :",
-                'required' => true,
-            ))
-            ->add('tel', 'text', array(
-                "label" => "Téléphone :",
-                'required' => false,
-            ))
-            ->add('roles', 'choice', array(
-                'choices' => array(
-                    'ROLE_ENSEIGNANT' => 'Enseignant',
-                    'ROLE_RESPONSABLE' => 'Responsable',
-                    'ROLE_CFA' => 'CFA',
-                    'ROLE_SECRETAIRE' => 'Secrétaire',
-                    'ROLE_ADMIN' => 'Administrateur',
-                ),
-                'multiple' => true,
-                'expanded' => true,
-                "label" => "Rôle(s) :",
                 'required' => true,
             ));
     }
