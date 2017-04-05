@@ -1,179 +1,50 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div id="main">
-        {% include '::menu.html.twig' %}
-        <div class="content_text">
-            <div class="container">
-                <h3>Créer une feuille de présence</h3><br>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Horaire</th>
-                            <th>Matière</th>
-                            <th>Type</th>
-                            <th>Enseignant</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" onchange="document.getElementById('selectHeure1').disabled = !this.checked;document.getElementById('selectMatiere1').disabled = !this.checked;" value=""></label></td>
-                            <td>
-                                <select data-live-search="true" id="selectHeure1">
-                                    <option>8:30</option>
-                                    <option>10:00</option>
-                                    <option>10:15</option>
-                                    <option>11:45</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:30</option>
-                                    <option>14:45</option>
-                                    <option>16:15</option>
-                                    <option>16:30</option>
-                                    <option>18:00</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>Projet</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>TD</option>
-                                    <option>Cours</option>
-                                    <option>Examen</option>
-                                    <option>Soutenance</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>J.BENZAKKI</option>
-                                    <option>J.HAIRAPIAN</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" onchange="document.getElementById('selectHeure2').disabled = !this.checked;document.getElementById('selectMatiere2').disabled = !this.checked;" value=""></label></td>
-                            <td>
-                                <select data-live-search="true" id="selectHeure2">
-                                    <option>8:30</option>
-                                    <option>10:00</option>
-                                    <option>10:15</option>
-                                    <option>11:45</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:30</option>
-                                    <option>14:45</option>
-                                    <option>16:15</option>
-                                    <option>16:30</option>
-                                    <option>18:00</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>Projet</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>TD</option>
-                                    <option>Cours</option>
-                                    <option>Examen</option>
-                                    <option>Soutenance</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>J.BENZAKKI</option>
-                                    <option>J.HAIRAPIAN</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" onchange="document.getElementById('selectHeure4').disabled = !this.checked;document.getElementById('selectMatiere4').disabled = !this.checked;" value=""></label></td>
-                            <td>
-                                <select data-live-search="true" id="selectHeure4">
-                                    <option>8:30</option>
-                                    <option>10:00</option>
-                                    <option>10:15</option>
-                                    <option>11:45</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:30</option>
-                                    <option>14:45</option>
-                                    <option>16:15</option>
-                                    <option>16:30</option>
-                                    <option>18:00</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>Projet</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>TD</option>
-                                    <option>Cours</option>
-                                    <option>Examen</option>
-                                    <option>Soutenance</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>J.BENZAKKI</option>
-                                    <option>J.HAIRAPIAN</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" onchange="document.getElementById('selectHeure6').disabled = !this.checked;document.getElementById('selectMatiere6').disabled = !this.checked;" value=""></label></td>
-                            <td>
-                                <select data-live-search="true" id="selectHeure6">
-                                    <option>8:30</option>
-                                    <option>10:00</option>
-                                    <option>10:15</option>
-                                    <option>11:45</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:30</option>
-                                    <option>14:45</option>
-                                    <option>16:15</option>
-                                    <option>16:30</option>
-                                    <option>18:00</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>Projet</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="dropdown" data-live-search="true" id="selectMatiere1">
-                                    <option>TD</option>
-                                    <option>Cours</option>
-                                    <option>Examen</option>
-                                    <option>Soutenance</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-live-search="true" id="selectMatiere1">
-                                    <option>J.BENZAKKI</option>
-                                    <option>J.HAIRAPIAN</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #DDE3E3">
-                            <td></td>
-                            <td></td>
-                            <td><button type="button" class="btn btn-success">Valider</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="main">
+            {% include '::menu.html.twig' %}
+            <div class="content_text">
+                <div class="container">
+                    <h3>Créer une feuille de présence</h3><br>
+
+                    {{ form_start(form) }}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Horaire</th>
+                                <th>Matière</th>
+                                <th>Type</th>
+                                <th>Enseignant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cours in form.lesCours %}
+                                <tr>
+                                    <td><input type="checkbox" onchange="document.getElementById('selectHeure6').disabled = !this.checked;document.getElementById('selectMatiere6').disabled = !this.checked;" value=""></label></td>
+                                    <td>
+                                        {{ form_row(cours.horaire) }}
+                                    </td>
+                                    <td>
+                                        {{ form_row(cours.matiere) }}
+                                    </td>
+                                    <td>
+                                        {{ form_row(cours.type) }}
+                                    </td>
+                                    <td>
+                                        {{ form_row(cours.enseignant) }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr style="background-color: #DDE3E3">
+                                <td></td>
+                                <td></td>
+                                <td><button type="submit" class="btn btn-success">Valider</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{ form_end(form) }}
+                </div>
             </div>
         </div>
-    </div>
-
 {% endblock %}
