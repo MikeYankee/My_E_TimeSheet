@@ -32,7 +32,7 @@ class GestionPromotionController extends Controller
             return $this->redirect($this->generateUrl("liste_promotions"));
         }
 
-        $les_etudiants = $promotion->getLesUtilisateurs();
+        $les_etudiants = $promotion->getLesEtudiants();
         $les_matieres = $promotion->getLesMatieres();
 
 
