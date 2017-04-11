@@ -64,7 +64,7 @@ class User extends BaseUser
 
     /**
      * Many User has One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesResponsables")
+     * @ORM\ManyToMany(targetEntity="Promotion", mappedBy="lesResponsables")
      */
     private $promotionResp;
 

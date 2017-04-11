@@ -31,6 +31,12 @@ modifier_matiere:
     requirements:
         id: \d+
 
+modifier_promo:
+    path:   /modifier-promotion/{id}
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:modificationPromotion }
+    requirements:
+        id: \d+
+
 gerer_personnel:
     path:   /gerer-personnel
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:listePersonnel }
