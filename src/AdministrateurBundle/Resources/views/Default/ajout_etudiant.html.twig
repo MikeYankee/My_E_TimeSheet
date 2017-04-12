@@ -3,43 +3,43 @@
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
         <div class="content_text">
             <div class="container">
-                <h3>Ajout d'un utilisateur</h3><br>
-
+                <h3>Ajout d'un étudiant</h3><br>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="control-label">Nom : </label>
+                            <label class="control-label">{{ form_label(form.nom) }}</label>
                             <div class="has-feedback">
-                                <input type="text" class="form-control">
+                                {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Mail : </label>
+                            <label class="control-label">{{ form_label(form.email) }}</label>
                             <div class="has-feedback">
-                                <input type="text" class="form-control">
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                     </div>
-
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="control-label">Prénom : </label>
+                            <label class="control-label">{{ form_label(form.prenom) }}</label>
                             <div class="has-feedback">
-                                <input type="text" class="form-control">
+                                {{ form_widget(form.prenom, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
+                        <label class="control-label">Rôle : </label>
                         <div class="form-group">
-                            <label class="control-label">Statut : </label>
                             <div class="has-feedback">
-                                <input type="checkbox" data-toggle="toggle" data-on="Délégué" data-off="Etudiant" data-onstyle="success" data-offstyle="danger">
+                                <input type="checkbox" name="role" data-toggle="toggle" data-on="Etudiant" data-off="Délégué" data-onstyle="success" data-offstyle="danger">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <br><br><br><br><br><br>
+                <br><br><br><br>
 
                 <div class="pull-right">
                     <a href="{{ path('gerer_promotion') }}" class="btn btn-default">Annuler</a>
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        {{ form_end(form) }}
     </div>
 
 {% endblock %}
