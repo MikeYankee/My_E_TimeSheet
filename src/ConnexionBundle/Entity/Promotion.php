@@ -210,7 +210,7 @@ class Promotion
         $this->lesConventions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesETS = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesMatieres = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lesUtilisateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lesEtudiants = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesFactures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

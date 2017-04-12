@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AdministrateurBundle\Form\MatiereType;
 use AdministrateurBundle\Form\PromotionType;
+use AdministrateurBundle\Form\EtudiantType;
 use ConnexionBundle\Entity\Promotion;
+use ConnexionBundle\Entity\User;
 
 class GestionPromotionController extends Controller
 {
@@ -44,7 +46,7 @@ class GestionPromotionController extends Controller
 
     /**
      * Fonction qui sert à ajouter une promotion
-     * @param Request $requestx
+     * @param Request $request
      * @return ...
      */
     public function ajoutPromoAction(Request $request)
@@ -92,9 +94,55 @@ class GestionPromotionController extends Controller
 
     }
 
-    public function ajoutEtudiantAction()
+    public function ajoutEtudiantAction(Request $request,Promotion $promotion = null)
     {
-        return $this->render('AdministrateurBundle:Default:ajout_utilisateur.html.twig');
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
+        if(is_null($promotion)){
+            return $this->redirectToRoute("gerer_promotion");
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $etudiant = $userManager->createUser();
+
+        $etudiant->setPromotion($promotion);
+
+        $form = $this->createForm(new EtudiantType(), $etudiant);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $username = substr($etudiant->getPrenom(),0,1)."".substr($etudiant->getNom(),0,strlen($etudiant->getNom()));
+
+                $role = $request->get("role");
+                if($role == "on"){
+                    $etudiant->addRole("ROLE_ETUDIANT");
+                }
+                else{
+                    $etudiant->addRole("ROLE_DELEGUE");
+                    $etudiant->addRole("ROLE_ETUDIANT");
+                }
+                $etudiant->addRole($role);
+
+                $etudiant->setUsername($username);
+                $etudiant->setPlainPassword($username);
+                $etudiant  ->setEnabled(true);
+
+                $em = $this->getDoctrine()->getManager();
+                $userManager->updateUser($etudiant, true);
+                //$em->persist($etudiant);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_promotion"), array('id' => $promotion->getId()));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+
+        return $this->render('AdministrateurBundle:Default:ajout_etudiant.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     public function ajoutMatiereAction(Request $request, Promotion $promotion = null)
@@ -106,7 +154,7 @@ class GestionPromotionController extends Controller
             return $this->redirectToRoute("gerer_promotion", array('id' => $promotion->getId()));
         }
 
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
         $matiere = new Matiere();
         $matiere->setPromo($promotion);
@@ -141,7 +189,7 @@ class GestionPromotionController extends Controller
             return $this->redirectToRoute("liste_promotions");
         }
 
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_ENSEIGNANT');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
         $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
         $form->handleRequest($request);
@@ -171,7 +219,7 @@ class GestionPromotionController extends Controller
             //return $this->redirectToRoute("gerer_promotion", array('id' => $matiere->getPromotion()->getId()));
         }
 
-        $les_responsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_RESPONSABLE');
+        $les_responsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE'));
         $form = $this->createForm(new PromotionType($les_responsables), $promotion);
 
         $form->handleRequest($request);
