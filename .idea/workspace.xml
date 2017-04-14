@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0aa6e8a-bb8b-4107-bf5d-5f927a7feffe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_personnel.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_personnel.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_personnel.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_personnel.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +21,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="gestion_promo.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PromotionType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state relative-caret-position="241">
+              <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
               <folding>
                 <element signature="e#45#85#0#PHP" expanded="true" />
               </folding>
@@ -33,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GestionPromotionController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GestionPromotionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="221" column="25" lean-forward="true" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
+            <state relative-caret-position="329">
+              <caret line="126" column="42" lean-forward="false" selection-start-line="126" selection-start-column="42" selection-end-line="126" selection-end-column="42" />
               <folding>
                 <element signature="e#51#86#0#PHP" expanded="true" />
               </folding>
@@ -45,71 +55,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GestionPersonnelController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php">
+      <file leaf-file-name="ajout_promotion.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="43" column="60" lean-forward="true" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
-              <folding>
-                <element signature="e#49#106#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UtilisateurRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/UtilisateurRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="479">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <file leaf-file-name="modification_promotion.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="liste_personnel.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_personnel.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-              <folding>
-                <element signature="e#561#614#0#HTML" expanded="true" />
-                <element signature="e#663#697#0#HTML" expanded="true" />
-                <element signature="e#1194#1247#0#HTML" expanded="true" />
-                <element signature="e#1319#1353#0#HTML" expanded="true" />
-                <element signature="e#1438#1491#0#HTML" expanded="true" />
-                <element signature="e#1510#1544#0#HTML" expanded="true" />
-                <marker date="1492203868144" expanded="true" signature="34:1774" ph="{% block body ...%}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modification_personnel.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_personnel.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="61" column="14" lean-forward="false" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+            <state relative-caret-position="445">
+              <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -186,8 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Entity/Utilisateur.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_facture.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/routing.yml" />
@@ -227,16 +185,18 @@
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/menu.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_matiere.html.twig" />
-        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Repository/UtilisateurRepository.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" />
-        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php" />
-        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_personnel.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_personnel.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" />
+        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php" />
+        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig" />
+        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" />
+        <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig" />
       </list>
     </option>
   </component>
@@ -738,12 +698,12 @@
       <workItem from="1491050358939" duration="333000" />
       <workItem from="1491941411963" duration="3420000" />
       <workItem from="1491988307352" duration="7021000" />
-      <workItem from="1492202594567" duration="1717000" />
+      <workItem from="1492202594567" duration="2528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174704000" />
+    <option name="totallyTimeSpent" value="175515000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -927,23 +887,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_utilisateur.html.twig" />
     <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_matiere.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1073,24 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="73" lean-forward="false" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding>
-            <element signature="e#45#85#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1139,6 +1066,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -1149,21 +1084,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/config/routing.yml">
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        <state relative-caret-position="329">
+          <caret line="126" column="42" lean-forward="false" selection-start-line="126" selection-start-column="42" selection-end-line="126" selection-end-column="42" />
+          <folding>
+            <element signature="e#51#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Form/PromotionType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="e#45#85#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_promotion.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php">
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="221" column="25" lean-forward="true" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
-          <folding>
-            <element signature="e#51#86#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="312">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>

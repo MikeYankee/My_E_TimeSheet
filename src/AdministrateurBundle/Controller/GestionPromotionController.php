@@ -123,8 +123,8 @@ class GestionPromotionController extends Controller
                     $etudiant->addRole("ROLE_DELEGUE");
                     $etudiant->addRole("ROLE_ETUDIANT");
                 }
-                $etudiant->addRole($role);
 
+                $etudiant->addRole($role);
                 $etudiant->setUsername($username);
                 $etudiant->setPlainPassword($username);
                 $etudiant  ->setEnabled(true);
@@ -160,7 +160,6 @@ class GestionPromotionController extends Controller
         $matiere->setPromo($promotion);
 
         $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
-
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {

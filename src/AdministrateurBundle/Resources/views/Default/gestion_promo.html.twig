@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+
     <div id="main">
         {% include '::menu.html.twig' %}
         <div class="content_text">
@@ -99,6 +100,7 @@
 {% endblock %}
 
 {% block javascripts %}
+
     {{ parent() }}
     <script>
         $('[data-toggle="popover"]').popover({
@@ -108,4 +110,5 @@
             container: 'body'
         });
     </script>
+
 {% endblock %}

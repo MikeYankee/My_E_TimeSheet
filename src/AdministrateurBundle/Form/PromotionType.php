@@ -10,7 +10,9 @@ use ConnexionBundle\Entity\Promotion;
 class PromotionType extends AbstractType {
 
     public function __construct($lesResponsables) {
+
         $this->lesResponsables = $lesResponsables;
+
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
