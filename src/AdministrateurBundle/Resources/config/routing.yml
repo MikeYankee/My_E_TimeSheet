@@ -47,5 +47,7 @@ ajouter_personnel:
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:ajoutPersonnel }
 
 modifier_personnel:
-    path:   /modifier-personnel
+    path:   /modifier-personnel/{id}
     defaults: { _controller: AdministrateurBundle:GestionPersonnel:modificationPersonnel }
+    requirements:
+        id: \d+

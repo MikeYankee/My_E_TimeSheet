@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include '::menu.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="content_text">
+            <div class="container">
+                <h3>Modification d'un membre du personnel</h3><br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.nom) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.email) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.tel) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.tel, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.prenom) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.prenom, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <label class="control-label">{{ form_label(form.roles) }}</label>
+                        <div class="form-group">
+                            <div class="has-feedback">
+                                {% for r in form.roles %}
+                                    <div class="checkbox col-xs-12 col-sm-12 col-ml-12 col-lg-12"><label>{{ form_widget(r) }} {{ r.vars.label }}</label></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br><br>
+
+                <div class="pull-right">
+                    <a href="{{ path('gerer_personnel') }}" class="btn btn-default">Annuler</a>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
