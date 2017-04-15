@@ -6,12 +6,11 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Gestion de la promo</h3><br>
+                <h3>Gestion de la promotion {{ promotion.libelle }}</h3><br>
 
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#etudiants">Etudiants</a></li>
                     <li><a data-toggle="tab" href="#matieres">Matières</a></li>
-                    <li><a data-toggle="tab" href="#responsable">Responsable</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -22,7 +21,7 @@
                                     <td width="30%"><b>Nom</b></td>
                                     <td width="30%"><b>Prénom</b></td>
                                     <td width="30%"><b>Email</b></td>
-                                    <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_etudiant') }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                                    <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_etudiant', {'id':promotion.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,10 +29,14 @@
                             {% if(lesEtudiants|length > 0) %}
                                 {% for etudiant in lesEtudiants %}
                                     <tr>
+                                        {% if (etudiant.hasRole('ROLE_DELEGUE')) %}
+                                        <td><i class="glyphicon glyphicon-star"></i> {{ etudiant.nom|upper }}</td>
+                                        {% else %}
                                         <td>{{ etudiant.nom|upper }}</td>
+                                        {% endif %}
                                         <td>{{ etudiant.prenom }}</td>
                                         <td>{{ etudiant.email }}</td>
-                                        <td style="background-color: #f0ad4e; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_etudiant', {'id':etudiant.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
                                         <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
                                     </tr>
                                 {% endfor %}
@@ -54,7 +57,7 @@
                                 <td><b>Heures de TD</b></td>
                                 <td><b>Heures de Cours</b></td>
                                 <td><b>Enseignant(s)</b></td>
-                                <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_matiere', {'id':1}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                                <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_matiere', {'id':promotion.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -69,27 +72,6 @@
                                 </tr>
                             {% endfor %}
                             </tbody>
-                        </table>
-                    </div>
-
-                    <div id="responsable" class="tab-pane fade" style="background-color: white">
-                        <table class="table" style="background-color: white;">
-                            <tr>
-                                <td style="text-align: center; vertical-align: middle;" width="40%">
-                                    Sélectionner un responsable de fillière :<br>
-                                </td>
-                                <td width="30%" style=" vertical-align: middle;">
-                                    <div class="has-feedback">
-                                        <select id="enseignant" multiple="multiple">
-                                            <option value="1">J.BENZAKKI</option>
-                                            <option value="2">D.COURTAUD</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td width="30%">
-                                    <button type="button" class="btn btn-success">Valider</button>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>

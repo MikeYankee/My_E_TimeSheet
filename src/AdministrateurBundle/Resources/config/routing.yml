@@ -17,8 +17,16 @@ ajouter_promo:
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutPromo }
 
 ajouter_etudiant:
-    path:   /ajouter-etudiant
+    path:   /ajouter-etudiant/{id}
     defaults: { _controller: AdministrateurBundle:GestionPromotion:ajoutEtudiant }
+    requirements:
+            id: \d+
+
+modifier_etudiant:
+    path:   /modifier-etudiant/{id}
+    defaults: { _controller: AdministrateurBundle:GestionPromotion:modificationEtudiant }
+    requirements:
+            id: \d+
 
 ajouter_matiere:
     path:   /ajouter-matiere/{id}

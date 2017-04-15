@@ -37,10 +37,17 @@ class GestionPromotionController extends Controller
         $les_etudiants = $promotion->getLesEtudiants();
         $les_matieres = $promotion->getLesMatieres();
 
+        $les_responsables = $promotion->getLesResponsables();
+
+        if(is_null($les_responsables)){
+            $les_responsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE'));
+        }
 
         return $this->render('AdministrateurBundle:Default:gestion_promo.html.twig', array(
             'lesEtudiants' => $les_etudiants,
             'lesMatieres' => $les_matieres,
+            'promotion' => $promotion,
+            'lesResponsables' => $les_responsables,
         ));
     }
 
@@ -62,7 +69,7 @@ class GestionPromotionController extends Controller
 
         //$lesResponsables contient les utilisateurs qui ont le rôle Responsable
 
-        $lesResponsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole('ROLE_RESPONSABLE');
+        $lesResponsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE'));
 
         //Objet promotion
         $promotion = new Promotion();
@@ -94,48 +101,32 @@ class GestionPromotionController extends Controller
 
     }
 
-    public function ajoutEtudiantAction(Request $request,Promotion $promotion = null)
+    public function ajoutEtudiantAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
-
-        // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
-        if(is_null($promotion)){
-            return $this->redirectToRoute("gerer_promotion");
-        }
-
         $userManager = $this->container->get('fos_user.user_manager');
         $etudiant = $userManager->createUser();
-
-        $etudiant->setPromotion($promotion);
-
         $form = $this->createForm(new EtudiantType(), $etudiant);
-
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $username = substr($etudiant->getPrenom(),0,1)."".substr($etudiant->getNom(),0,strlen($etudiant->getNom()));
-
+                $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
                 $role = $request->get("role");
-                if($role == "on"){
+                if ($role == "on") {
                     $etudiant->addRole("ROLE_ETUDIANT");
-                }
-                else{
+                } else {
                     $etudiant->addRole("ROLE_DELEGUE");
                     $etudiant->addRole("ROLE_ETUDIANT");
                 }
-
-                $etudiant->addRole($role);
+                $etudiant->setPromotion($promotion);
                 $etudiant->setUsername($username);
                 $etudiant->setPlainPassword($username);
-                $etudiant  ->setEnabled(true);
-
+                $etudiant->setEnabled(true);
                 $em = $this->getDoctrine()->getManager();
                 $userManager->updateUser($etudiant, true);
                 //$em->persist($etudiant);
                 $em->flush();
-
-                return $this->redirect($this->generateUrl("gerer_promotion"), array('id' => $promotion->getId()));
-
+                return $this->redirect($this->generateUrl("gerer_promotion"));
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }
@@ -144,6 +135,50 @@ class GestionPromotionController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function modificationEtudiantAction(Request $request, User $etudiant = null)
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+        if(is_null($etudiant)){ //la matière n'existe pas
+            return $this->redirectToRoute("gerer_promotions");
+        }
+        $userManager = $this->container->get('fos_user.user_manager');
+        $form = $this->createForm(new EtudiantType(), $etudiant);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
+                $role = $request->get("role");
+                if ($role == "on") {
+                    if ($etudiant->hasRole("ROLE_DELEGUE")){
+                        $etudiant->removeRole("ROLE_DELEGUE");
+                        $etudiant->addRole("ROLE_ETUDIANT");
+                    }else {
+                        $etudiant->addRole("ROLE_ETUDIANT");
+                    }
+
+                } else {
+                    if(!$etudiant->hasRole("ROLE_DELEGUE")){
+                        $etudiant->addRole("ROLE_DELEGUE");
+                    }
+                }
+                $etudiant->setUsername($username);
+                $etudiant->setPlainPassword($username);
+                $etudiant->setEnabled(true);
+                $em = $this->getDoctrine()->getManager();
+                $userManager->updateUser($etudiant, true);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId())));
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+        return $this->render('AdministrateurBundle:Default:modification_etudiant.html.twig', array(
+            'form' => $form->createView(),
+            'etudiant' => $etudiant
+        ));
+    }
+
 
     public function ajoutMatiereAction(Request $request, Promotion $promotion = null)
     {

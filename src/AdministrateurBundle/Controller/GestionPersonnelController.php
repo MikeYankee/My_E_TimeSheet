@@ -62,7 +62,8 @@ class GestionPersonnelController extends Controller
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }
         return $this->render('AdministrateurBundle:Default:modification_personnel.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'personnel' => $le_personnel
         ));
     }
 }

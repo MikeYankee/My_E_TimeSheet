@@ -1,7 +1,5 @@
 <?php
-
 namespace AdministrateurBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,15 +20,12 @@ class EtudiantType extends AbstractType {
                 'required' => true,
             ));
     }
-
     public function getName() {
         return 'user';
     }
-
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'ConnexionBundle\Entity\User',
         ));
     }
-
 }

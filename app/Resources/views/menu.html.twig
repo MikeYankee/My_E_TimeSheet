@@ -12,7 +12,7 @@
                     <li><a class="active" href="{{ path('signaler_presence') }}">Signaler présence</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_DELEGUE") %}
-                    <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer E-TimeSheet</a></li>
+                    <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer la E-TimeSheet</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_ENSEIGNANT") %}
                     <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
@@ -22,11 +22,11 @@
                     <li><a class="active" href="{{ path('historique_facture') }}">Historiques des factures</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_USER") and (is_granted("ROLE_ADMIN") == false) %}
-                    <li><a href="{{ path('historique_feuille_presence') }}">Historique de E-TimeSheet</a></li>
+                    <li><a href="{{ path('historique_feuille_presence') }}">Historique des E-TimeSheet</a></li>
                     <li><a href="{{ path('historique_absence') }}">Historique des absences</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
-                    <li><a class="active" href="{{ path('accueil_admin') }}">Accueil admin</a></li>
+                    <li><a class="active" href="{{ path('accueil_admin') }}">Accueil</a></li>
                     <li><a class="active" href="{{ path('liste_promotions') }}">Gérer les promotions</a></li>
                     <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer le personnel</a></li>
                 {% endif %}
