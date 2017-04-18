@@ -36,7 +36,7 @@ visionner_details_heures:
 
 profil:
     path:   /profil
-    defaults: { _controller: UtilisateurBundle:Profil:profil }
+    defaults: { _controller: UtilisateurBundle:Profil:profil}
 
 contact:
     path:   /contact

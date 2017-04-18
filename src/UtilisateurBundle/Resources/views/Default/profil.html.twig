@@ -3,78 +3,95 @@
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
         <div class="content_text">
             <div class="container">
                 <h3>Votre profil</h3><br>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Nom:</label>
+                        <label class="col-lg-3 control-label">{{ form_label(form.nom) }}</label>
                         <div class="col-lg-8">
-                            <input class="form-control" value="Bourguès" type="text">
+                            {{ form_widget(form.nom) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Prénom:</label>
+                        <label class="col-lg-3 control-label">{{ form_label(form.prenom) }}</label>
                         <div class="col-lg-8">
-                            <input class="form-control" value="Yann" type="text">
+                            {{ form_widget(form.prenom) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Adresse E-Mail:</label>
+                        <label class="col-lg-3 control-label">{{ form_label(form.email) }}</label>
                         <div class="col-lg-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <input class="form-control" value="yann.bourgues@gmail.com" type="text">
+                                {{ form_widget(form.email) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Promotion:</label>
+                        <label class="col-lg-3 control-label">{{ form_label(form.tel) }}</label>
+                        <div class="col-lg-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                {{ form_widget(form.tel) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">{{ form_label(form.promotion) }}</label>
                         <div class="col-lg-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
-                                <input class="form-control" value="M1" type="text">
+                                {{ form_widget(form.promotion) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Mot de passe actuel:</label>
-                        <div class="col-md-8">
+                        <label class="col-lg-3 control-label">{{ form_label(form.motdepasseactuel) }}</label>
+                        <div class="col-lg-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input class="form-control" value="11111122333" type="password">
+                                {{ form_widget(form.motdepasseactuel) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Nouveau mot de passe:</label>
-                        <div class="col-md-8">
+                        <label class="col-lg-3 control-label">{{ form_label(form.nouveaumotdepasse) }}</label>
+                        <div class="col-lg-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input class="form-control" value="11111122333" type="password">
+                                {{ form_widget(form.nouveaumotdepasse) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Confirmez le nouveau mot de passe:</label>
-                        <div class="col-md-8">
+                        <label class="col-lg-3 control-label">{{ form_label(form.confirmationnouveaumotdepasse) }}</label>
+                        <div class="col-lg-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input class="form-control" value="11111122333" type="password">
+                                {{ form_widget(form.confirmationnouveaumotdepasse) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                            <input class="btn btn-primary" value="Modifier" type="button">
+                        <label class="col-lg-3 control-label"></label>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.Modifier) }}
                             <span></span>
-                            <input class="btn btn-default" value="Annuler" type="reset">
+                            {{ form_widget(form.Annuler) }}
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        {{ form_end(form) }}
     </div>
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 {% endblock %}

@@ -2,7 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}
+    {% if user is not defined or user is null %}
+        Welcome !
+    {% else %}
+        {{ user.nom }} {{ user.prenom }}
+    {% endif %}
+    {% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">

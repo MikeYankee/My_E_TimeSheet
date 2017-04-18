@@ -15,37 +15,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>15 Novembre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-
-                    </tr>
-                    <tr>
-                        <td>14 Novembre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>21 Octobre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>20 Octobre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>30 Septembre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>29 Septembre 2016</td>
-                        <td><a href="#" target="_blank">Voir la feuille de présence</a></td>
-                        <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                    </tr>
+                    {% if(lesEts|length > 0) %}
+                        {% for ets in lesEts %}
+                            <tr>
+                                <td>{{ ets.date|date('d/m/Y') }}</td>
+                                <td><a href="#" target="_blank">Voir la feuille de présence {{ ets.id }}</a></td>
+                                <td><a href="#"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="5">Aucune ets n'est encore affilié à la promotion.</td></tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>

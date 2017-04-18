@@ -19,7 +19,16 @@ class CoursController extends Controller
 
     public function visionnerHistoriqueAbsenceAction()
     {
-        return $this->render('UtilisateurBundle:Default:historique_absence.html.twig');
+
+        $this->denyAccessUnlessGranted(array('ROLE_USER'));
+
+        $lesAbsences = $this->getDoctrine()->getRepository('ConnexionBundle:Cours')->findAll();
+        $user = $this->getUser();
+
+        return $this->render('UtilisateurBundle:Default:historique_absence.html.twig', array(
+            'user' => $user,
+            'lesAbsences' => $lesAbsences
+        ));
     }
 
     public function visionnerDetailsHeuresAction()

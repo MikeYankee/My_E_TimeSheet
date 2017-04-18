@@ -15,37 +15,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>15 Novembre 2016</td>
-                        <td>10h15 - 11h45</td>
-                        <td>Droit Num</td>
+                    {% if(lesAbsences|length > 0) %}
+                        {% for absence in lesAbsences %}
+                            <tr>
+                                <td>{{ absence.date }}</td>
+                                <td>absence.horaire</td>
+                                <td>absence.cours</td>
 
-                    </tr>
-                    <tr>
-                        <td>15 Novembre 2016</td>
-                        <td>08h30 - 10h00</td>
-                        <td>Droit Num</td>
-                    </tr>
-                    <tr>
-                        <td>21 Octobre 2016</td>
-                        <td>13h00 - 14h30</td>
-                        <td>Statistiques</td>
-                    </tr>
-                    <tr>
-                        <td>07 Octobre 2016</td>
-                        <td>08h30 - 10h00</td>
-                        <td>COOL</td>
-                    </tr>
-                    <tr>
-                        <td>30 Septembre 2016</td>
-                        <td>14h45 - 16h15</td>
-                        <td>Projet</td>
-                    </tr>
-                    <tr>
-                        <td>30 Septembre 2016</td>
-                        <td>13h00 - 14h30</td>
-                        <td>Projet</td>
-                    </tr>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="5">Aucune absence n'est encore affilié à l'étudiant.</td></tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>

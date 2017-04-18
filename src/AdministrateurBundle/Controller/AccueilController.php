@@ -9,6 +9,10 @@ class AccueilController extends Controller
 {
     public function accueilAction()
     {
-        return $this->render('AdministrateurBundle:Default:accueil.html.twig');
+
+        $user = $this->getUser();
+        return $this->render('AdministrateurBundle:Default:accueil.html.twig', array(
+            'user' => $user
+        ));
     }
 }
