@@ -2,6 +2,7 @@
 
 namespace ConnexionBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -101,7 +102,7 @@ class Promotion
     /**
      * Set convention
      *
-     * @param string $convention
+     * @param \ConnexionBundle\Entity\Convention $convention
      * @return promotion
      */
     public function setConvention($convention)
@@ -114,22 +115,22 @@ class Promotion
     /**
      * Get convention
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getConvention()
     {
-        return $this->convention;
+        return $this->lesConventions;
     }
 
     /**
      * Set lesETS
      *
-     * @param string $lesETS
+     * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      * @return promotion
      */
     public function setLesETS($lesETS)
     {
-        $this->lesETS = $lesETS;
+        $this->lesETS[] = $lesETS;
 
         return $this;
     }
@@ -137,7 +138,7 @@ class Promotion
     /**
      * Get lesETS
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesETS()
     {
@@ -147,7 +148,7 @@ class Promotion
     /**
      * Set lesMatieres
      *
-     * @param string $lesMatieres
+     * @param \ConnexionBundle\Entity\Matiere $lesMatieres
      * @return promotion
      */
     public function setLesMatieres($lesMatieres)
@@ -160,7 +161,7 @@ class Promotion
     /**
      * Get lesMatieres
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesMatieres()
     {
@@ -170,12 +171,12 @@ class Promotion
     /**
      * Set lesEtudiants
      *
-     * @param string $lesEtudiants
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
      * @return promotion
      */
     public function setLesEtudiants($lesEtudiants)
     {
-        $this->lesEtudiants = lesEtudiants;
+        $this->lesEtudiants = $lesEtudiants;
 
         return $this;
     }
@@ -183,7 +184,7 @@ class Promotion
     /**
      * Set lesFactures
      *
-     * @param string $lesFactures
+     * @param \ConnexionBundle\Entity\Facture $lesFactures
      * @return promotion
      */
     public function setLesFactures($lesFactures)
@@ -196,7 +197,7 @@ class Promotion
     /**
      * Get lesFactures
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesFactures()
     {
@@ -253,7 +254,7 @@ class Promotion
      * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      * @return Promotion
      */
-    public function addLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    public function addLesETS(\ConnexionBundle\Entity\ETimeSheet $lesETS)
     {
         $this->lesETS[] = $lesETS;
 
@@ -265,7 +266,7 @@ class Promotion
      *
      * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      */
-    public function removeLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    public function removeLesETS(\ConnexionBundle\Entity\ETimeSheet $lesETS)
     {
         $this->lesETS->removeElement($lesETS);
     }
@@ -403,5 +404,15 @@ class Promotion
     public function getLesResponsables()
     {
         return $this->lesResponsables;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

@@ -8,6 +8,18 @@
                     <h3>Créer une feuille de présence</h3><br>
 
                     {{ form_start(form) }}
+
+                    <ul class="cours" data-prototype="{{ form_widget(form.lesCours.vars.prototype)|e('html_attr') }}">
+                        {# iterate over each existing tag and render its only field: name #}
+                        {% for cours in form.lesCours %}
+                            <li>{{ form_row(cours.horaire) }}
+                                {{ form_row(cours.matiere) }}
+                                {{ form_row(cours.type) }}
+                                {{ form_row(cours.enseignant) }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    {#
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -19,32 +31,100 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{ form_widget(form.lesCours.vars.prototype)|e }}
+
+                            <ul class="cours">
                             {% for cours in form.lesCours %}
                                 <tr>
-                                    <td><input type="checkbox" onchange="document.getElementById('selectHeure6').disabled = !this.checked;document.getElementById('selectMatiere6').disabled = !this.checked;" value=""></label></td>
+                                    #}{#<td><input type="checkbox" onchange="document.getElementById('selectHeure6').disabled = !this.checked;document.getElementById('selectMatiere6').disabled = !this.checked;" value=""></label></td>#}{#
+                                    <td></td>
                                     <td>
-                                        {{ form_row(cours.horaire) }}
+                                        {{ form_row(cours.horaire, { 'attr': {'class': 'form-control'}, 'id': 'horaire'})  }}
                                     </td>
                                     <td>
-                                        {{ form_row(cours.matiere) }}
+                                        {{ form_row(cours.matiere, { 'attr': {'class': 'form-control'}, 'id': 'matiere'})  }}
                                     </td>
                                     <td>
-                                        {{ form_row(cours.type) }}
+                                        {{ form_row(cours.type, { 'attr': {'class': 'form-control'}, 'id': 'type'})  }}
                                     </td>
                                     <td>
-                                        {{ form_row(cours.enseignant) }}
+                                        {{ form_row(cours.enseignant, { 'attr': {'class': 'form-control'}, 'id': 'enseignant'})  }}
                                     </td>
                                 </tr>
                             {% endfor %}
                             <tr style="background-color: #DDE3E3">
                                 <td></td>
                                 <td></td>
-                                <td><button type="submit" class="btn btn-success">Valider</button></td>
+                                <td>#}<button type="submit" class="btn btn-success">Valider</button>{#</td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>#}
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+
+        $(document).ready(function() {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul.cours');
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '$$name$$' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+
+            // also add a remove button, just for this example
+            $newFormLi.append('<a href="#" class="remove-tag">x</a>');
+
+            $newLinkLi.before($newFormLi);
+
+            // handle the removal, just for this example
+            $('.remove-tag').click(function(e) {
+                e.preventDefault();
+
+                $(this).parent().remove();
+
+                return false;
+            });
+        }
+    </script>
 {% endblock %}

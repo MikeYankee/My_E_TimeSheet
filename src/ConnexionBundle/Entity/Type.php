@@ -61,4 +61,14 @@ class Type
     {
         return $this->libelle;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }

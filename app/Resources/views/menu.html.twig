@@ -17,7 +17,7 @@
                 {% if is_granted("ROLE_ENSEIGNANT") %}
                     <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
                 {% endif %}
-                {% if is_granted("ROLE_CFA") or is_granted("ROLE_SECRETAIRE") %}
+                {% if is_granted("ROLE_CFA") or is_granted("ROLE_SECRETAIRE") or is_granted("ROLE_RESPONSABLE") %}
                     <li><a class="active" href="{{ path('visionner_details_heures') }}">Récapitulatif des heures</a></li>
                     <li><a class="active" href="{{ path('historique_facture') }}">Historiques des factures</a></li>
                 {% endif %}

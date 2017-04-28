@@ -3,6 +3,7 @@
 namespace UtilisateurBundle\Controller;
 
 use ConnexionBundle\Entity\Cours;
+use ConnexionBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ConnexionBundle\Entity\ETimeSheet;
 use UtilisateurBundle\Form\ETimeSheetType;
@@ -24,28 +25,29 @@ class FeuillePresenceController extends Controller
         }
 
         $les_horaires = array('8:30','10:00','10:15','11:45','12:00','13:00','14:30','14:45','16:15','16:30','18:00');
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findBy(array('promotion' => $delegue->getPromotion()));
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
+
         $les_matieres = $delegue->getPromotion()->getLesMatieres();
         $les_types = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
 
-
-
         $ets = new ETimeSheet();
-
-        $cours1 = new Cours();
-        $cours2 = new Cours();
-        $cours3 = new Cours();
-
-        $ets->addLesCour($cours1);
-        $ets->addLesCour($cours2);
-        $ets->addLesCour($cours3);
+        $promo = $delegue->getPromotion();
+        $ets->setPromotion($promo);
+        //$promo->setLesETS($ets);
 
         $form = $this->createForm(new ETimeSheetType($les_horaires, $les_enseignants, $les_matieres, $les_types), $ets);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ets);
 
+            foreach ($ets->getLesCours() as $cours) {
+                $cours->setEts($ets);
+                //$ets->setLesCours($cours);
+            }
+            $em->flush();
         }
 
         return $this->render('UtilisateurBundle:Default:creation_ets.html.twig', array(

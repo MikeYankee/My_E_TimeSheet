@@ -46,7 +46,7 @@ class User extends BaseUser
 
     /**
      * Many Users have One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesEtudiants")
      */
     private $promotion;
 
