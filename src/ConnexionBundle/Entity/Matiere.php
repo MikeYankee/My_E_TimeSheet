@@ -331,4 +331,14 @@ class Matiere
 
         return $this;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }
