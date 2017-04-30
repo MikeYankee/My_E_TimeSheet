@@ -17,14 +17,15 @@ class FeuillePresenceController extends Controller
         $this->denyAccessUnlessGranted(array('ROLE_DELEGUE'));
 
         $delegue = $this->getUser();
-        $date = new \DateTime();
-        $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->findBy(array('date' => $date, 'promotion' => $delegue->getPromotion()));
+        $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
 
         if(isset($les_ets[0])){ //L'ETS est déja crée pour cette journée
+            $this->addFlash('error', "La feuille du jour est déjà créée");
             return $this->redirectToRoute("signaler_presence");
+            //TODO : si existe, rediriger vers la page de modif de l'ets
         }
 
-        $les_horaires = array('8:30','10:00','10:15','11:45','12:00','13:00','14:30','14:45','16:15','16:30','18:00');
+        $les_horaires = array('8:30'=>'8:30','10:00'=>'10:00','10:15'=>'10:15','11:45'=>'11:45','12:00'=>'12:00','13:00'=>'13:00','14:30'=>'14:30','14:45'=>'14:45','16:15'=>'16:15','16:30'=>'16:30','18:00'=>'18:00');
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
         $les_matieres = $delegue->getPromotion()->getLesMatieres();
@@ -48,6 +49,8 @@ class FeuillePresenceController extends Controller
                 //$ets->setLesCours($cours);
             }
             $em->flush();
+            $this->addFlash('error', "Tous les champs doivent être complétés.");
+            return $this->redirect($this->generateUrl("signaler_presence"));
         }
 
         return $this->render('UtilisateurBundle:Default:creation_ets.html.twig', array(

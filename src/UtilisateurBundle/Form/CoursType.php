@@ -47,7 +47,7 @@ class CoursType extends AbstractType {
                 'multiple' => false,
                 'expanded' => false,
                 "label" => false,
-                'required' => false,
+                'required' => true,
             ));
     }
 
