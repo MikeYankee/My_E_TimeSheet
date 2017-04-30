@@ -20,12 +20,13 @@ class ETimeSheetType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('lesCours', CollectionType::class, array(
             'entry_type' => new CoursType($this->horaires, $this->enseignants, $this->matieres, $this->type),
-                'allow_add'    => true,
+            'allow_add'    => true,
+            'label' => ''
         ));
     }
 
     public function getName() {
-        return 'cours';
+        return 'ets';
     }
 
     public function configureOptions(OptionsResolver $resolver) {

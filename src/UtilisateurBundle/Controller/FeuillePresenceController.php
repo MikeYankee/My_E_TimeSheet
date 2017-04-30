@@ -51,8 +51,7 @@ class FeuillePresenceController extends Controller
         }
 
         return $this->render('UtilisateurBundle:Default:creation_ets.html.twig', array(
-            'form' => $form->createView(),
-            'les_horaires' => $les_horaires
+            'form' => $form->createView()
         ));
     }
 

@@ -1,5 +1,21 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+        td.horaire{width: 20%;}
+        td.matiere{width: 30%;}
+        td.type{width: 20%;}
+        td.enseignant{width: 25%;}
+    </style>
+{% endblock %}
+
+
 {% block body %}
         <div id="main">
             {% include '::menu.html.twig' %}
@@ -9,56 +25,22 @@
 
                     {{ form_start(form) }}
 
-                    <ul class="cours" data-prototype="{{ form_widget(form.lesCours.vars.prototype)|e('html_attr') }}">
-                        {# iterate over each existing tag and render its only field: name #}
-                        {% for cours in form.lesCours %}
-                            <li>{{ form_row(cours.horaire) }}
-                                {{ form_row(cours.matiere) }}
-                                {{ form_row(cours.type) }}
-                                {{ form_row(cours.enseignant) }}</li>
-                        {% endfor %}
+                    <ul style="line-height: 200%; list-style-type: none" class="cours" data-prototype='{% filter escape %}{% include 'prototype.twig' with { 'item': form.lesCours.vars.prototype } %}{% endfilter %}'>
+                        <li>
+                            <table width="100%">
+                                <tr style="font-weight: bold;">
+                                    <td class="horaire">Horaire</td>
+                                    <td class="matiere">Matière</td>
+                                    <td class="type">Type</td>
+                                    <td class="enseignant">Enseignant</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </li>
                     </ul>
 
-                    {#
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Horaire</th>
-                                <th>Matière</th>
-                                <th>Type</th>
-                                <th>Enseignant</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{ form_widget(form.lesCours.vars.prototype)|e }}
+                    <div class="pull-right"><button type="submit" class="btn btn-success">Valider</button></div>
 
-                            <ul class="cours">
-                            {% for cours in form.lesCours %}
-                                <tr>
-                                    #}{#<td><input type="checkbox" onchange="document.getElementById('selectHeure6').disabled = !this.checked;document.getElementById('selectMatiere6').disabled = !this.checked;" value=""></label></td>#}{#
-                                    <td></td>
-                                    <td>
-                                        {{ form_row(cours.horaire, { 'attr': {'class': 'form-control'}, 'id': 'horaire'})  }}
-                                    </td>
-                                    <td>
-                                        {{ form_row(cours.matiere, { 'attr': {'class': 'form-control'}, 'id': 'matiere'})  }}
-                                    </td>
-                                    <td>
-                                        {{ form_row(cours.type, { 'attr': {'class': 'form-control'}, 'id': 'type'})  }}
-                                    </td>
-                                    <td>
-                                        {{ form_row(cours.enseignant, { 'attr': {'class': 'form-control'}, 'id': 'enseignant'})  }}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            <tr style="background-color: #DDE3E3">
-                                <td></td>
-                                <td></td>
-                                <td>#}<button type="submit" class="btn btn-success">Valider</button>{#</td>
-                            </tr>
-                        </tbody>
-                    </table>#}
                     {{ form_end(form) }}
                 </div>
             </div>
@@ -72,7 +54,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+        var $addTagLink = $('<a href="#" class="add_tag_link">Ajouter un cours</a>');
         var $newLinkLi = $('<li></li>').append($addTagLink);
 
         $(document).ready(function() {
@@ -85,6 +67,8 @@
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
             $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $('label.required').hide();
 
             $addTagLink.on('click', function(e) {
                 // prevent the link from creating a "#" on the URL
@@ -112,16 +96,21 @@
             // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('<li></li>').append(newForm);
 
+
             // also add a remove button, just for this example
-            $newFormLi.append('<a href="#" class="remove-tag">x</a>');
+            //$newFormLi.prepend('<a href="#" class="remove-tag">x</a>');
 
             $newLinkLi.before($newFormLi);
+
+            //$('span').css('display :inline');
+
+            $('select').select2();
 
             // handle the removal, just for this example
             $('.remove-tag').click(function(e) {
                 e.preventDefault();
 
-                $(this).parent().remove();
+                $(this).parent().parent().parent().parent().parent().remove();
 
                 return false;
             });
