@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {% if is_granted("ROLE_ETUDIANT") %}
-                    <li><a class="active" href="{{ path('signaler_presence') }}">Signaler présence</a></li>
+                    <li><a class="active" href="{{ path('visionner_feuille_presence') }}">Signaler présence</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_DELEGUE") %}
                     <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer la E-TimeSheet</a></li>

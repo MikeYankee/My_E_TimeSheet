@@ -27,7 +27,21 @@ class FeuillePresenceController extends Controller
 
     public function visionnerFeuillePresenceAction()
     {
-        return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig');
+        $this->denyAccessUnlessGranted(array('ROLE_ETUDIANT'));
+
+        $user = $this->getUser();
+        $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+
+        $lesCours = null;
+        if(isset($lEts[0])){ //L'ETS iexste ?
+            $lesCours = $lEts[0]->getLesCours();
+        }
+
+        return $this->render('UtilisateurBundle:Default:signaler_presence.html.twig', array(
+            'user' => $user,
+            'lesCours' => $lesCours
+        ));
+
     }
 
     public function visionnerHistoriqueAbsencesPromosAction()
