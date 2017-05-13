@@ -32,7 +32,8 @@ class FeuillePresenceController extends Controller
         $user = $this->getUser();
         $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
 
-        if(isset($lEts[0])){ //L'ETS existe ?
+        $lesCours = null;
+        if(isset($lEts[0])){ //L'ETS iexste ?
             $lesCours = $lEts[0]->getLesCours();
         }
 
