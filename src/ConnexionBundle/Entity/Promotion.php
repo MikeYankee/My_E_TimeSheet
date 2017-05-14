@@ -415,4 +415,27 @@ class Promotion
     {
         return $this->libelle;
     }
+
+    /**
+     * Add lesETS
+     *
+     * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
+     * @return Promotion
+     */
+    public function addLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    {
+        $this->lesETS[] = $lesETS;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesETS
+     *
+     * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
+     */
+    public function removeLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    {
+        $this->lesETS->removeElement($lesETS);
+    }
 }

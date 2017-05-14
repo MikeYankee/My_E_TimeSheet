@@ -62,7 +62,7 @@ class Cours
 
     /**
      * One Cours has One Type.
-     * @ORM\OneToOne(targetEntity="Type")
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="lesCours")
      */
     private $type;
 

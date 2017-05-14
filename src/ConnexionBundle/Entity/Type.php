@@ -28,6 +28,12 @@ class Type
      */
     private $libelle;
 
+    /**
+     * One Type has Many Cours.
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="type")
+     */
+    private $lesCours;
+
 
     /**
      * Get id
@@ -70,5 +76,45 @@ class Type
     public function __toString()
     {
         return $this->libelle;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lesCours = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     * @return Type
+     */
+    public function addLesCour(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours[] = $lesCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     */
+    public function removeLesCour(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours->removeElement($lesCours);
+    }
+
+    /**
+     * Get lesCours
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLesCours()
+    {
+        return $this->lesCours;
     }
 }

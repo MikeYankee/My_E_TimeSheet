@@ -2,6 +2,7 @@
 
 namespace ConnexionBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -59,8 +60,8 @@ class Promotion
     private $lesFactures;
 
     /**
-     * One Promotion has Many Users.
-     * @ORM\OneToMany(targetEntity="User", mappedBy="promotionResp")
+     * Many Promotion has Many Users.
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="promotionResp")
      */
     private $lesResponsables;
 
@@ -101,7 +102,7 @@ class Promotion
     /**
      * Set convention
      *
-     * @param string $convention
+     * @param \ConnexionBundle\Entity\Convention $convention
      * @return promotion
      */
     public function setConvention($convention)
@@ -114,22 +115,22 @@ class Promotion
     /**
      * Get convention
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getConvention()
     {
-        return $this->convention;
+        return $this->lesConventions;
     }
 
     /**
      * Set lesETS
      *
-     * @param string $lesETS
+     * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      * @return promotion
      */
     public function setLesETS($lesETS)
     {
-        $this->lesETS = $lesETS;
+        $this->lesETS[] = $lesETS;
 
         return $this;
     }
@@ -137,7 +138,7 @@ class Promotion
     /**
      * Get lesETS
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesETS()
     {
@@ -147,7 +148,7 @@ class Promotion
     /**
      * Set lesMatieres
      *
-     * @param string $lesMatieres
+     * @param \ConnexionBundle\Entity\Matiere $lesMatieres
      * @return promotion
      */
     public function setLesMatieres($lesMatieres)
@@ -160,7 +161,7 @@ class Promotion
     /**
      * Get lesMatieres
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesMatieres()
     {
@@ -168,32 +169,22 @@ class Promotion
     }
 
     /**
-     * Set lesUtilisateurs
+     * Set lesEtudiants
      *
-     * @param string $lesUtilisateurs
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
      * @return promotion
      */
-    public function setLesUtilisateurs($lesUtilisateurs)
+    public function setLesEtudiants($lesEtudiants)
     {
-        $this->lesUtilisateurs = $lesUtilisateurs;
+        $this->lesEtudiants = $lesEtudiants;
 
         return $this;
     }
 
     /**
-     * Get lesUtilisateurs
-     *
-     * @return string 
-     */
-    public function getLesUtilisateurs()
-    {
-        return $this->lesUtilisateurs;
-    }
-
-    /**
      * Set lesFactures
      *
-     * @param string $lesFactures
+     * @param \ConnexionBundle\Entity\Facture $lesFactures
      * @return promotion
      */
     public function setLesFactures($lesFactures)
@@ -206,7 +197,7 @@ class Promotion
     /**
      * Get lesFactures
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesFactures()
     {
@@ -220,7 +211,7 @@ class Promotion
         $this->lesConventions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesETS = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesMatieres = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lesUtilisateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lesEtudiants = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lesFactures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -263,7 +254,7 @@ class Promotion
      * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      * @return Promotion
      */
-    public function addLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    public function addLesETS(\ConnexionBundle\Entity\ETimeSheet $lesETS)
     {
         $this->lesETS[] = $lesETS;
 
@@ -275,7 +266,7 @@ class Promotion
      *
      * @param \ConnexionBundle\Entity\ETimeSheet $lesETS
      */
-    public function removeLesET(\ConnexionBundle\Entity\ETimeSheet $lesETS)
+    public function removeLesETS(\ConnexionBundle\Entity\ETimeSheet $lesETS)
     {
         $this->lesETS->removeElement($lesETS);
     }
@@ -309,9 +300,9 @@ class Promotion
      * @param \ConnexionBundle\Entity\User $lesUtilisateurs
      * @return Promotion
      */
-    public function addLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
+    public function addLesEtudiants(\ConnexionBundle\Entity\User $lesEtudiants)
     {
-        $this->lesUtilisateurs[] = $lesUtilisateurs;
+        $this->lesEtudiants[] = $lesEtudiants;
 
         return $this;
     }
@@ -321,9 +312,9 @@ class Promotion
      *
      * @param \ConnexionBundle\Entity\User $lesUtilisateurs
      */
-    public function removeLesUtilisateur(\ConnexionBundle\Entity\User $lesUtilisateurs)
+    public function removeLesEtudiants(\ConnexionBundle\Entity\User $lesEtudiants)
     {
-        $this->lesUtilisateurs->removeElement($lesUtilisateurs);
+        $this->lesEtudiants->removeElement($lesEtudiants);
     }
 
     /**
@@ -347,5 +338,81 @@ class Promotion
     public function removeLesFacture(\ConnexionBundle\Entity\Facture $lesFactures)
     {
         $this->lesFactures->removeElement($lesFactures);
+    }
+
+    /**
+     * Add lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
+     * @return Promotion
+     */
+    public function addLesEtudiant(\ConnexionBundle\Entity\User $lesEtudiants)
+    {
+        $this->lesEtudiants[] = $lesEtudiants;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesEtudiants
+     *
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
+     */
+    public function removeLesEtudiant(\ConnexionBundle\Entity\User $lesEtudiants)
+    {
+        $this->lesEtudiants->removeElement($lesEtudiants);
+    }
+
+    /**
+     * Get lesEtudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesEtudiants()
+    {
+        return $this->lesEtudiants;
+    }
+
+    /**
+     * Add lesResponsables
+     *
+     * @param \ConnexionBundle\Entity\User $lesResponsables
+     * @return Promotion
+     */
+    public function addLesResponsable(\ConnexionBundle\Entity\User $lesResponsables)
+    {
+        $this->lesResponsables[] = $lesResponsables;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesResponsables
+     *
+     * @param \ConnexionBundle\Entity\User $lesResponsables
+     */
+    public function removeLesResponsable(\ConnexionBundle\Entity\User $lesResponsables)
+    {
+        $this->lesResponsables->removeElement($lesResponsables);
+    }
+
+    /**
+     * Get lesResponsables
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesResponsables()
+    {
+        return $this->lesResponsables;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

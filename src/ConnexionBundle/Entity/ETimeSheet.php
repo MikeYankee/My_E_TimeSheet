@@ -181,4 +181,27 @@ class ETimeSheet
     {
         $this->lesCours->removeElement($lesCours);
     }
+
+    /**
+     * Add lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     * @return ETimeSheet
+     */
+    public function addLesCour(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours[] = $lesCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     */
+    public function removeLesCour(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours->removeElement($lesCours);
+    }
 }

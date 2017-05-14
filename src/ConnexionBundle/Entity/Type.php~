@@ -28,6 +28,12 @@ class Type
      */
     private $libelle;
 
+    /**
+     * One Type has Many Cours.
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="type")
+     */
+    private $lesCours;
+
 
     /**
      * Get id
@@ -58,6 +64,16 @@ class Type
      * @return string 
      */
     public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
     {
         return $this->libelle;
     }

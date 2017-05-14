@@ -347,4 +347,27 @@ class User extends BaseUser
 
         return implode(', ', $roles);
     }
+
+    /**
+     * Add promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     * @return User
+     */
+    public function addPromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp)
+    {
+        $this->promotionResp[] = $promotionResp;
+
+        return $this;
+    }
+
+    /**
+     * Remove promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     */
+    public function removePromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp)
+    {
+        $this->promotionResp->removeElement($promotionResp);
+    }
 }

@@ -22,23 +22,23 @@ class Cours
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="horaire", type="datetime")
+     * @ORM\Column(name="horaire", type="string")
      */
     private $horaire;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="enseignantAbsent", type="boolean")
+     * @ORM\Column(name="enseignantAbsent", type="boolean", nullable=true , options={"default":false})
      */
     private $enseignantAbsent;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="estValide", type="boolean")
+     * @ORM\Column(name="estValide", type="boolean", nullable=true)
      */
     private $estValide;
 
@@ -62,7 +62,7 @@ class Cours
 
     /**
      * One Cours has One Type.
-     * @ORM\OneToOne(targetEntity="Type")
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="lesCours")
      */
     private $type;
 
@@ -86,7 +86,7 @@ class Cours
     /**
      * Set horaire
      *
-     * @param \DateTime $horaire
+     * @param string $horaire
      * @return Cours
      */
     public function setHoraire($horaire)
@@ -99,7 +99,7 @@ class Cours
     /**
      * Get horaire
      *
-     * @return \DateTime 
+     * @return string
      */
     public function getHoraire()
     {
@@ -155,7 +155,7 @@ class Cours
     /**
      * Set enseignant
      *
-     * @param string $enseignant
+     * @param \ConnexionBundle\Entity\User $enseignant
      * @return Cours
      */
     public function setEnseignant($enseignant)
@@ -168,7 +168,7 @@ class Cours
     /**
      * Get enseignant
      *
-     * @return string 
+     * @return \ConnexionBundle\Entity\User
      */
     public function getEnseignant()
     {
@@ -178,7 +178,7 @@ class Cours
     /**
      * Set matiere
      *
-     * @param string $matiere
+     * @param \ConnexionBundle\Entity\Matiere $matiere
      * @return Cours
      */
     public function setMatiere($matiere)
@@ -191,7 +191,7 @@ class Cours
     /**
      * Get matiere
      *
-     * @return string 
+     * @return \ConnexionBundle\Entity\Matiere
      */
     public function getMatiere()
     {
@@ -201,7 +201,7 @@ class Cours
     /**
      * Set ets
      *
-     * @param string $ets
+     * @param \ConnexionBundle\Entity\ETimeSheet $ets
      * @return Cours
      */
     public function setEts($ets)
@@ -214,7 +214,7 @@ class Cours
     /**
      * Get ets
      *
-     * @return string 
+     * @return \ConnexionBundle\Entity\ETimeSheet
      */
     public function getEts()
     {
@@ -224,7 +224,7 @@ class Cours
     /**
      * Set type
      *
-     * @param string $type
+     * @param \ConnexionBundle\Entity\Type $type
      * @return Cours
      */
     public function setType($type)
@@ -237,7 +237,7 @@ class Cours
     /**
      * Get type
      *
-     * @return string 
+     * @return \ConnexionBundle\Entity\Type
      */
     public function getType()
     {
@@ -247,7 +247,7 @@ class Cours
     /**
      * Set lesEtudiants
      *
-     * @param string $lesEtudiants
+     * @param \ConnexionBundle\Entity\User $lesEtudiants
      * @return Cours
      */
     public function setLesEtudiants($lesEtudiants)
@@ -260,7 +260,7 @@ class Cours
     /**
      * Get lesEtudiants
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesEtudiants()
     {
