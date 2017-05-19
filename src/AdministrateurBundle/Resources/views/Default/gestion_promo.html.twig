@@ -11,6 +11,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#etudiants">Etudiants</a></li>
                     <li><a data-toggle="tab" href="#matieres">Matières</a></li>
+                    <li><a data-toggle="tab" href="#conventions">Conventions</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -46,7 +47,7 @@
                             </tbody>
                         </table>
                     </div>
-
+                    {# Onglet Matière #}
                     <div id="matieres" class="tab-pane fade">
                         <table class="table table-bordered" style="background-color: white">
                             <thead>
@@ -66,6 +67,28 @@
                                     <td>{{ matiere.nbHeuresMaquetteCours }}</td>
                                     <td>{{ matiere.lesEnseignants|join(', ') }}</td>
                                     <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':matiere.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {# Onglet Convention #}
+                    <div id="conventions" class="tab-pane fade">
+                        <table class="table table-bordered" style="background-color: white">
+                            <thead>
+                            <tr>
+                                <td width="40%"><b>Type</b></td>
+                                <td><b>Prix / heure</b></td>
+                                <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_convention', {'id':promotion.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for convention in lesConventions %}
+                                <tr>
+                                    <td>{{ convention.type.libelle }}</td>
+                                    <td>{{ convention.prixHeure }}</td>
+                                    <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_convention', {'id':convention.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
                             {% endfor %}

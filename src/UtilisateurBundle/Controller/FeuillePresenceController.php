@@ -37,11 +37,16 @@ class FeuillePresenceController extends Controller
             $lesCours = $lEts[0]->getLesCours();
         }
 
+        $lesCoursNonValide = array();
+        foreach ($lesCours as $leCours) {
+            if(!$leCours->getEstValide()){
+                $lesCoursNonValide[]=$leCours;
+            }
+        }
         return $this->render('UtilisateurBundle:Default:signaler_presence.html.twig', array(
             'user' => $user,
-            'lesCours' => $lesCours
+            'lesCours' => $lesCoursNonValide
         ));
-
     }
 
     public function visionnerHistoriqueAbsencesPromosAction()
