@@ -15,7 +15,7 @@ class CoursController extends Controller
         $this->denyAccessUnlessGranted(array('ROLE_ETUDIANT'));
         $user = $this->getUser();
 
-        // Si la cours est null et que c'est pas la bonne promotion et que le cours est valide, on retoune à la page visionner_feuille_presence
+        // Si le cours est null et que c'est pas la bonne promotion et que le cours est valide, on retoune à la page visionner_feuille_presence
         if(is_null($leCours) or $leCours->getEts()->getPromotion() != $user->getPromotion() or $leCours->getEstValide()){
             return $this->redirect($this->generateUrl("visionner_feuille_presence"));
         }

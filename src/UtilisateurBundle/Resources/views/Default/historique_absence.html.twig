@@ -18,7 +18,7 @@
                     {% if(lesAbsences|length > 0) %}
                         {% for absence in lesAbsences %}
                             <tr>
-                                <td>{{ absence.date }}</td>
+                                <td>{{ absence.date|date('d/m/Y') }}</td>
                                 <td>{{ absence.horaire }}</td>
                                 <td>{{ absence.cours }}</td>
 
