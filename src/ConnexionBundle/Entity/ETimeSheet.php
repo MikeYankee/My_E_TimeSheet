@@ -110,9 +110,9 @@ class ETimeSheet
      * @param string $promo
      * @return ETimeSheet
      */
-    public function setPromo($promo)
+    public function setPromo($promotion)
     {
-        $this->promo = $promo;
+        $this->promo = $promotion;
 
         return $this;
     }
@@ -124,7 +124,7 @@ class ETimeSheet
      */
     public function getPromo()
     {
-        return $this->promo;
+        return $this->promotion;
     }
 
     /**

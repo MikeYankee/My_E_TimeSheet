@@ -11,8 +11,7 @@
                         <th>Horaire</th>
                         <th>Cours</th>
                         <th>Enseignant</th>
-                        <th></th>
-                        <th></th>
+                        <th>Présent</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -22,12 +21,22 @@
                                 <td>{{ cours.horaire|date('H:i') }}</td>
                                 <td>{{ cours.matiere.libelle }}</td>
                                 <td>{{ cours.enseignant }}</td>
-                                <td><button type="button" class="btn btn-success">Présent</button></td>
-                                <td><button type="button" class="btn btn-warning">Enseignant absent</button></td>
+                                {% for userCours in cours.getLesEtudiants() %}
+                                     {% if(app.user == userCours.lEtudiant) %}
+                                        {% if(userCours.getEtudiantPresent()) %}
+                                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
+                                        {% else %}
+                                            <td><a href="{{ path('signaler_presence', {'leCours':cours.id}) }}"><button type="button" class="btn btn-success">Présent</button></a></td>
+                                        {% endif %}
+                                     {% endif %}
+                                {% endfor %}
+                                {% if is_granted("ROLE_DELEGUE") %}
+                                    <td><a href="{{ path('signaler_absence_enseignant', {'leCours':cours.id}) }}"><button type="button" class="btn btn-warning">Enseignant absent</button></a></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                      {% else %}
-                        <tr><td colspan="5">Aucune ets n'a été créé.</td></tr>
+                        <tr><td colspan="5">Aucun cours à afficher.</td></tr>
                     {% endif %}
                     </tbody>
                 </table>

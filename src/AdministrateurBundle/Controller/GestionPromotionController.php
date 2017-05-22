@@ -36,7 +36,7 @@ class GestionPromotionController extends Controller
 
         $les_etudiants = $promotion->getLesEtudiants();
         $les_matieres = $promotion->getLesMatieres();
-
+        $les_conventions = $promotion->getLesConventions();
         $les_responsables = $promotion->getLesResponsables();
 
         if(is_null($les_responsables)){
@@ -48,6 +48,7 @@ class GestionPromotionController extends Controller
             'lesMatieres' => $les_matieres,
             'promotion' => $promotion,
             'lesResponsables' => $les_responsables,
+            'lesConventions' => $les_conventions
         ));
     }
 
@@ -272,5 +273,35 @@ class GestionPromotionController extends Controller
             'form' => $form->createView(),
             'promotion' => $promotion
         ));
+    }
+
+    public function ajoutConventionAction(Request $request, Promotion $promotion = null)
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
+        if (is_null($promotion)) {
+            return $this->redirectToRoute("gerer_promotion", array('id' => $promotion->getId()));
+        }
+
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
+
+        $matiere = new Matiere();
+        $matiere->setPromo($promotion);
+
+        $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($matiere);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
     }
 }

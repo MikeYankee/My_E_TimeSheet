@@ -1,0 +1,70 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        {% include '::menu.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="content_text">
+            <div class="container">
+                <h3>Ajout d'une matière</h3><br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.libelle) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.libelle, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.nbHeuresMaquetteTD) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.nbHeuresMaquetteTD, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.nbHeuresMaquetteCours) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.nbHeuresMaquetteCours, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.nbHeuresMaquetteExam) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.nbHeuresMaquetteExam, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.nbHeuresMaquetteSoutenance) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.nbHeuresMaquetteSoutenance, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">{{ form_label(form.lesEnseignants) }}</label>
+                            <div class="has-feedback">
+                                {{ form_widget(form.lesEnseignants, { 'attr': {'class': 'form-control'}, 'id': 'enseignant'}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br><br>
+
+                <div class="pull-right">
+                    <a href="{{ path('gerer_promotion', {'id' : matiere.promotion.id}) }}" class="btn btn-default">Annuler</a>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
