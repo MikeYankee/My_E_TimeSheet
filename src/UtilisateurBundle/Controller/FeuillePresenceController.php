@@ -33,14 +33,14 @@ class FeuillePresenceController extends Controller
         $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
 
         $lesCours = null;
-        if(isset($lEts[0])){ //L'ETS iexste ?
-            $lesCours = $lEts[0]->getLesCours();
-        }
-
         $lesCoursNonValide = array();
-        foreach ($lesCours as $leCours) {
-            if(!$leCours->getEstValide()){
-                $lesCoursNonValide[]=$leCours;
+        if(isset($lEts[0])) { //L'ETS iexste ?
+            $lesCours = $lEts[0]->getLesCours();
+
+            foreach ($lesCours as $leCours) {
+                if (!$leCours->getEstValide()) {
+                    $lesCoursNonValide[] = $leCours;
+                }
             }
         }
         return $this->render('UtilisateurBundle:Default:signaler_presence.html.twig', array(
