@@ -18,8 +18,15 @@ class FeuillePresenceController extends Controller
     {
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
-        $lesEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->findBy();
         $user = $this->getUser();
+        $lesEts = $this->container->get('ets')->validees($user->getPromotion());
+
+        //echo $user->getPromotion()->getLibelle(); die;
+
+        /*foreach ($lesEts as $lEts)
+        {
+            echo $lEts; die;
+        }*/
 
         return $this->render('UtilisateurBundle:Default:historique_ets.html.twig', array(
             'user' => $user,

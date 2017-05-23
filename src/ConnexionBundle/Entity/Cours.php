@@ -296,4 +296,6 @@ class Cours
     {
         $this->lesEtudiants->removeElement($lesEtudiants);
     }
+
+
 }

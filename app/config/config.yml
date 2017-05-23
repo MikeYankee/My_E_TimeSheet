@@ -62,7 +62,19 @@ doctrine:
 
 fos_user:
     user_class: ConnexionBundle\Entity\User
-
+    from_email:
+            address:        yann.bourgues@gmail.com
+            sender_name:    Demo App
+    registration:
+            confirmation:
+                from_email:
+                    address:        yann.bourgues@gmail.com
+                    sender_name:    Demo Registration
+    resetting:
+            email:
+                from_email:
+                    address:        yann.bourgues@gmail.com
+                    sender_name:    Demo Resetting
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
