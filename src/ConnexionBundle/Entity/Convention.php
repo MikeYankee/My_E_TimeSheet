@@ -29,8 +29,8 @@ class Convention
     private $prixHeure;
 
     /**
-     * One Convention has One Type.
-     * @ORM\OneToOne(targetEntity="Type")
+     * Many Convention has One Type.
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="lesConventions")
      */
     private $type;
 

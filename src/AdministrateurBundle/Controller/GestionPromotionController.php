@@ -10,8 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use AdministrateurBundle\Form\MatiereType;
 use AdministrateurBundle\Form\PromotionType;
 use AdministrateurBundle\Form\EtudiantType;
+use AdministrateurBundle\Form\ConventionType;
 use ConnexionBundle\Entity\Promotion;
 use ConnexionBundle\Entity\User;
+use ConnexionBundle\Entity\Convention;
+use ConnexionBundle\Entity\Type;
 
 class GestionPromotionController extends Controller
 {
@@ -284,18 +287,18 @@ class GestionPromotionController extends Controller
             return $this->redirectToRoute("gerer_promotion", array('id' => $promotion->getId()));
         }
 
-        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
+        $lesTypes = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
 
-        $matiere = new Matiere();
-        $matiere->setPromo($promotion);
+        $convention = new Convention();
+        $convention->setPromotion($promotion);
 
-        $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
+        $form = $this->createForm(new ConventionType($lesTypes), $convention);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($matiere);
+                $em->persist($convention);
                 $em->flush();
 
                 return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
@@ -303,5 +306,39 @@ class GestionPromotionController extends Controller
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }
+
+        return $this->render('AdministrateurBundle:Default:ajout_convention.html.twig', array(
+            'form' => $form->createView(),
+            'convention' => $convention
+        ));
+    }
+
+    public function modificationConventionAction(Request $request, Convention $convention = null)
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        if(is_null($convention)){ //la convention n'existe pas
+            return $this->redirectToRoute("liste_promotions");
+        }
+
+        $lesTypes = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
+        $form = $this->createForm(new ConventionType($lesTypes), $convention);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirectToRoute("gerer_promotion", array('id' => $convention->getPromotion()->getId()));
+
+            } else
+                $this->addFlash('error', "Tous les champs doivent être complétés.");
+        }
+
+        return $this->render('AdministrateurBundle:Default:modification_convention.html.twig', array(
+            'form' => $form->createView(),
+            'convention' => $convention
+        ));
     }
 }

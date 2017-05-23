@@ -202,4 +202,17 @@ class ETimeSheet
     {
         $this->lesCours->removeElement($lesCours);
     }
+
+    public function validees()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('ets', 'c')
+            ->join('ets.lesCours', 'c')
+            ->where('c.estValide = 1')
+            ->orderBy('ets.date');
+
+        return $query->getQuery()->getResult();
+    }
+
+
 }
