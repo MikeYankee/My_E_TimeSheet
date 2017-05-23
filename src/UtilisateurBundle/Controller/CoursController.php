@@ -2,10 +2,11 @@
 
 namespace UtilisateurBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use  Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\BrowserKit\Request;
 use ConnexionBundle\Entity\Cours;
+use ConnexionBundle\Entity\User_cours;
 use ConnexionBundle\Entity\User;
 
 class CoursController extends Controller
@@ -67,12 +68,18 @@ class CoursController extends Controller
 
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
-        $lesAbsences = $this->getDoctrine()->getRepository('ConnexionBundle:Cours')->findAll();
         $user = $this->getUser();
+        $lesAbsences = $this->container->get('absenceEtu')->absences($user);
+        $totalAbsence = 0;
+        foreach ($lesAbsences as $lAbsence)
+        {
+            $totalAbsence += 1.5;
+        }
 
         return $this->render('UtilisateurBundle:Default:historique_absence.html.twig', array(
             'user' => $user,
-            'lesAbsences' => $lesAbsences
+            'lesAbsences' => $lesAbsences,
+            'totalHeureAbsence' => $totalAbsence
         ));
     }
 
