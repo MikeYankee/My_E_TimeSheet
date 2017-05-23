@@ -60,16 +60,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for matiere in lesMatieres %}
-                                <tr>
-                                    <td>{{ matiere.libelle }}</td>
-                                    <td>{{ matiere.nbHeuresMaquetteTD }}</td>
-                                    <td>{{ matiere.nbHeuresMaquetteCours }}</td>
-                                    <td>{{ matiere.lesEnseignants|join(', ') }}</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':matiere.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                            {% endfor %}
+                            {% if(lesMatieres|length > 0) %}
+                                {% for matiere in lesMatieres %}
+                                    <tr>
+                                        <td>{{ matiere.libelle }}</td>
+                                        <td>{{ matiere.nbHeuresMaquetteTD }}</td>
+                                        <td>{{ matiere.nbHeuresMaquetteCours }}</td>
+                                        <td>{{ matiere.lesEnseignants|join(', ') }}</td>
+                                        <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':matiere.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr><td colspan="5">Aucune matière n'est encore affiliée à la promotion.</td></tr>
+                            {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -84,14 +88,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for convention in lesConventions %}
-                                <tr>
-                                    <td>{{ convention.type.libelle }}</td>
-                                    <td>{{ convention.prixHeure }}</td>
-                                    <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_convention', {'id':convention.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                            {% endfor %}
+                            {% if(lesConventions|length > 0) %}
+                                {% for convention in lesConventions %}
+                                    <tr>
+                                        <td>{{ convention.type.libelle }}</td>
+                                        <td>{{ convention.prixHeure }}</td>
+                                        <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_convention', {'id':convention.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr><td colspan="5">Aucune convention n'est encore affiliée à la promotion.</td></tr>
+                            {% endif %}
                             </tbody>
                         </table>
                     </div>

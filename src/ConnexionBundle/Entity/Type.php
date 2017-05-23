@@ -28,6 +28,12 @@ class Type
      */
     private $libelle;
 
+    /**
+     * One Type has Many Conventions.
+     * @ORM\OneToMany(targetEntity="Convention", mappedBy="type")
+     */
+    private $lesConventions;
+
 
     /**
      * Get id
@@ -60,5 +66,16 @@ class Type
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    public function __toString()
+    {
+        if(!is_null($this->libelle)){
+            $return = $this->libelle;
+        }
+        else{
+            $return = $this->id;
+        }
+        return $return;
     }
 }

@@ -8,48 +8,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ConventionType extends AbstractType {
 
-    public function __construct($enseignants) {
-        $this->enseignants = $enseignants;
+    public function __construct($type) {
+        $this->type = $type;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('libelle', 'text', array(
-                "label" => "Libellé :"
-            ))
-            ->add('nbHeuresMaquetteCours', 'number', array(
-                "label" => "Nombre d'heures de cours :",
+            ->add('prixheure', 'number', array(
+                "label" => "Prix / heure :",
                 'required' => true,
             ))
-            ->add('nbHeuresMaquetteTD', 'number', array(
-                "label" => "Nombre d'heures de TD :",
-                'required' => true,
-            ))
-            ->add('nbHeuresMaquetteSoutenance', 'number', array(
-                "label" => "Nombre d'heures de soutenance :",
-                'required' => true,
-            ))
-            ->add('nbHeuresMaquetteExam', 'number', array(
-                "label" => "Nombre d'heures d'examen :",
-                'required' => true,
-            ))
-            ->add('lesEnseignants', 'entity', array(
-                'class' => 'ConnexionBundle\Entity\User',
-                'choices' => $this->enseignants,
-                'multiple' => true,
+            ->add('type', 'entity', array(
+                'class' => 'ConnexionBundle\Entity\Type',
+                'choices' => $this->type,
+                'multiple' => false,
                 'expanded' => false,
-                "label" => "Enseignant(s) :",
-                'required' => false,
+                "label" => "Type :",
+                'required' => true,
             ));
     }
 
     public function getName() {
-        return 'matiere';
+        return 'convention';
     }
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'ConnexionBundle\Entity\Matiere',
+            'data_class' => 'ConnexionBundle\Entity\Convention',
         ));
     }
 

@@ -70,4 +70,4 @@ monolog:
         #    level:  info
 
 #swiftmailer:
-    delivery_address: yann.bourgues@gmail.com
+#delivery_address:

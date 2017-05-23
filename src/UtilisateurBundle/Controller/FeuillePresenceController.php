@@ -4,6 +4,8 @@ namespace UtilisateurBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use ConnexionBundle\Entity\ETimeSheet;
+use ConnexionBundle\Repository\ETimeSheetRepository;
 
 class FeuillePresenceController extends Controller
 {
@@ -16,7 +18,7 @@ class FeuillePresenceController extends Controller
     {
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
-        $lesEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->findAll();
+        $lesEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->findBy();
         $user = $this->getUser();
 
         return $this->render('UtilisateurBundle:Default:historique_ets.html.twig', array(
