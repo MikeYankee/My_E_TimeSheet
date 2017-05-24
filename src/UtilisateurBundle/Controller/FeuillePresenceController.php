@@ -2,16 +2,74 @@
 
 namespace UtilisateurBundle\Controller;
 
+use ConnexionBundle\Entity\Cours;
+use ConnexionBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ConnexionBundle\Entity\ETimeSheet;
+use UtilisateurBundle\Form\ETimeSheetType;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ConnexionBundle\Entity\ETimeSheet;
 use ConnexionBundle\Repository\ETimeSheetRepository;
 
 class FeuillePresenceController extends Controller
 {
-    public function creerFeuillePresenceAction()
+    public function creerFeuillePresenceAction(Request $request)
     {
-        return $this->render('UtilisateurBundle:Default:creation_ets.html.twig');
+        $this->denyAccessUnlessGranted(array('ROLE_DELEGUE'));
+
+        $delegue = $this->getUser();
+        $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+
+        if(isset($les_ets[0])){ //L'ETS est déja crée pour cette journée
+            $this->addFlash('error', "La feuille du jour est déjà créée");
+            return $this->redirectToRoute("signaler_presence");
+            //TODO : si existe, rediriger vers la page de modif de l'ets
+        }
+
+        $les_horaires = array('8:30'=>'8:30','10:00'=>'10:00','10:15'=>'10:15','11:45'=>'11:45','12:00'=>'12:00','13:00'=>'13:00','14:30'=>'14:30','14:45'=>'14:45','16:15'=>'16:15','16:30'=>'16:30','18:00'=>'18:00');
+        $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
+
+        $les_matieres = $delegue->getPromotion()->getLesMatieres();
+        $les_types = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
+
+        $ets = new ETimeSheet();
+        $promo = $delegue->getPromotion();
+        $ets->setPromotion($promo);
+        //$promo->setLesETS($ets);
+
+        $form = $this->createForm(new ETimeSheetType($les_horaires, $les_enseignants, $les_matieres, $les_types), $ets);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //On récupère tous les horaires des cours
+            $horaires = array();
+            foreach ($ets->getLesCours() as $cours) {
+                $horaires[] = $cours->getHoraire();
+            }
+            $horaires_uniques = array_unique($horaires); // on enlève les doublons
+
+            //On compare la taille des deux tableaux pour savoir s'il y a eu des doublons supprimés
+            if(count($horaires) == count($horaires_uniques)){ //pas de doublons
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ets);
+
+                foreach ($ets->getLesCours() as $cours) {
+                    $cours->setEts($ets);
+                }
+                $em->flush();
+            }
+            else{
+                $this->addFlash('error', "Il ne peut pas y avoir plusieurs cours à la même heure.");
+            }
+            return $this->redirect($this->generateUrl("signaler_presence"));
+        }
+
+        return $this->render('UtilisateurBundle:Default:creation_ets.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     public function historiqueFeuillePresenceAction()

@@ -1,6 +1,9 @@
 <?php
+
 namespace ConnexionBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
+
 /**
  * ETimeSheetRepository
  *
@@ -18,5 +21,4 @@ class ETimeSheetRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
-
 }

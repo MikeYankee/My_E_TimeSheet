@@ -43,7 +43,7 @@ class ETimeSheet
 
     /**
      * One ETimeSheets has Many Cours.
-     * @ORM\OneToMany(targetEntity="Cours", mappedBy="ets")
+     * @ORM\OneToMany(targetEntity="Cours", mappedBy="ets",cascade={"persist"})
      */
     private $lesCours;
 
@@ -105,37 +105,14 @@ class ETimeSheet
     }
 
     /**
-     * Set promo
-     *
-     * @param string $promo
-     * @return ETimeSheet
-     */
-    public function setPromo($promotion)
-    {
-        $this->promo = $promotion;
-
-        return $this;
-    }
-
-    /**
-     * Get promo
-     *
-     * @return string 
-     */
-    public function getPromo()
-    {
-        return $this->promotion;
-    }
-
-    /**
      * Set lesCours
      *
-     * @param string $lesCours
+     * @param \ConnexionBundle\Entity\Cours $lesCours
      * @return ETimeSheet
      */
     public function setLesCours($lesCours)
     {
-        $this->lesCours = $lesCours;
+        $this->lesCours[] = $lesCours;
 
         return $this;
     }
@@ -143,18 +120,20 @@ class ETimeSheet
     /**
      * Get lesCours
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLesCours()
     {
         return $this->lesCours;
     }
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->lesCours = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setDate(new \DateTime());
     }
 
     /**
@@ -163,7 +142,7 @@ class ETimeSheet
      * @param \ConnexionBundle\Entity\Promotion $promotion
      * @return ETimeSheet
      */
-    public function setPromotion(\ConnexionBundle\Entity\Promotion $promotion = null)
+    public function setPromotion($promotion)
     {
         $this->promotion = $promotion;
 
@@ -178,6 +157,29 @@ class ETimeSheet
     public function getPromotion()
     {
         return $this->promotion;
+    }
+
+    /**
+     * Add lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     * @return ETimeSheet
+     */
+    public function addLesCours(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours[] = $lesCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesCours
+     *
+     * @param \ConnexionBundle\Entity\Cours $lesCours
+     */
+    public function removeLesCours(\ConnexionBundle\Entity\Cours $lesCours)
+    {
+        $this->lesCours->removeElement($lesCours);
     }
 
     /**
@@ -202,17 +204,4 @@ class ETimeSheet
     {
         $this->lesCours->removeElement($lesCours);
     }
-
-    public function validees()
-    {
-        $query = $this->_em->createQueryBuilder();
-        $query->select('ets', 'c')
-            ->join('ets.lesCours', 'c')
-            ->where('c.estValide = 1')
-            ->orderBy('ets.date');
-
-        return $query->getQuery()->getResult();
-    }
-
-
 }

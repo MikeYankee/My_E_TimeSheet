@@ -46,7 +46,7 @@ class User extends BaseUser
 
     /**
      * Many Users have One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesEtudiants")
      */
     private $promotion;
 
@@ -346,5 +346,28 @@ class User extends BaseUser
         }
 
         return implode(', ', $roles);
+    }
+
+    /**
+     * Add promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     * @return User
+     */
+    public function addPromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp)
+    {
+        $this->promotionResp[] = $promotionResp;
+
+        return $this;
+    }
+
+    /**
+     * Remove promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     */
+    public function removePromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp)
+    {
+        $this->promotionResp->removeElement($promotionResp);
     }
 }

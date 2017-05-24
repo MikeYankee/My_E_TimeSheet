@@ -12,9 +12,11 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.growl.css') }}">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('js/bootstrap-growl.min.js') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     {% stylesheets %}
@@ -23,14 +25,48 @@
 <body>
 {% block body %}
 {% endblock %}
-{% block javascripts %}
+{% block javascripts_bottom %}
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src='http://ksylvest.github.io/jquery-growl/javascripts/jquery.growl.js' type='text/javascript'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#enseignant").select2();
-            //$("#responsable").select2();
+            $('select').select2();
+            $("#responsable").select2();
+        });
+
+        $(function () {
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+            $.growl.notice({
+                title: "<strong>Succès: </strong>",
+                message: "{{ flashMessage }}"
+            });
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+            $.growl.error({
+                title: "<strong>Erreur: </strong>",
+                message: "{{ flashMessage }}"
+            }, {
+                type: 'error'
+            });
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+            $.growl.warning({
+                title: "<strong>Attention: </strong>",
+                message: "{{ flashMessage }}"
+            }, {
+                type: 'warning'
+            });
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('info') %}
+            $.growl({
+                title: "<strong>Information: </strong>",
+                message: "{{ flashMessage }}"
+            }, {
+                type: 'default'
+            });
+            {% endfor %}
         });
     </script>
 {% endblock %}

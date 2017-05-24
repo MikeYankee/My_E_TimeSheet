@@ -130,7 +130,7 @@ class GestionPromotionController extends Controller
                 $userManager->updateUser($etudiant, true);
                 //$em->persist($etudiant);
                 $em->flush();
-                return $this->redirect($this->generateUrl("gerer_promotion"));
+                return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }

@@ -46,7 +46,7 @@ class User extends BaseUser
 
     /**
      * Many Users have One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesEtudiants")
      */
     private $promotion;
 
@@ -64,7 +64,7 @@ class User extends BaseUser
 
     /**
      * Many User has One Promotion.
-     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="lesResponsables")
+     * @ORM\ManyToMany(targetEntity="Promotion", mappedBy="lesResponsables")
      */
     private $promotionResp;
 
@@ -273,5 +273,78 @@ class User extends BaseUser
             $return = $this->email;
         }
         return $return;
+    }
+
+    /**
+     * Add lesCours
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesCours
+     * @return User
+     */
+    public function addLesCour(\ConnexionBundle\Entity\User_cours $lesCours)
+    {
+        $this->lesCours[] = $lesCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesCours
+     *
+     * @param \ConnexionBundle\Entity\User_cours $lesCours
+     */
+    public function removeLesCour(\ConnexionBundle\Entity\User_cours $lesCours)
+    {
+        $this->lesCours->removeElement($lesCours);
+    }
+
+    /**
+     * Get lesCours
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesCours()
+    {
+        return $this->lesCours;
+    }
+
+    /**
+     * Set promotionResp
+     *
+     * @param \ConnexionBundle\Entity\Promotion $promotionResp
+     * @return User
+     */
+    public function setPromotionResp(\ConnexionBundle\Entity\Promotion $promotionResp = null)
+    {
+        $this->promotionResp = $promotionResp;
+
+        return $this;
+    }
+
+    /**
+     * Get promotionResp
+     *
+     * @return \ConnexionBundle\Entity\Promotion 
+     */
+    public function getPromotionResp()
+    {
+        return $this->promotionResp;
+    }
+    
+    /**
+     * Afficher roles
+     * 
+     * @return string
+     */
+    public function afficherRoles(){
+        foreach ($this->getRoles() as $role) {
+            if($role != 'ROLE_USER'){
+                //Permet d'enlever la partie 'role_' de la variable
+                // et de mettre la première lettre en majuscule et le reste en minuscule pour l'affichage
+                $roles[] = ucwords(strtolower(substr($role, 5, strlen($role))));
+            }
+        }
+
+        return implode(', ', $roles);
     }
 }
