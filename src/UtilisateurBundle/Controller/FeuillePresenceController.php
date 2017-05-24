@@ -41,15 +41,27 @@ class FeuillePresenceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ets);
 
+            //On récupère tous les horaires des cours
+            $horaires = array();
             foreach ($ets->getLesCours() as $cours) {
-                $cours->setEts($ets);
-                //$ets->setLesCours($cours);
+                $horaires[] = $cours->getHoraire();
             }
-            $em->flush();
-            $this->addFlash('error', "Tous les champs doivent être complétés.");
+            $horaires_uniques = array_unique($horaires); // on enlève les doublons
+
+            //On compare la taille des deux tableaux pour savoir s'il y a eu des doublons supprimés
+            if(count($horaires) == count($horaires_uniques)){ //pas de doublons
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ets);
+
+                foreach ($ets->getLesCours() as $cours) {
+                    $cours->setEts($ets);
+                }
+                $em->flush();
+            }
+            else{
+                $this->addFlash('error', "Il ne peut pas y avoir plusieurs cours à la même heure.");
+            }
             return $this->redirect($this->generateUrl("signaler_presence"));
         }
 
