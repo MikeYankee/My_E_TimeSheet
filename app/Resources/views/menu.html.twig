@@ -8,28 +8,27 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                {% if is_granted("ROLE_ETUDIANT") %}
-                    <li><a class="active" href="{{ path('visionner_feuille_presence') }}">Signaler présence</a></li>
-                {% endif %}
                 {% if is_granted("ROLE_DELEGUE") %}
-                    <li><a class="active" href="{{ path('creer_feuille_presence') }}">Créer la E-TimeSheet</a></li>
+                    {% include 'menu_delegue.html.twig' %}
+                {% elseif is_granted("ROLE_ETUDIANT") %}
+                    {% include 'menu_etudiant.html.twig' %}
                 {% endif %}
-                {% if is_granted("ROLE_ENSEIGNANT") %}
-                    <li><a class="active" href="{{ path('valider_cours') }}">Valider cours</a></li>
+                {% if is_granted("ROLE_RESPONSABLE") or is_granted("ROLE_SUPER_RESPONSABLE") %}
+                    {% include 'menu_responsable.html.twig' %}
+                {% elseif is_granted("ROLE_ENSEIGNANT") %}
+                    {% include 'menu_enseignant.html.twig' %}
                 {% endif %}
-                {% if is_granted("ROLE_CFA") or is_granted("ROLE_SECRETAIRE") or is_granted("ROLE_RESPONSABLE") %}
-                    <li><a class="active" href="{{ path('visionner_details_heures') }}">Récapitulatif des heures</a></li>
-                    <li><a class="active" href="{{ path('historique_facture') }}">Historiques des factures</a></li>
+                {% if is_granted("ROLE_CFA") %}
+                    {% include 'menu_cfa.html.twig' %}
                 {% endif %}
-                {% if is_granted("ROLE_USER") and (is_granted("ROLE_ADMIN") == false) %}
-                    <li><a href="{{ path('historique_feuille_presence') }}">Historique des E-TimeSheet</a></li>
-                    <li><a href="{{ path('historique_absence') }}">Historique des absences</a></li>
+                {% if is_granted("ROLE_SECRETAIRE") %}
+                    {% include 'menu_secretaire.html.twig' %}
                 {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
-                    <li><a class="active" href="{{ path('accueil_admin') }}">Accueil</a></li>
-                    <li><a class="active" href="{{ path('liste_promotions') }}">Gérer les promotions</a></li>
-                    <li><a class="active" href="{{ path('gerer_personnel') }}">Gérer le personnel</a></li>
+                    {% include 'menu_admin.html.twig' %}
                 {% endif %}
+
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -113,6 +113,25 @@ body {
     color: #049283;
 }
 
+@media (max-width: 767px) {
+    .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
+        background-color: #049283;
+        color: #ecf0f1;
+    }
+    .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-custom .navbar-nav .open .dropdown-menu > li > a:focus {
+        background-color: #049283;
+        color: #ecdbff;
+    }
+    .navbar-custom .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ecdbff;
+        background-color: #049283;
+    }
+}
+
+
 .content_text{
     margin-top:7%;
     min-height:1px;
