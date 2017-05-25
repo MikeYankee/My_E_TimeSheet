@@ -2,6 +2,7 @@
 
 namespace UtilisateurBundle\Controller;
 
+use ConnexionBundle\Entity\User_cours;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ConnexionBundle\Entity\ETimeSheet;
 use UtilisateurBundle\Form\ETimeSheetType;
@@ -11,6 +12,8 @@ class FeuillePresenceController extends Controller
     public function creerFeuillePresenceAction(Request $request)
     {
         $this->denyAccessUnlessGranted(array('ROLE_DELEGUE'));
+
+        $user = $this->getUser();
 
         $delegue = $this->getUser();
         $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
@@ -52,7 +55,13 @@ class FeuillePresenceController extends Controller
 
                 foreach ($ets->getLesCours() as $cours) {
                     $cours->setEts($ets);
+
+                    foreach ($user->getPromotion()->getLesEtudiants() as $etu) {
+                        $user_cours = new User_cours($etu, $cours);
+                        $em->persist($user_cours);
+                    }
                 }
+
                 $em->flush();
             }
             else{
