@@ -2,16 +2,10 @@
 
 namespace UtilisateurBundle\Controller;
 
-use ConnexionBundle\Entity\Cours;
-use ConnexionBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ConnexionBundle\Entity\ETimeSheet;
 use UtilisateurBundle\Form\ETimeSheetType;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use ConnexionBundle\Entity\ETimeSheet;
-use ConnexionBundle\Repository\ETimeSheetRepository;
-
 class FeuillePresenceController extends Controller
 {
     public function creerFeuillePresenceAction(Request $request)
