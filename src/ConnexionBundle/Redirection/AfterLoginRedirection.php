@@ -40,10 +40,18 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         // If is a admin or super admin we redirect to the backoffice area
         if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('accueil_admin'));
+        elseif (in_array('ROLE_RESPONSABLE', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('visionner_feuille_presence'));
+        elseif (in_array('ROLE_ENSEIGNANT', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('visionner_feuille_presence'));
+        elseif (in_array('ROLE_DELEGUE', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('creer_feuille_presence'));
         elseif (in_array('ROLE_ETUDIANT', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('visionner_feuille_presence'));
-        else
-            $redirection = new RedirectResponse($this->router->generate('profil'));
+        elseif (in_array('ROLE_CFA', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('visionner_details_heures'));
+        elseif (in_array('ROLE_SECRETAIRE', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('visionner_feuille_presence'));
 
         return $redirection;
     }

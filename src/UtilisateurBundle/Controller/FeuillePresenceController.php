@@ -88,7 +88,7 @@ class FeuillePresenceController extends Controller
 
     public function visionnerFeuillePresenceAction()
     {
-        $this->denyAccessUnlessGranted(array('ROLE_ETUDIANT'));
+        $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
         $user = $this->getUser();
         $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
