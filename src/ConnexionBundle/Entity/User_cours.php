@@ -49,6 +49,16 @@ class User_cours
 
 
     /**
+     * Constructor
+     */
+    public function __construct($letudiant, $leCours)
+    {
+        $this->leCours = $leCours;
+        $this->lEtudiant = $letudiant;
+        $this->etudiantPresent = false;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
