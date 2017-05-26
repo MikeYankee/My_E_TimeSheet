@@ -50,7 +50,7 @@ class GestionPromotionController extends Controller
             'lesEtudiants' => $les_etudiants,
             'lesMatieres' => $les_matieres,
             'promotion' => $promotion,
-            'lesResponsables' => $les_responsables,
+            //'lesResponsables' => $les_responsables,
             'lesConventions' => $les_conventions
         ));
     }
@@ -71,11 +71,8 @@ class GestionPromotionController extends Controller
         // On vérifie que la promo n'existe pas déjà (nom unique)
         //$promos = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->find($promo);
 
-        //$lesResponsables contient les utilisateurs qui ont le rôle Responsable
+        $lesResponsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE', 'ROLE_SUPER_RESPONSABLE'));
 
-        $lesResponsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE'));
-
-        //Objet promotion
         $promotion = new Promotion();
 
         //l'objet $form est créé avec en paramètre le FormType de l'objet qu'on veut créer/modifier.. et l'objet qui sera inséré dans la BDD à la fin
@@ -96,11 +93,8 @@ class GestionPromotionController extends Controller
         }
 
         //Affichage de la vue ajout_promotion.html.twig avec le formulaire en paramètre
-
         return $this->render('AdministrateurBundle:Default:ajout_promotion.html.twig', array(
-
             'form' => $form->createView(),
-
         ));
 
     }

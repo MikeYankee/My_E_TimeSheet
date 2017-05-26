@@ -337,11 +337,33 @@ class User extends BaseUser
      * @return string
      */
     public function afficherRoles(){
+        $roles = array();
         foreach ($this->getRoles() as $role) {
-            if($role != 'ROLE_USER'){
-                //Permet d'enlever la partie 'role_' de la variable
-                // et de mettre la première lettre en majuscule et le reste en minuscule pour l'affichage
-                $roles[] = ucwords(strtolower(substr($role, 5, strlen($role))));
+            switch ($role){
+                case "ROLE_ETUDIANT" :
+                    $roles[] = "Etudiant";
+                    break;
+                case "ROLE_DELEGUE" :
+                    $roles[] = "Délégué";
+                    break;
+                case "ROLE_ENSEIGNANT" :
+                    $roles[] = "Enseignant";
+                    break;
+                case "ROLE_RESPONSABLE" :
+                    $roles[] = "Responsable";
+                    break;
+                case "ROLE_SUPER_RESPONSABLE" :
+                    $roles[] = "Super Responsable";
+                    break;
+                case "ROLE_CFA" :
+                    $roles[] = "CFA";
+                    break;
+                case "ROLE_SECRETAIRE" :
+                    $roles[] = "Secrétaire";
+                    break;
+                case "ROLE_ADMIN" :
+                    $roles[] = "Administrateur";
+                    break;
             }
         }
 
