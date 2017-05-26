@@ -76,7 +76,26 @@
 
                 // add a new tag form (see next code block)
                 addTagForm($collectionHolder, $newLinkLi);
+
+                var index = $('ul.cours').data('index');
+
+                $('#ets_lesCours_'+(index-1)+'_matiere').on('change', function(e) {
+                    var val = $(this).val();
+                    $.ajax({
+                        url: '{{ path('getEnseignantPourMatiere') }}',
+                        method: 'post',
+                        data: {id: val}
+                    }).done(function (ens) {
+                        $('#ets_lesCours_'+(index-1)+'_enseignant').empty();
+
+                        $.each(JSON.parse(ens['data']), function(i, item){
+                            $('#ets_lesCours_'+(index-1)+'_enseignant').append('<option value="'+item['id']+'">'+item['nom']+'</option>');
+                        });
+
+                    });
+                });
             });
+
         });
 
         function addTagForm($collectionHolder, $newLinkLi) {

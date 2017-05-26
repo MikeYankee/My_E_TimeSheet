@@ -49,3 +49,8 @@ profil:
 contact:
     path:   /contact
     defaults: { _controller: UtilisateurBundle:Contact:contacter }
+
+getEnseignantPourMatiere:
+    path:   /getEnseignantPourMatiere
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:getEnseignantPourMatiere }
+    methods: [post]
