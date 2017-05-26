@@ -29,6 +29,7 @@ class PersonnelType extends AbstractType {
                 'choices' => array(
                     'ROLE_ENSEIGNANT' => 'Enseignant',
                     'ROLE_RESPONSABLE' => 'Responsable',
+                    'ROLE_SUPER_RESPONSABLE' => 'Super Responsable',
                     'ROLE_CFA' => 'CFA',
                     'ROLE_SECRETAIRE' => 'Secrétaire',
                     'ROLE_ADMIN' => 'Administrateur',
