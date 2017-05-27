@@ -5,8 +5,12 @@ namespace UtilisateurBundle\Controller;
 use ConnexionBundle\Entity\User_cours;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ConnexionBundle\Entity\ETimeSheet;
+use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Tests\JsonResponseTest;
 use UtilisateurBundle\Form\ETimeSheetType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class FeuillePresenceController extends Controller
 {
     public function creerFeuillePresenceAction(Request $request)
@@ -127,6 +131,22 @@ class FeuillePresenceController extends Controller
     public function visionnerHistoriqueFactureAction()
     {
         return $this->render('UtilisateurBundle:Default:historique_facture.html.twig');
+    }
+
+    public function getEnseignantPourMatiereAction(Request $request){
+            $id = $request->get('id');
+
+            $matiere = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->find($id);
+
+            $lesEns = $matiere->getLesEnseignants();
+            $return = array();
+            foreach ($lesEns as $ens) {
+                $return[] = array('id' => $ens->getId(),'nom' => $ens->getPrenom()." ".$ens->getNom());
+            }
+
+            return new JsonResponse(array('data' => json_encode($return)));
+
+
     }
 
 }
