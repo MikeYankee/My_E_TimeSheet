@@ -6,6 +6,7 @@ use ConnexionBundle\Entity\ETimeSheet;
 use ConnexionBundle\Entity\Cours;
 use ConnexionBundle\Entity\Promotion;
 use ConnexionBundle\Repository\promotionRepository;
+use Symfony\Component\Validator\Constraints\Null;
 
 class ETSService
 {
@@ -23,15 +24,18 @@ class ETSService
             array('date' => 'desc'));
 
         $lesEtsValidees = array();
+        $lesEtsValidees2 = array();
         foreach ($lesEts as $lEts )
         {
             if(count($lEts->getLesCours()) >=1)
             {
                 $estValidee = true;
+                $estValidee2 = 0;
                 foreach ($lEts->getLesCours() as $leCoursEts)
                 {
-                    if(!$leCoursEts->getEstValide())
+                    if(!$leCoursEts->getEstValide()/* == 0 or $leCoursEts->getEstValide() == NULL*/)
                     {
+                        $estValidee2 ++;
                         $estValidee = false;
                     }
                 }
@@ -39,6 +43,10 @@ class ETSService
                 {
                     $lesEtsValidees[] = $lEts;
                 }
+               /* if($estValidee2 == 0)
+                {
+                    $lesEtsValidees2[] = $lEts;
+                }*/
             }
         }
 

@@ -24,9 +24,20 @@ class AbsenceService
             array('id' => 'desc'));
 
         $lesAbsences = array();
+        $etsValide = false;
+        $coursMax = 0;
         foreach ($lesUserCours as $lUserCours )
         {
-            if(!$lUserCours->getEtudiantPresent())
+            foreach($lUserCours->getLeCours()->getEts()->getLesCours() as $leCours)
+            {
+                if($leCours->getEstValide())
+                {
+                    $etsValide = true;
+                    $coursMax ++;
+                }
+            }
+
+            if($coursMax == count($lUserCours->getLeCours()->getEts()->getLesCours()) and !$lUserCours->getEtudiantPresent())
             {
                 $lesAbsences[] = $lUserCours;
             }

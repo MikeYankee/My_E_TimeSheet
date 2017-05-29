@@ -16,9 +16,9 @@ class CoursController extends Controller
         $this->denyAccessUnlessGranted(array('ROLE_ETUDIANT'));
         $user = $this->getUser();
 
-        // Si le cours est null et que c'est pas la bonne promotion et que le cours est valide, on retoune à la page visionner_feuille_presence
+        // Si le cours est null et que c'est pas la bonne promotion et que le cours est valide, on retoune à la page visionner_cours_jour
         if(is_null($leCours) or $leCours->getEts()->getPromotion() != $user->getPromotion() or $leCours->getEstValide()){
-            return $this->redirect($this->generateUrl("visionner_feuille_presence"));
+            return $this->redirect($this->generateUrl("visionner_cours_jour"));
         }
 
         foreach($leCours->getLesEtudiants() as $user_cours)
@@ -31,7 +31,7 @@ class CoursController extends Controller
             }
         }
 
-        return $this->redirect($this->generateUrl("visionner_feuille_presence"));
+        return $this->redirect($this->generateUrl("visionner_cours_jour"));
     }
 
     public function signalerAbsenceEnseignantAction(Cours $leCours = null)
@@ -41,7 +41,7 @@ class CoursController extends Controller
 
         // Si la cours est null et que c'est pas la bonne promotion et que le cours est valide, on retoune à la page visionner_feuille_presence
         if(is_null($leCours) or $leCours->getEts()->getPromotion() != $user->getPromotion() or $leCours->getEstValide()){
-            return $this->redirect($this->generateUrl("visionner_feuille_presence"));
+            return $this->redirect($this->generateUrl("visionner_cours_jour"));
         }
 
 
@@ -50,7 +50,7 @@ class CoursController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->redirect($this->generateUrl("visionner_feuille_presence"));
+        return $this->redirect($this->generateUrl("visionner_cours_jour"));
     }
 
     public function validerCoursAction()
@@ -71,11 +71,12 @@ class CoursController extends Controller
         $user = $this->getUser();
         $lesAbsences = $this->container->get('absenceEtu')->absences($user);
         $totalAbsence = 0;
-        foreach ($lesAbsences as $lAbsence)
+        if(count($lesAbsences)>=1)
         {
-            $totalAbsence += 1.5;
+            foreach ($lesAbsences as $lAbsence) {
+                $totalAbsence += 1.5;
+            }
         }
-
         return $this->render('UtilisateurBundle:Default:historique_absence.html.twig', array(
             'user' => $user,
             'lesAbsences' => $lesAbsences,

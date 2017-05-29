@@ -72,6 +72,8 @@ class GestionPromotionController extends Controller
         //$promos = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->find($promo);
 
         $lesResponsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE', 'ROLE_SUPER_RESPONSABLE'));
+        //Pour la vérification des doublons
+        $libellesPromotionsExistants = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
 
         $promotion = new Promotion();
 
@@ -82,12 +84,19 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) { //Si tous les champs sont valides
+                foreach ($libellesPromotionsExistants as $libelle)
+                {
+                    if(strtolower($promotion->getLibelle()) == strtolower($libelle->getLibelle()))
+                    {
+                        $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
+                        return $this->redirect($this->generateUrl("liste_promotions")); // Redirection après l'erreur
+                    }
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($promotion); //signale la création d'un nouvel objet $matiere
                 $em->flush(); //Insertion dans la BDD
-
+                $this->addFlash('notice', "Promotion " . $promotion->getLibelle() . " ajoutée !");
                 return $this->redirect($this->generateUrl("liste_promotions")); // Redirection après l'ajout
-
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
         }
@@ -104,10 +113,22 @@ class GestionPromotionController extends Controller
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
         $userManager = $this->container->get('fos_user.user_manager');
         $etudiant = $userManager->createUser();
+
+        //Pour la vérification des doublons
+        $etudiantsExistants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findAll();
+
         $form = $this->createForm(new EtudiantType(), $etudiant);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                foreach ($etudiantsExistants as $etudiantExistant)
+                {
+                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
+                    {
+                        $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
+                    }
+                }
                 $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
                 $role = $request->get("role");
                 if ($role == "on") {
@@ -124,6 +145,7 @@ class GestionPromotionController extends Controller
                 $userManager->updateUser($etudiant, true);
                 //$em->persist($etudiant);
                 $em->flush();
+                $this->addFlash('notice', "Etudiant " . $etudiant->getPrenom() ." ". $etudiant->getNom() . " ajouté !");
                 return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
@@ -137,14 +159,26 @@ class GestionPromotionController extends Controller
     public function modificationEtudiantAction(Request $request, User $etudiant = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
-        if(is_null($etudiant)){ //la matière n'existe pas
+        if(is_null($etudiant)){ //l'étudiant n'existe pas
             return $this->redirectToRoute("gerer_promotions");
         }
         $userManager = $this->container->get('fos_user.user_manager');
+
+        //Pour la vérification des doublons
+        $etudiantsExistants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findAll();
+
         $form = $this->createForm(new EtudiantType(), $etudiant);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                foreach ($etudiantsExistants as $etudiantExistant)
+                {
+                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
+                    {
+                        $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId()))); // Redirection après l'erreur
+                    }
+                }
                 $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
                 $role = $request->get("role");
                 if ($role == "on") {
@@ -166,7 +200,7 @@ class GestionPromotionController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $userManager->updateUser($etudiant, true);
                 $em->flush();
-
+                $this->addFlash('notice', "Etudiant " . $etudiant->getPrenom() ." ". $etudiant->getNom() . " modifié !");
                 return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId())));
             } else
                 $this->addFlash('error', "Tous les champs doivent être complétés.");
@@ -189,6 +223,9 @@ class GestionPromotionController extends Controller
 
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
+        //Pour la vérification des doublons
+        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy($promotion);
+
         $matiere = new Matiere();
         $matiere->setPromo($promotion);
 
@@ -197,10 +234,19 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                foreach ($matieresExistantes as $matiereExistante)
+                {
+                    if(strtolower($matiere->getLibelle()) == strtolower($matiereExistante->getLibelle()))
+                    {
+                        $this->addFlash('error', "La matière " . $matiere->getLibelle() . " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
+                    }
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($matiere);
                 $em->flush();
-
+                $this->addFlash('notice', "Matière " . $matiere->getLibelle() ." ajoutée !");
                 return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
 
             } else
@@ -222,14 +268,28 @@ class GestionPromotionController extends Controller
         }
 
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
+
+        //Pour la vérification des doublons
+        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy($matiere->getPromotion());
+
         $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                foreach ($matieresExistantes as $matiereExistante)
+                {
+                    if(strtolower($matiere->getLibelle()) == strtolower($matiereExistante->getLibelle()))
+                    {
+                        $this->addFlash('error', "La matière " . $matiere->getLibelle() . " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId()))); // Redirection après l'erreur
+                    }
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-
+                $this->addFlash('notice', "Matière " . $matiere->getLibelle() ." modifiée !");
                 return $this->redirectToRoute("gerer_promotion", array('id' => $matiere->getPromotion()->getId()));
 
             } else
@@ -252,14 +312,28 @@ class GestionPromotionController extends Controller
         }
 
         $les_responsables = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_RESPONSABLE'));
+
+        //Pour la vérification des doublons
+        $promotionsExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
+
         $form = $this->createForm(new PromotionType($les_responsables), $promotion);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                foreach ($promotionsExistantes as $promotionExistante)
+                {
+                    if(strtolower($promotion->getLibelle()) == strtolower($promotionExistante->getLibelle()))
+                    {
+                        $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
+                        return $this->redirectToRoute("liste_promotions"); // Redirection après l'erreur
+                    }
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-
+                $this->addFlash('notice', "Promotion " . $promotion->getLibelle() ." modifiée !");
                 return $this->redirectToRoute("liste_promotions");
 
             } else
@@ -283,6 +357,9 @@ class GestionPromotionController extends Controller
 
         $lesTypes = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
 
+        //Pour la vérification des doublons
+        $conventionsExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Convention')->findBy(array('promotion' => $promotion));
+
         $convention = new Convention();
         $convention->setPromotion($promotion);
 
@@ -291,10 +368,20 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                foreach ($conventionsExistantes as $conventionExistante)
+                {
+                    if(strtolower($convention->getType()) == strtolower($conventionExistante->getType()))
+                    {
+                        $this->addFlash('error', "La convention " . $convention->getType() . " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
+                    }
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($convention);
                 $em->flush();
-
+                $this->addFlash('notice', "Convention " . $convention->getType() ." ajoutée !");
                 return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId())));
 
             } else
@@ -318,12 +405,25 @@ class GestionPromotionController extends Controller
         $lesTypes = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
         $form = $this->createForm(new ConventionType($lesTypes), $convention);
 
+        //Pour la vérification des doublons
+        $conventionsExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Convention')->findBy(array('promotion' => $convention->getPromotion()));
+
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                foreach ($conventionsExistantes as $conventionExistante)
+                {
+                    if(strtolower($convention->getType()) == strtolower($conventionExistante->getType()))
+                    {
+                        $this->addFlash('error', "La convention " . $convention->getType() . " existe déjà !");
+                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $convention->getPromotion()->getId()))); // Redirection après l'erreur
+                    }
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-
+                $this->addFlash('notice', "Convention " . $convention->getType() ." modifiée !");
                 return $this->redirectToRoute("gerer_promotion", array('id' => $convention->getPromotion()->getId()));
 
             } else

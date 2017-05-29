@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FeuillePresenceController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function creerFeuillePresenceAction(Request $request)
     {
         $this->denyAccessUnlessGranted(array('ROLE_DELEGUE'));
@@ -79,6 +83,9 @@ class FeuillePresenceController extends Controller
         ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function historiqueFeuillePresenceAction()
     {
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
@@ -99,7 +106,10 @@ class FeuillePresenceController extends Controller
         ));
     }
 
-    public function visionnerFeuillePresenceAction()
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function visionnerCoursJourAction()
     {
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
@@ -108,7 +118,7 @@ class FeuillePresenceController extends Controller
 
         $lesCours = null;
         $lesCoursNonValide = array();
-        if(isset($lEts[0])) { //L'ETS iexste ?
+        if(isset($lEts[0])) { //L'ETS existe ?
             $lesCours = $lEts[0]->getLesCours();
 
             foreach ($lesCours as $leCours) {
@@ -121,6 +131,14 @@ class FeuillePresenceController extends Controller
             'user' => $user,
             'lesCours' => $lesCoursNonValide
         ));
+    }
+
+
+    public function visionnerETSJourAction()
+    {
+        $this->denyAccessUnlessGranted(array('ROLE_USER'));
+
+        return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig');
     }
 
     public function visionnerHistoriqueAbsencesPromosAction()

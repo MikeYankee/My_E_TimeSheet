@@ -37,6 +37,7 @@ class AfterLogoutRedirection implements LogoutSuccessHandlerInterface
     public function onLogoutSuccess(Request $request)
     {
 
+
         $response = new RedirectResponse($this->router->generate('connexion'));
 
         return $response;
