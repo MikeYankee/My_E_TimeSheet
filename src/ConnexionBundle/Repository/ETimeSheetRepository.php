@@ -12,6 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class ETimeSheetRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
     public function getEtsDuJour(){
         $date = new \DateTime();
         $date = $date->format("Y-m-d");

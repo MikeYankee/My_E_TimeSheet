@@ -1,159 +1,57 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Voir la ETS du jour
+{% endblock title %}
+
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Valider les cours du jour <button type="button" class="btn btn-warning glyphicon glyphicon-pencil"></button></h3><br>
-                <b>Nombre d'élèves :</b> 20/24<br><br>
+                <h3>Visionner les cours du jour {{ "now"|date("d/m/Y") }} <button type="button" class="btn btn-warning glyphicon glyphicon-pencil"></button></h3><br>
+                <b>Nombre d'élèves :</b> {{ etudiantsPresents|length }}/{{ nbMaxEtudiants }} {{ etudiantsAbsents|length }} absents<br><br>
                 <h4>Tableau des absents</h4><br>
-                <table class="table table-striped">
+                <table class="table" style="background-color: white">
                     <thead>
                     <tr>
                         <th>Elève</th>
-                        <th>8h30 - 10h00</th>
-                        <th>10h15 - 11h45</th>
+                        {% for cours in lesCours %}
+                            <th>{{ cours.getHoraire() }} - + 1h30</th>
+                        {% endfor %}
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
+                    {% for etudiant in etudiantsAbsents %}
+                        <tr>
+                            <td>{{ etudiant.getNom() |upper }} {{ etudiant.getPrenom() }}</td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
+                        </tr>
+                    {% endfor %}
+
                     </tbody>
                 </table>
                 <br><h4>Tableau des présents</h4><br>
-                <table class="table table-striped">
+                <table class="table" style="background-color: white">
                     <thead>
                     <tr>
                         <th>Elève</th>
-                        <th>8h30 - 10h00</th>
-                        <th>10h15 - 11h45</th>
+                        {% for cours in lesCours %}
+                            <th>{{ cours.getHoraire() }} - + 1h30</th>
+                        {% endfor %}
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GALVAN Mélanie</td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GALVAN Mélanie</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GALVAN Mélanie</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GALVAN Mélanie</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>VALBON Kévin</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GALVAN Mélanie</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>BOURGUES Yann</td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>GARAPATI Vivek</td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                    </tr>
+                    {% for etudiant in etudiantsPresents %}
+                        <tr>
+                            <td>{{ etudiant.getNom() |upper }} {{ etudiant.getPrenom() }}</td>
+                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
+                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
+                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
+                        </tr>
+                    {% endfor %}
                     <br/>
                     </tbody>
                 </table>

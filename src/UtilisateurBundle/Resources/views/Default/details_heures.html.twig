@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Voir le détail des heures de cours
+{% endblock title %}
+
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}
@@ -13,7 +17,6 @@
                     <li><a data-toggle="tab" href="#M2">M2</a></li>
                 </ul>
                 <div class="tab-content">
-
                     <div id="L3" class="tab-pane fade in active" >
                         <table class="table table-bordered" id="tableToggle" style="background-color: white">
                             <thead>

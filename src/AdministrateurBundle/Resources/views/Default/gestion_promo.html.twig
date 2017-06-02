@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Gérer la promotion {{ promotion.libelle }}
+{% endblock title %}
+
 {% block body %}
 
     <div id="main">
@@ -52,9 +56,11 @@
                         <table class="table table-bordered" style="background-color: white">
                             <thead>
                             <tr>
-                                <td width="40%"><b>Libellé</b></td>
+                                <td><b>Libellé</b></td>
                                 <td><b>Heures de TD</b></td>
                                 <td><b>Heures de Cours</b></td>
+                                <td><b>Heures de Soutenance</b></td>
+                                <td><b>Heures de Examen</b></td>
                                 <td><b>Enseignant(s)</b></td>
                                 <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_matiere', {'id':promotion.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
                             </tr>
@@ -66,6 +72,8 @@
                                         <td>{{ matiere.libelle }}</td>
                                         <td>{{ matiere.nbHeuresMaquetteTD }}</td>
                                         <td>{{ matiere.nbHeuresMaquetteCours }}</td>
+                                        <td>{{ matiere.nbHeuresMaquetteSoutenance }}</td>
+                                        <td>{{ matiere.nbHeuresMaquetteExam }}</td>
                                         <td>{{ matiere.lesEnseignants|join(', ') }}</td>
                                         <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_matiere', {'id':matiere.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
                                         <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>

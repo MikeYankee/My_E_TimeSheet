@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Créer un membre du personnel
+{% endblock title %}
+
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}
@@ -14,19 +18,19 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.nom) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.nom, { 'attr': {'class': 'form-control','tabindex': '1'} }) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.email) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control','tabindex': '3'} }) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.tel) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.tel, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.tel, { 'attr': {'class': 'form-control','tabindex': '4'} }) }}
                             </div>
                         </div>
                     </div>
@@ -34,7 +38,7 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.prenom) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.prenom, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.prenom, { 'attr': {'class': 'form-control','tabindex': '2'} }) }}
                             </div>
                         </div>
                         <label class="control-label">{{ form_label(form.roles) }}</label>
@@ -51,8 +55,8 @@
                 <br><br><br><br>
 
                 <div class="pull-right">
-                    <a href="{{ path('gerer_personnel') }}" class="btn btn-default">Annuler</a>
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <a href="{{ path('gerer_personnel') }}" class="btn btn-default" tabindex="7">Annuler</a>
+                    <button type="submit" class="btn btn-success" tabindex="6">Enregistrer</button>
                 </div>
             </div>
         </div>
