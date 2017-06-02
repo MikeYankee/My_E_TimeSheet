@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Créer une promotion
+{% endblock title %}
+
 {% block body %}
 
     <div id="main">
@@ -17,7 +21,7 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.libelle) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.libelle, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.libelle, { 'attr': {'class': 'form-control','tabindex': '1'} }) }}
                             </div>
                         </div>
                     </div>
@@ -25,7 +29,7 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.lesResponsables) }}</label>
                             <div class="has-feedback">
-                                {{ form_widget(form.lesResponsables, { 'attr': {'class': 'form-control'}, 'id': 'responsable'}) }}
+                                {{ form_widget(form.lesResponsables, { 'attr': {'class': 'form-control','tabindex': '2'}, 'id': 'responsable'}) }}
                             </div>
                         </div>
                     </div>
@@ -34,8 +38,8 @@
                 <br><br><br><br>
 
                 <div class="pull-right">
-                    <a href="{{ path('liste_promotions') }}" class="btn btn-default">Annuler</a>
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <a href="{{ path('liste_promotions') }}" class="btn btn-default" tabindex="4">Annuler</a>
+                    <button type="submit" class="btn btn-success" tabindex="3">Enregistrer</button>
                 </div>
             </div>
         </div>

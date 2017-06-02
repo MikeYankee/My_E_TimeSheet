@@ -10,10 +10,10 @@ class EtudiantType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('nom', 'text', array(
-                "label" => "Nom :"
+                "label" => "Nom :",
             ))
             ->add('prenom', 'text', array(
-                "label" => "Prénom :"
+                "label" => "Prénom :",
             ))
             ->add('email', 'email', array(
                 "label" => "Email :",

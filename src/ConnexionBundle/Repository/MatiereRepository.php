@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class MatiereRepository extends EntityRepository
 {
+    public function getNbHeures($mois,$promotion,$matiere){
+        return $this->createQueryBuilder('m')
+            ->select('m','c')
+            ->join('c.matiere', 'm')
+            ->join('c.ets', 'e')
+            ->where('e.date LIKE :date')
+            ->andWhere('m.libelle ='. $matiere->libelle)
+            ->andWhere('m.promotion ='.$promotion->id)
+            ->setParameter('date', '%'.$mois.'%')
+            ->groupBy('c.type')
+            ->getQuery()
+            ->getResult();
+    }
 }

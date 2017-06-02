@@ -12,6 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class UtilisateurRepository extends EntityRepository
 {
+    /**
+     * @param $roles
+     * @return array
+     */
     public function findByRole($roles) {
         $query = $this->_em->createQueryBuilder();
         $query->select('u')

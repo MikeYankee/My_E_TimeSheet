@@ -10,13 +10,22 @@ use ConnexionBundle\Repository\promotionRepository;
 
 class AbsenceService
 {
+
     private $em;
 
+    /**
+     * AbsenceService constructor.
+     * @param \Doctrine\ORM\EntityManager $em
+     */
     public function __construct(\Doctrine\ORM\EntityManager $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param User $user
+     * @return array
+     */
     public function absences(User $user)
     {
 

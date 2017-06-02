@@ -13,6 +13,11 @@ use UtilisateurBundle\Form\UserType;
 
 class ProfilController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function profilAction(Request $request, User $user)
     {
         //$this->denyAccessUnlessGranted(array('ROLE_ADMIN'));

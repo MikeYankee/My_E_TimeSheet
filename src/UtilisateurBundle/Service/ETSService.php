@@ -12,11 +12,19 @@ class ETSService
 {
     private $em;
 
+    /**
+     * ETSService constructor.
+     * @param \Doctrine\ORM\EntityManager $em
+     */
     public function __construct(\Doctrine\ORM\EntityManager $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param Promotion $promotion
+     * @return array
+     */
     public function validees(Promotion $promotion)
     {
 

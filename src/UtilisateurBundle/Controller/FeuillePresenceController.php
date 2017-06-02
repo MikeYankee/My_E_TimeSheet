@@ -79,7 +79,8 @@ class FeuillePresenceController extends Controller
         }
 
         return $this->render('UtilisateurBundle:Default:creation_ets.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user
         ));
     }
 
@@ -133,24 +134,72 @@ class FeuillePresenceController extends Controller
         ));
     }
 
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function visionnerETSJourAction()
     {
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
-        return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig');
+        $user = $this->getUser();
+        $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+
+        $lesCours = null;
+        $lesCoursNonValide = array();
+        $etudiantsPresents = array();
+        $etudiantsAbsents = array();
+        $nbMaxEtudiants = count($user->getPromotion()->getLesEtudiants());
+        if(isset($lEts[0])) { //L'ETS existe ?
+            $lesCours = $lEts[0]->getLesCours();
+            foreach ($lesCours as $leCours) {
+                if (!$leCours->getEstValide()) {
+                    $lesCoursNonValide[] = $leCours;
+
+                }
+                foreach ($leCours->getLesEtudiants() as $lEtudiant)
+                {
+                    if ($lEtudiant->getEtudiantPresent() == 1)
+                    {
+                        $etudiantsPresents[] = $lEtudiant->getLEtudiant();
+                    }
+                    else
+                    {
+                        $etudiantsAbsents[] = $lEtudiant->getLEtudiant();
+                    }
+
+                }
+            }
+        }
+
+        return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig', array(
+            'user' => $user,
+            'lesCours' => $lesCours,
+            'etudiantsPresents' => $etudiantsPresents,
+            'etudiantsAbsents' => $etudiantsAbsents,
+            'nbMaxEtudiants' => $nbMaxEtudiants
+        ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function visionnerHistoriqueAbsencesPromosAction()
     {
         return $this->render('UtilisateurBundle:Default:recap_absences.html.twig');
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function visionnerHistoriqueFactureAction()
     {
         return $this->render('UtilisateurBundle:Default:historique_facture.html.twig');
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getEnseignantPourMatiereAction(Request $request){
             $id = $request->get('id');
 

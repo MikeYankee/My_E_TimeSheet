@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Signaler présence
+{% endblock title %}
+
 {% block body %}
     {% include '::menu.html.twig' %}
         <div class="content_text">

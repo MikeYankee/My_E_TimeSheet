@@ -18,19 +18,19 @@ class MatiereType extends AbstractType {
             ->add('libelle', 'text', array(
                 "label" => "Libellé :"
             ))
-            ->add('nbHeuresMaquetteCours', 'number', array(
+            ->add('nbHeuresMaquetteCours', 'integer', array(
                 "label" => "Nombre d'heures de cours :",
                 'required' => true,
             ))
-            ->add('nbHeuresMaquetteTD', 'number', array(
+            ->add('nbHeuresMaquetteTD', 'integer', array(
                 "label" => "Nombre d'heures de TD :",
                 'required' => true,
             ))
-            ->add('nbHeuresMaquetteSoutenance', 'number', array(
+            ->add('nbHeuresMaquetteSoutenance', 'integer', array(
                 "label" => "Nombre d'heures de soutenance :",
                 'required' => true,
             ))
-            ->add('nbHeuresMaquetteExam', 'number', array(
+            ->add('nbHeuresMaquetteExam', 'integer', array(
                 "label" => "Nombre d'heures d'examen :",
                 'required' => true,
             ))

@@ -1,7 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% extends '::base.html.twig' %}
 
-
+{% block head %}
+        {% block title %}
+            MY E-TimeSheet
+        {% endblock title %}
+{% endblock head %}
 {% block body %}
     {% if error %}
         <div>{{ error|trans}}</div>

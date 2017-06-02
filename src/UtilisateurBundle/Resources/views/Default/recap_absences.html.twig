@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+    {{ user.username }} | Absences par promotion
+{% endblock title %}
+
 {% block body %}
     <div id="main">
         {% include '::menu.html.twig' %}

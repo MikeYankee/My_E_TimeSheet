@@ -16,21 +16,38 @@ use ConnexionBundle\Entity\User;
 use ConnexionBundle\Entity\Convention;
 use ConnexionBundle\Entity\Type;
 
+/**
+ * Class GestionPromotionController
+ * @package AdministrateurBundle\Controller
+ */
 class GestionPromotionController extends Controller
 {
+
+    /**
+     * @return Response
+     */
     public function listePromosAction()
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
 
+        $user = $this->getUser();
+
         $lesPromotions = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
         return $this->render('AdministrateurBundle:Default:liste_promos.html.twig', array(
             'lesPromotions' => $lesPromotions,
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Promotion|null $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function gestionPromoAction(Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
         if(is_null($promotion)){
@@ -51,19 +68,22 @@ class GestionPromotionController extends Controller
             'lesMatieres' => $les_matieres,
             'promotion' => $promotion,
             //'lesResponsables' => $les_responsables,
-            'lesConventions' => $les_conventions
+            'lesConventions' => $les_conventions,
+            'user' => $user
         ));
     }
 
     /**
      * Fonction qui sert à ajouter une promotion
      * @param Request $request
-     * @return ...
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function ajoutPromoAction(Request $request)
     {
         //Autorisation d'accès pour les admins uniquement
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         //$user contient l'utilisateur qui est connecté
         $user = $this->getUser();
@@ -104,13 +124,22 @@ class GestionPromotionController extends Controller
         //Affichage de la vue ajout_promotion.html.twig avec le formulaire en paramètre
         return $this->render('AdministrateurBundle:Default:ajout_promotion.html.twig', array(
             'form' => $form->createView(),
+            'user' => $user
         ));
 
     }
 
+    /**
+     * @param Request $request
+     * @param Promotion|null $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function ajoutEtudiantAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
+
         $userManager = $this->container->get('fos_user.user_manager');
         $etudiant = $userManager->createUser();
 
@@ -152,13 +181,22 @@ class GestionPromotionController extends Controller
         }
 
         return $this->render('AdministrateurBundle:Default:ajout_etudiant.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param User|null $etudiant
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function modificationEtudiantAction(Request $request, User $etudiant = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
+
         if(is_null($etudiant)){ //l'étudiant n'existe pas
             return $this->redirectToRoute("gerer_promotions");
         }
@@ -207,14 +245,21 @@ class GestionPromotionController extends Controller
         }
         return $this->render('AdministrateurBundle:Default:modification_etudiant.html.twig', array(
             'form' => $form->createView(),
-            'etudiant' => $etudiant
+            'etudiant' => $etudiant,
+            'user' => $user
         ));
     }
 
-
+    /**
+     * @param Request $request
+     * @param Promotion|null $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function ajoutMatiereAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
         if(is_null($promotion)){
@@ -224,7 +269,7 @@ class GestionPromotionController extends Controller
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
         //Pour la vérification des doublons
-        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy($promotion);
+        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy(array('promotion' =>$promotion));
 
         $matiere = new Matiere();
         $matiere->setPromo($promotion);
@@ -255,13 +300,21 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:ajout_matiere.html.twig', array(
             'form' => $form->createView(),
-            'matiere' => $matiere
+            'matiere' => $matiere,
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param Matiere|null $matiere
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function modificationMatiereAction(Request $request, Matiere $matiere = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         if(is_null($matiere)){ //la matière n'existe pas
             return $this->redirectToRoute("liste_promotions");
@@ -298,13 +351,21 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:modification_matiere.html.twig', array(
             'form' => $form->createView(),
-            'matiere' => $matiere
+            'matiere' => $matiere,
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param Promotion|null $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function modificationPromotionAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         if(is_null($promotion)){
             //return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId())));
@@ -342,13 +403,21 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:modification_promotion.html.twig', array(
             'form' => $form->createView(),
-            'promotion' => $promotion
+            'promotion' => $promotion,
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param Promotion|null $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function ajoutConventionAction(Request $request, Promotion $promotion = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         // Si la promo est null, c'est qu'elle n'existe pas dans la BDD, on retoune à la page de gestion promo
         if (is_null($promotion)) {
@@ -390,13 +459,21 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:ajout_convention.html.twig', array(
             'form' => $form->createView(),
-            'convention' => $convention
+            'convention' => $convention,
+            'user' => $user
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param Convention|null $convention
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function modificationConventionAction(Request $request, Convention $convention = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ADMIN'));
+
+        $user = $this->getUser();
 
         if(is_null($convention)){ //la convention n'existe pas
             return $this->redirectToRoute("liste_promotions");
@@ -432,7 +509,8 @@ class GestionPromotionController extends Controller
 
         return $this->render('AdministrateurBundle:Default:modification_convention.html.twig', array(
             'form' => $form->createView(),
-            'convention' => $convention
+            'convention' => $convention,
+            'user' => $user
         ));
     }
 }
