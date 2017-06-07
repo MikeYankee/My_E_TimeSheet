@@ -44,12 +44,14 @@ class Promotion
     /**
      * One Promotion has Many Matieres.
      * @ORM\OneToMany(targetEntity="Matiere", mappedBy="promotion")
+     * @ORM\OrderBy({"libelle" = "ASC"})
      */
     private $lesMatieres;
 
     /**
      * One Promotion has Many Users.
      * @ORM\OneToMany(targetEntity="User", mappedBy="promotion")
+     * @ORM\OrderBy({"nom" = "ASC","prenom" = "ASC"})
      */
     private $lesEtudiants;
 

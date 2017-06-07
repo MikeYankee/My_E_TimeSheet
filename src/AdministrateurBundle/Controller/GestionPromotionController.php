@@ -32,7 +32,8 @@ class GestionPromotionController extends Controller
 
         $user = $this->getUser();
 
-        $lesPromotions = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
+        $lesPromotions = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findBy(array(), array('libelle' => 'ASC'));
+
         return $this->render('AdministrateurBundle:Default:liste_promos.html.twig', array(
             'lesPromotions' => $lesPromotions,
             'user' => $user
@@ -150,15 +151,16 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                foreach ($etudiantsExistants as $etudiantExistant)
+                /*foreach ($etudiantsExistants as $etudiantExistant)
                 {
-                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
+                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()))
                     {
                         $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
                         return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
                     }
-                }
-                $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
+                }*/
+                $username = substr(strtolower($etudiant->getPrenom()), 0, 1) . "" . substr(strtolower($etudiant->getNom()), 0, strlen(strtolower($etudiant->getNom())));
+
                 $role = $request->get("role");
                 if ($role == "on") {
                     $etudiant->addRole("ROLE_ETUDIANT");
@@ -209,14 +211,14 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                foreach ($etudiantsExistants as $etudiantExistant)
+                /*foreach ($etudiantsExistants as $etudiantExistant)
                 {
-                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
+                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()))
                     {
                         $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
                         return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId()))); // Redirection après l'erreur
                     }
-                }
+                }*/
                 $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
                 $role = $request->get("role");
                 if ($role == "on") {
@@ -323,7 +325,7 @@ class GestionPromotionController extends Controller
         $les_enseignants = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT'));
 
         //Pour la vérification des doublons
-        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy($matiere->getPromotion());
+        $matieresExistantes = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy(array('promotion' => $matiere->getPromotion()));
 
         $form = $this->createForm(new MatiereType($les_enseignants), $matiere);
 
@@ -382,15 +384,14 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-
-                foreach ($promotionsExistantes as $promotionExistante)
+                /*foreach ($promotionsExistantes as $promotionExistante)
                 {
-                    if(strtolower($promotion->getLibelle()) == strtolower($promotionExistante->getLibelle()))
+                    if($promotion->getLibelle() == $promotionExistante->getLibelle())
                     {
                         $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
                         return $this->redirectToRoute("liste_promotions"); // Redirection après l'erreur
                     }
-                }
+                }*/
 
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();

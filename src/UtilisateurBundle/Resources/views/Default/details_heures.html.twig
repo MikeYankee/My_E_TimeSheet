@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
-    {{ user.username }} | Voir le détail des heures de cours
+    {{ user.initiale }} | Voir le détail des heures de cours
 {% endblock title %}
 
 {% block body %}
@@ -12,479 +12,85 @@
                 <h3>Horaire par matière</h3><br>
                 <button type="button" class="btn btn-primary pull-right">Générer la facture</button>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#L3">L3</a></li>
-                    <li><a data-toggle="tab" href="#M1">M1</a></li>
-                    <li><a data-toggle="tab" href="#M2">M2</a></li>
+                    {% for onglet in recapHeuresMatiere %}
+                        <li><a data-toggle="tab" href="#{{ onglet.promotion.libelle }}">{{ onglet.promotion.libelle }}</a></li>
+                    {% endfor %}
                 </ul>
                 <div class="tab-content">
-                    <div id="L3" class="tab-pane fade in active" >
-                        <table class="table table-bordered" id="tableToggle" style="background-color: white">
-                            <thead>
-                            <tr>
-                                <th class="info" ></th>
-                                <th class="info" style="text-align: center">Sept</th>
-                                <th class="info" style="text-align: center">Octo</th>
-                                <th class="info" style="text-align: center">Nove</th>
-                                <th class="info" style="text-align: center">Déce</th>
-                                <th class="info" style="text-align: center">Janv</th>
-                                <th class="info" style="text-align: center">Févr</th>
-                                <th class="info" style="text-align: center">Mars</th>
-                                <th class="info" style="text-align: center">Avri</th>
-                                <th class="info" style="text-align: center">Mai</th>
-                                <th class="info" style="text-align: center">Juin</th>
-                                <th class="info" style="text-align: center">Juil</th>
-                                <th class="info" style="text-align: center">Total effectuées</th>
-                                <th class="info" style="text-align: center">Heures manquées</th>
-                                <th class="info" style="text-align: center">Total prévu</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> AnalDon</div></th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="warning" style="text-align: center"><b>101</b></td>
-                                <td class="warning" style="text-align: center"><b>4</b></td>
-                                <td class="info" style="text-align: center"><b>105</b></td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">Cours</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="success" style="text-align: center">61</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">61</td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">TD</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">0</td>
-                                <td class="warning" style="text-align: center">40</td>
-                                <td class="warning" style="text-align: center">4</td>
-                                <td class="info" style="text-align: center">44</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> Projet</div></th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="warning" style="text-align: center"><b>101</b></td>
-                                <td class="warning" style="text-align: center"><b>4</b></td>
-                                <td class="info" style="text-align: center"><b>105</b></td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">Cours</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="success" style="text-align: center">61</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">61</td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">TD</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">0</td>
-                                <td class="warning" style="text-align: center">40</td>
-                                <td class="warning" style="text-align: center">4</td>
-                                <td class="info" style="text-align: center">44</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> Statistiques</div></th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="warning" style="text-align: center"><b>101</b></td>
-                                <td class="warning" style="text-align: center"><b>4</b></td>
-                                <td class="info" style="text-align: center"><b>105</b></td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">Cours</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="success" style="text-align: center">61</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">61</td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">TD</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">0</td>
-                                <td class="warning" style="text-align: center">40</td>
-                                <td class="warning" style="text-align: center">4</td>
-                                <td class="info" style="text-align: center">44</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> COOL</div></th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="warning" style="text-align: center"><b>101</b></td>
-                                <td class="warning" style="text-align: center"><b>4</b></td>
-                                <td class="info" style="text-align: center"><b>105</b></td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">Cours</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">6</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="success" style="text-align: center">61</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">61</td>
-                            </tr>
-                            <tr class="toggleable">
-                                <td class="info" scope="row">TD</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">0</td>
-                                <td class="warning" style="text-align: center">40</td>
-                                <td class="warning" style="text-align: center">4</td>
-                                <td class="info" style="text-align: center">44</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">Total effectuées</th>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>40</b></td>
-                                <td class="active" style="text-align: center"><b>36</b></td>
-                                <td class="active" style="text-align: center"><b>36</b></td>
-                                <td class="active" style="text-align: center"><b>36</b></td>
-                                <td class="active" style="text-align: center"><b>36</b></td>
-                                <td class="active" style="text-align: center"><b>36</b></td>
-                                <td class="danger" style="text-align: center"><b>404</b></td>
-                                <td class="danger" style="text-align: center"><b>16</b></td>
-                                <td class="info" style="text-align: center"><b>420</b></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="M1" class="tab-pane fade">
-                        <table class="table table-bordered" style="background-color: white">
-                            <thead>
-                            <tr>
-                                <th class="info" ></th>
-                                <th class="info" style="text-align: center">Sept</th>
-                                <th class="info" style="text-align: center">Octo</th>
-                                <th class="info" style="text-align: center">Nove</th>
-                                <th class="info" style="text-align: center">Déce</th>
-                                <th class="info" style="text-align: center">Janv</th>
-                                <th class="info" style="text-align: center">Févr</th>
-                                <th class="info" style="text-align: center">Mars</th>
-                                <th class="info" style="text-align: center">Avri</th>
-                                <th class="info" style="text-align: center">Mai</th>
-                                <th class="info" style="text-align: center">Juin</th>
-                                <th class="info" style="text-align: center">Juil</th>
-                                <th class="info" style="text-align: center">Total effectuées</th>
-                                <th class="info" style="text-align: center">Heures manquées</th>
-                                <th class="info" style="text-align: center">Total prévu</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th class="info" scope="row">Projet</th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="success" style="text-align: center">105</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">105</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">Statistiques</th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td class="success" style="text-align: center">110</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">110</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">DroitNum</th>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="success" style="text-align: center">99</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">99</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">COOL</th>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">10</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td style="text-align: center">9</td>
-                                <td class="success" style="text-align: center">105</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">105</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">Total effectuées</th>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">39</td>
-                                <td style="text-align: center">37</td>
-                                <td style="text-align: center">37</td>
-                                <td style="text-align: center">37</td>
-                                <td style="text-align: center">37</td>
-                                <td style="text-align: center">37</td>
-                                <td class="success" style="text-align: center">419</td>
-                                <td class="success" style="text-align: center">0</td>
-                                <td class="info" style="text-align: center">419</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="M2" class="tab-pane fade" style="background-color: white">
-                        <table class="table table-bordered" style="background-color: white">
-                            <thead>
-                            <tr>
-                                <th class="info" ></th>
-                                <th class="info" style="text-align: center">Sept</th>
-                                <th class="info" style="text-align: center">Octo</th>
-                                <th class="info" style="text-align: center">Nove</th>
-                                <th class="info" style="text-align: center">Déce</th>
-                                <th class="info" style="text-align: center">Janv</th>
-                                <th class="info" style="text-align: center">Févr</th>
-                                <th class="info" style="text-align: center">Mars</th>
-                                <th class="info" style="text-align: center">Avri</th>
-                                <th class="info" style="text-align: center">Mai</th>
-                                <th class="info" style="text-align: center">Juin</th>
-                                <th class="info" style="text-align: center">Juil</th>
-                                <th class="info" style="text-align: center">Total effectuées</th>
-                                <th class="info" style="text-align: center">Heures manquées</th>
-                                <th class="info" style="text-align: center">Total prévu</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th class="info" scope="row">Projet</th>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="info" style="text-align: center">110</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">Statistiques</th>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">4</td>
-                                <td class="danger" style="text-align: center">44</td>
-                                <td class="danger" style="text-align: center">44</td>
-                                <td class="info" style="text-align: center">88</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">DroitNum</th>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="info" style="text-align: center">110</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">COOL</th>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td style="text-align: center">5</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="danger" style="text-align: center">55</td>
-                                <td class="info" style="text-align: center">110</td>
-                            </tr>
-                            <tr>
-                                <th class="info" scope="row">Total effectuées</th>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td style="text-align: center">19</td>
-                                <td class="danger" style="text-align: center">209</td>
-                                <td class="danger" style="text-align: center">209</td>
-                                <td class="info" style="text-align: center">418</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    {% for onglet in recapHeuresMatiere %}
+                        <div id="{{ onglet.promotion.libelle }}" class="tab-pane fade in active" >
+                            <table class="table table-bordered" id="tableToggle" style="background-color: white">
+                                <thead>
+                                <tr>
+                                    <th class="info" ></th>
+                                    {% for mois in moisScolaire %}
+                                        <th class="info" style="text-align: center">{{ mois }}</th>
+                                    {% endfor %}
+                                    <th class="info" style="text-align: center">Total effectuées</th>
+                                    <th class="info" style="text-align: center">Heures manquées</th>
+                                    <th class="info" style="text-align: center">Total prévu</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for matiere in onglet.promotion %}
+                                    <tr>
+                                        <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ matiere.matiere.libelle }}</div></th>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">10</td>
+                                        <td style="text-align: center">9</td>
+                                        <td style="text-align: center">9</td>
+                                        <td style="text-align: center">9</td>
+                                        <td style="text-align: center">9</td>
+                                        <td style="text-align: center">9</td>
+                                        <td class="warning" style="text-align: center"><b>101</b></td>
+                                        <td class="warning" style="text-align: center"><b>4</b></td>
+                                        <td class="info" style="text-align: center"><b>{{ matiere.nbHeuresMaquettesCours }}</b></td>
+                                    </tr>
+                                    {% for type in matiere.type %}
+                                        <tr class="toggleable">
+                                            <td class="info" scope="row">{{ type.type.libelle }}</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">6</td>
+                                            <td style="text-align: center">5</td>
+                                            <td style="text-align: center">5</td>
+                                            <td style="text-align: center">5</td>
+                                            <td style="text-align: center">5</td>
+                                            <td style="text-align: center">5</td>
+                                            <td class="success" style="text-align: center">61</td>
+                                            <td class="success" style="text-align: center">0</td>
+                                            <td class="info" style="text-align: center">61</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                                <tr>
+                                    <th class="info" scope="row">Total effectuées</th>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>40</b></td>
+                                    <td class="active" style="text-align: center"><b>36</b></td>
+                                    <td class="active" style="text-align: center"><b>36</b></td>
+                                    <td class="active" style="text-align: center"><b>36</b></td>
+                                    <td class="active" style="text-align: center"><b>36</b></td>
+                                    <td class="active" style="text-align: center"><b>36</b></td>
+                                    <td class="danger" style="text-align: center"><b>404</b></td>
+                                    <td class="danger" style="text-align: center"><b>16</b></td>
+                                    <td class="info" style="text-align: center"><b>420</b></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -7,5 +7,9 @@ services:
         arguments:  [@doctrine.orm.entity_manager]
 
     absenceEtu:
-            class:      UtilisateurBundle\Service\AbsenceService
-            arguments:  [@doctrine.orm.entity_manager]
+        class:      UtilisateurBundle\Service\AbsenceService
+        arguments:  [@doctrine.orm.entity_manager]
+
+    recapHeuresMatiere:
+        class:      UtilisateurBundle\Service\CoursService
+        arguments:  [@doctrine.orm.entity_manager]

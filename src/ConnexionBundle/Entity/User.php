@@ -275,6 +275,17 @@ class User extends BaseUser
         return $return;
     }
 
+    public function initiale()
+    {
+        if(!is_null($this->prenom) or !is_null($this->nom)){
+            $return = substr(strtoupper($this->getPrenom()), 0, 1) . "" . substr(strtoupper($this->getNom()), 0, 1);
+        }
+        else{
+            $return = $this->email;
+        }
+        return $return;
+    }
+
     /**
      * Add lesCours
      *

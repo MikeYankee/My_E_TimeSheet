@@ -13,8 +13,8 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Libellé</th>
-                        <th>Nombre d'étudiants</th>
+                        <th style="text-align: center">Libellé</th>
+                        <th style="text-align: center">Nombre d'étudiants</th>
                         <th>Reponsable(s)</th>
                         <td colspan="2" style="background-color: #5cb85c; text-align: center"><a href="{{ path('ajouter_promo') }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-plus"></span></a></td>
                     </tr>
@@ -22,8 +22,8 @@
                     <tbody>
                     {% for promotion in lesPromotions %}
                         <tr>
-                            <td><a href="{{ path('gerer_promotion', {'id':promotion.id}) }}">{{ promotion.libelle }}</a></td>
-                            <td>{{ promotion.lesEtudiants|length }}</td>
+                            <td style="background-color: #4f53d9; text-align: center"><a style="color: white; width: 100%;" href="{{ path('gerer_promotion', {'id':promotion.id}) }}">{{ promotion.libelle }}</a></td>
+                            <td style="text-align: center">{{ promotion.lesEtudiants|length }}</td>
                             <td>{{ promotion.lesResponsables|join(', ') }}</td>
                             <td style="background-color: #f0ad4e; text-align: center"><a href="{{ path('modifier_promo', {'id':promotion.id}) }}"><span style="color: white; width: 100%;" class="glyphicon glyphicon-pencil"></span></a></td>
                             <td style="background-color: #d9534f; text-align: center"><a href="#"><span style="color: white; width: 100%;" class="glyphicon glyphicon-remove"></span></a></td>

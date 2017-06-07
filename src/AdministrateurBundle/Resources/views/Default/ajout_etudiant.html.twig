@@ -23,7 +23,8 @@
                         <div class="form-group">
                             <label class="control-label">{{ form_label(form.email) }}</label>
                             <div class="has-feedback" >
-                                {{ form_widget(form.email, { 'attr': {'class': 'form-control','tabindex': '3'} }) }}
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control','id':'email','tabindex': '3'} }) }}
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -60,4 +61,7 @@
     {{ parent() }}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <script>
+    </script>
 {% endblock %}

@@ -113,28 +113,25 @@ class CoursController extends Controller
      */
     public function visionnerDetailsHeuresAction()
     {
-
         $this->denyAccessUnlessGranted(array('ROLE_RESPONSABLE'));
 
         $user = $this->getUser();
 
-        $recap_heures_matiere = array();
-
         $mois_scolaire = array(
-            1  => 'Septembre',
-            2  => 'Octobre',
-            3  => 'Novembre',
-            4  => 'Décembre',
-            5  => 'Janvier',
-            6  => 'Février',
+            1  => 'Septe',
+            2  => 'Octob',
+            3  => 'Novem',
+            4  => 'Décem',
+            5  => 'Janvi',
+            6  => 'Févri',
             7  => 'Mars',
             8  => 'Avril',
             9  => 'Mai',
             10 => 'Juin',
-            11 => 'Juillet'
+            11 => 'Juill'
         );
 
-        if($user->hasRole('ROLE_SUPER_ADMIN'))
+        if($user->hasRole('ROLE_SUPER_RESPONSABLE'))
         {
             $promotion_cible = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
         }
@@ -143,37 +140,12 @@ class CoursController extends Controller
             $promotion_cible = $user->getPromotionResp();
         }
 
-        foreach ($promotion_cible as $promotion)
-        {
-            $recap_heures_matiere[$promotion->getId()]["promotion"]= $promotion;
-            $lesMatieres = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->findBy($promotion);
-
-            foreach ($lesMatieres as $laMatiere)
-            {
-                $nbHeuresMaquettesCours = $laMatiere->getNbHeuresMaquetteCours();
-                $nbHeuresMaquettesTD = $laMatiere->getNbHeuresMaquetteTD();
-                $nbHeuresMaquettesExam = $laMatiere->getNbHeuresMaquetteExam();
-                $nbHeuresMaquettesSoutenance = $laMatiere->getNbHeuresMaquetteSoutenance();
-
-                $mois = new DateTime('2017/09/01');
-                $mois = $mois->format("Y-m");
-
-                for ($i=0;$i<11;$i++)
-                {
-                    $nbHeures = $this->getDoctrine()->getRepository('ConnexionBundle:Matiere')->getNbHeures($mois,$promotion,$laMatiere);
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["matiere"] = $laMatiere;
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["nbHeures"]= $nbHeures;
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["nbHeuresMaquettesCours"]= $nbHeuresMaquettesCours;
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["nbHeuresMaquettesTD"]= $nbHeuresMaquettesTD;
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["nbHeuresMaquettesExam"]= $nbHeuresMaquettesExam;
-                    $recap_heures_matiere[$promotion->getId()][$laMatiere->getId()]["nbHeuresMaquettesSoutenance"]= $nbHeuresMaquettesSoutenance;
-                }
-            }
-        }
+        $recap_heures_matiere = $this->container->get('recapHeuresMatiere')->getNbHeuresCours($promotion_cible);
 
         return $this->render('UtilisateurBundle:Default:details_heures.html.twig', array(
             'user' => $user,
-            'recapHeuresMatiere' => $recap_heures_matiere
+            'recapHeuresMatiere' => $recap_heures_matiere,
+            'moisScolaire' => $mois_scolaire
         ));
     }
 }
