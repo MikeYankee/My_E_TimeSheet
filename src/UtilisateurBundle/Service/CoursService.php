@@ -35,10 +35,10 @@ class CoursService
             foreach ($lesCours as $leCours) {
                 if ($leCours->getMatiere()->getPromotion() == $promotion) {
                     $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["matiere"] = $leCours->getMatiere();
-                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["nbHeuresMaquettesCours"] = $leCours->getMatiere()->getNbHeuresMaquetteCours();
-                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["nbHeuresMaquettesTD"] = $leCours->getMatiere()->getNbHeuresMaquetteTD();
-                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["nbHeuresMaquettesExam"] = $leCours->getMatiere()->getNbHeuresMaquetteExam();
-                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["nbHeuresMaquettesSoutenance"] = $leCours->getMatiere()->getNbHeuresMaquetteSoutenance();
+                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["CM"] = $leCours->getMatiere()->getNbHeuresMaquetteCours();
+                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["TD"] = $leCours->getMatiere()->getNbHeuresMaquetteTD();
+                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["Examen"] = $leCours->getMatiere()->getNbHeuresMaquetteExam();
+                    $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["Soutenance"] = $leCours->getMatiere()->getNbHeuresMaquetteSoutenance();
 
                     $recap_heures_matiere[$promotion->getId()]["matieres"][$leCours->getMatiere()->getId()]["nbHeuresPrevuesTotal"] = $leCours->getMatiere()->getNbHeuresMaquetteCours() + $leCours->getMatiere()->getNbHeuresMaquetteTD() + $leCours->getMatiere()->getNbHeuresMaquetteExam()+ $leCours->getMatiere()->getNbHeuresMaquetteSoutenance();
 
@@ -104,7 +104,7 @@ class CoursService
         //boucle sur promos et matieres
         foreach ($recap_heures_matiere as $promo)
         {
-           foreach (array_slice($promo, 1, 1) as $matiere)
+           foreach (array_slice($promo, 1, 1)["matieres"] as $matiere)
             {
 
                 //test pour incrémenter ou initialiser nbHeures pour total prévu

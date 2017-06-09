@@ -118,17 +118,17 @@ class CoursController extends Controller
         $user = $this->getUser();
 
         $mois_scolaire = array(
-            1  => 'Septe',
-            2  => 'Octob',
-            3  => 'Novem',
-            4  => 'Décem',
-            5  => 'Janvi',
-            6  => 'Févri',
-            7  => 'Mars',
-            8  => 'Avril',
-            9  => 'Mai',
-            10 => 'Juin',
-            11 => 'Juill'
+            "09"  => 'Septe',
+            "10"  => 'Octob',
+            "11"  => 'Novem',
+            "12"  => 'Décem',
+            "01"  => 'Janvi',
+            "02"  => 'Févri',
+            "03"  => 'Mars',
+            "04"  => 'Avril',
+            "05"  => 'Mai',
+            "06" => 'Juin',
+            "07" => 'Juill'
         );
 
         if($user->hasRole('ROLE_SUPER_RESPONSABLE'))
@@ -137,7 +137,7 @@ class CoursController extends Controller
         }
         else
         {
-            $promotion_cible = array($user->getPromotionResp());
+            $promotion_cible = $user->getPromotionResp();
         }
 
         $recap_heures_matiere = $this->container->get('recapHeuresMatiere')->getNbHeuresCours($promotion_cible);

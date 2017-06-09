@@ -227,39 +227,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add lesEtudiants
-     *
-     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
-     * @return User
-     */
-    public function addLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
-    {
-        $this->lesEtudiants[] = $lesEtudiants;
-
-        return $this;
-    }
-
-    /**
-     * Remove lesEtudiants
-     *
-     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
-     */
-    public function removeLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
-    {
-        $this->lesEtudiants->removeElement($lesEtudiants);
-    }
-
-    /**
-     * Get lesEtudiants
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLesEtudiants()
-    {
-        return $this->lesEtudiants;
-    }
-
-    /**
      * To string
      *
      * @return string

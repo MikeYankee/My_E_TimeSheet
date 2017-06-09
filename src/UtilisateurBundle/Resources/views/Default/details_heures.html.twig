@@ -38,38 +38,30 @@
                                 {% for ligne in onglet|slice(1)|first %}
                                     <tr>
                                         <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ ligne.matiere.libelle }}</div></th>
-                                        <td style="text-align: center"></td>
-                                        <td style="text-align: center">10</td>
-                                        <td style="text-align: center">10</td>
-                                        <td style="text-align: center">10</td>
-                                        <td style="text-align: center">10</td>
-                                        <td style="text-align: center">10</td>
-                                        <td style="text-align: center">9</td>
-                                        <td style="text-align: center">9</td>
-                                        <td style="text-align: center">9</td>
-                                        <td style="text-align: center">9</td>
-                                        <td style="text-align: center">9</td>
-                                        <td class="warning" style="text-align: center"><b>101</b></td>
-                                        <td class="warning" style="text-align: center"><b>4</b></td>
-                                        <td class="info" style="text-align: center"><b> </b></td>
+                                        {% for num, mois in moisScolaire %}
+                                            {% if ligne|last.matiere[num] is defined  %}
+                                                <td style="text-align: center">{{ ligne|last.matiere[num] }}</td>
+                                            {% else %}
+                                                <td style="text-align: center">0</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="warning" style="text-align: center"><b>{{ ligne|last.TotalMatiere }}</b></td>
+                                        <td class="warning" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] - ligne|last.TotalMatiere }}</b></td>
+                                        <td class="info" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] }}</b></td>
                                     </tr>
-                                    {% for type, compteurs in ligne|last %}
+                                    {% for type, compteurs in ligne|last.types %}
                                         <tr class="toggleable">
                                             <td class="info" scope="row">{{ type }}</td>
-                                            <td style="text-align: center">type.nbHeuresEffectuees</td>
-                                            <td style="text-align: center">6</td>
-                                            <td style="text-align: center">6</td>
-                                            <td style="text-align: center">6</td>
-                                            <td style="text-align: center">6</td>
-                                            <td style="text-align: center">6</td>
-                                            <td style="text-align: center">5</td>
-                                            <td style="text-align: center">5</td>
-                                            <td style="text-align: center">5</td>
-                                            <td style="text-align: center">5</td>
-                                            <td style="text-align: center">5</td>
-                                            <td class="success" style="text-align: center">61</td>
-                                            <td class="success" style="text-align: center">0</td>
-                                            <td class="info" style="text-align: center">61</td>
+                                            {% for num, mois in moisScolaire %}
+                                                {% if compteurs[num] is defined  %}
+                                                    <td style="text-align: center">{{ compteurs[num] }}</td>
+                                                {% else %}
+                                                    <td style="text-align: center">0</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <td class="success" style="text-align: center">{{ ligne|last.totalTypes[type] }}</td>
+                                            <td class="success" style="text-align: center">{{ ligne[type] - ligne|last.totalTypes[type] }}</td>
+                                            <td class="info" style="text-align: center">{{ ligne[type] }}</td>
                                         </tr>
                                     {% endfor %}
                                 {% endfor %}
