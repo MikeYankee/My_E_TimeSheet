@@ -137,10 +137,12 @@ class CoursController extends Controller
         }
         else
         {
-            $promotion_cible = $user->getPromotionResp();
+            $promotion_cible = array($user->getPromotionResp());
         }
 
         $recap_heures_matiere = $this->container->get('recapHeuresMatiere')->getNbHeuresCours($promotion_cible);
+
+        //dump($recap_heures_matiere); die;
 
         return $this->render('UtilisateurBundle:Default:details_heures.html.twig', array(
             'user' => $user,

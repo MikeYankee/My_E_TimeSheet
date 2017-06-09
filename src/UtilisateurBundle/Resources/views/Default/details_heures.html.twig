@@ -11,14 +11,16 @@
             <div class="container">
                 <h3>Horaire par matière</h3><br>
                 <button type="button" class="btn btn-primary pull-right">Générer la facture</button>
+                {{ dump(recapHeuresMatiere) }}
                 <ul class="nav nav-tabs">
                     {% for onglet in recapHeuresMatiere %}
-                        <li><a data-toggle="tab" href="#{{ onglet.promotion.libelle }}">{{ onglet.promotion.libelle }}</a></li>
+
+                        <li {% if loop.index == 1 %} class="active" {% endif %}><a data-toggle="tab" href="#{{ onglet.promotion.libelle }}">{{ onglet.promotion.libelle }}</a></li>
                     {% endfor %}
                 </ul>
                 <div class="tab-content">
                     {% for onglet in recapHeuresMatiere %}
-                        <div id="{{ onglet.promotion.libelle }}" class="tab-pane fade in active" >
+                        <div id="{{ onglet.promotion.libelle }}" class="tab-pane fade in {% if loop.index == 1 %}active {% endif %}" >
                             <table class="table table-bordered" id="tableToggle" style="background-color: white">
                                 <thead>
                                 <tr>
@@ -32,10 +34,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for matiere in onglet.promotion %}
+
+                                {% for ligne in onglet|slice(1)|first %}
                                     <tr>
-                                        <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ matiere.matiere.libelle }}</div></th>
-                                        <td style="text-align: center">10</td>
+                                        <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ ligne.matiere.libelle }}</div></th>
+                                        <td style="text-align: center"></td>
                                         <td style="text-align: center">10</td>
                                         <td style="text-align: center">10</td>
                                         <td style="text-align: center">10</td>
@@ -48,12 +51,12 @@
                                         <td style="text-align: center">9</td>
                                         <td class="warning" style="text-align: center"><b>101</b></td>
                                         <td class="warning" style="text-align: center"><b>4</b></td>
-                                        <td class="info" style="text-align: center"><b>{{ matiere.nbHeuresMaquettesCours }}</b></td>
+                                        <td class="info" style="text-align: center"><b> </b></td>
                                     </tr>
-                                    {% for type in matiere.type %}
+                                    {% for type, compteurs in ligne|last %}
                                         <tr class="toggleable">
-                                            <td class="info" scope="row">{{ type.type.libelle }}</td>
-                                            <td style="text-align: center">6</td>
+                                            <td class="info" scope="row">{{ type }}</td>
+                                            <td style="text-align: center">type.nbHeuresEffectuees</td>
                                             <td style="text-align: center">6</td>
                                             <td style="text-align: center">6</td>
                                             <td style="text-align: center">6</td>
