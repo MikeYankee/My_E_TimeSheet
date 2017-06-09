@@ -24,7 +24,7 @@ class FeuillePresenceController extends Controller
         $user = $this->getUser();
 
         $delegue = $this->getUser();
-        $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+        $les_ets = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour($delegue->getPromotion());
 
         if(isset($les_ets[0])){ //L'ETS est déja crée pour cette journée
             $this->addFlash('error', "La feuille du jour est déjà créée");
@@ -115,7 +115,7 @@ class FeuillePresenceController extends Controller
         $this->denyAccessUnlessGranted(array('ROLE_USER'));
 
         $user = $this->getUser();
-        $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+        $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour($user->getPromotion());
 
         $lesCours = null;
         $lesCoursNonValide = array();
@@ -139,34 +139,22 @@ class FeuillePresenceController extends Controller
      */
     public function visionnerETSJourAction()
     {
-        $this->denyAccessUnlessGranted(array('ROLE_USER'));
+        $this->denyAccessUnlessGranted(array('ROLE_ENSEIGNANT'));
 
         $user = $this->getUser();
-        $lEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
+        
 
-        $lesCours = null;
-        $lesCoursNonValide = array();
-        $etudiantsPresents = array();
-        $etudiantsAbsents = array();
-        $nbMaxEtudiants = count($user->getPromotion()->getLesEtudiants());
-        if(isset($lEts[0])) { //L'ETS existe ?
-            $lesCours = $lEts[0]->getLesCours();
-            foreach ($lesCours as $leCours) {
-                if (!$leCours->getEstValide()) {
-                    $lesCoursNonValide[] = $leCours;
+        $lesEts = $this->getDoctrine()->getRepository('ConnexionBundle:ETimeSheet')->getEtsDuJour();
 
-                }
-                foreach ($leCours->getLesEtudiants() as $lEtudiant)
-                {
-                    if ($lEtudiant->getEtudiantPresent() == 1)
-                    {
-                        $etudiantsPresents[] = $lEtudiant->getLEtudiant();
-                    }
-                    else
-                    {
-                        $etudiantsAbsents[] = $lEtudiant->getLEtudiant();
-                    }
+        $lesCours = array();
 
+        foreach ($lesEts as $lEts) {
+            foreach ($lEts->getLesCours() as $leCours) {
+
+                if($leCours->getEnseignant() == $user){
+                    $lesCours[$lEts->getPromotion()->getId()]["promo"] = $lEts->getPromotion()->getLibelle();
+                    $lesCours[$lEts->getPromotion()->getId()]["cours"][$leCours->getId()]["cours"] = $leCours;
+                    $lesCours[$lEts->getPromotion()->getId()]["cours"][$leCours->getId()]["etudiants"] = $leCours->getLesEtudiants();
                 }
             }
         }
@@ -174,9 +162,6 @@ class FeuillePresenceController extends Controller
         return $this->render('UtilisateurBundle:Default:visionner_ets.html.twig', array(
             'user' => $user,
             'lesCours' => $lesCours,
-            'etudiantsPresents' => $etudiantsPresents,
-            'etudiantsAbsents' => $etudiantsAbsents,
-            'nbMaxEtudiants' => $nbMaxEtudiants
         ));
     }
 
