@@ -15,13 +15,16 @@ class ETimeSheetRepository extends EntityRepository
     /**
      * @return array
      */
-    public function getEtsDuJour(){
+    public function getEtsDuJour($promo = null){
         $date = new \DateTime();
         $date = $date->format("Y-m-d");
-        return $this->createQueryBuilder('e')
+        $query = $this->createQueryBuilder('e')
             ->where('e.date LIKE :date')
-            ->setParameter('date', '%'.$date.'%')
-            ->getQuery()
-            ->getResult();
+            ->setParameter('date', '%'.$date.'%');
+        if(!is_null($promo)){
+            $query->andWhere('e.promotion = :promo')
+               ->setParameter('promo', $promo);
+        }
+        return $query->getQuery()->getResult();
     }
 }

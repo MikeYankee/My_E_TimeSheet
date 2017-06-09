@@ -9,52 +9,58 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Visionner les cours du jour {{ "now"|date("d/m/Y") }} <button type="button" class="btn btn-warning glyphicon glyphicon-pencil"></button></h3><br>
-                <b>Nombre d'élèves :</b> {{ etudiantsPresents|length }}/{{ nbMaxEtudiants }} {{ etudiantsAbsents|length }} absents<br><br>
-                <h4>Tableau des absents</h4><br>
-                <table class="table" style="background-color: white">
-                    <thead>
-                    <tr>
-                        <th>Elève</th>
-                        {% for cours in lesCours %}
-                            <th>{{ cours.getHoraire() }} - + 1h30</th>
-                        {% endfor %}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for etudiant in etudiantsAbsents %}
-                        <tr>
-                            <td>{{ etudiant.getNom() |upper }} {{ etudiant.getPrenom() }}</td>
-                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
-                        </tr>
-                    {% endfor %}
 
-                    </tbody>
-                </table>
-                <br><h4>Tableau des présents</h4><br>
-                <table class="table" style="background-color: white">
-                    <thead>
-                    <tr>
-                        <th>Elève</th>
-                        {% for cours in lesCours %}
-                            <th>{{ cours.getHoraire() }} - + 1h30</th>
-                        {% endfor %}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for etudiant in etudiantsPresents %}
-                        <tr>
-                            <td>{{ etudiant.getNom() |upper }} {{ etudiant.getPrenom() }}</td>
-                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                            <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
-                        </tr>
+                <h3>Visionner les cours du jour {{ "now"|date("d/m/Y") }} <button type="button" class="btn btn-warning glyphicon glyphicon-pencil"></button></h3><br>
+
+                <ul class="nav nav-tabs">
+                    {% for onglet in lesCours %}
+                        <li {% if loop.index == 1 %}class="active"{% endif %}><a data-toggle="tab" href="#{{ onglet.promo }}">{{ onglet.promo }}</a></li>
                     {% endfor %}
-                    <br/>
-                    </tbody>
-                </table>
+                </ul>
+                <div class="tab-content">
+                    {% for onglet in lesCours %}
+                        <div id="{{ onglet.promo }}" class="tab-pane fade in {% if loop.index == 1 %}active{% endif %}" >
+
+                            <b>Nombre d'élèves :</b> {#{{ etudiantsPresents|length }}/{{ nbMaxEtudiants }} {{ etudiantsAbsents|length }}#} absents<br><br>
+                            <table class="table" style="background-color: white">
+                                <thead>
+                                <tr bgcolor="">
+                                    <th></th>
+                                    {% for cours in onglet.cours %}
+                                        <th><a href="{{ path('valider_cours', {'leCours':cours.cours.id}) }}"><button type="button" class="btn btn-success">Valider</button></a></th>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th>Elève</th>
+                                    {% for cours in onglet.cours %}
+                                        <th>{{ cours.cours.matiere.libelle }}<br>{{ cours.cours.getHoraire() }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user_cours in (onglet.cours|first).etudiants %}
+                                    <tr>
+                                        <td>{{ user_cours.lEtudiant }}</td>
+                                        {% for cours in onglet.cours %}
+                                            {% for uc in cours.etudiants %}
+                                                {% if uc.lEtudiant == user_cours.lEtudiant %}
+                                                    {% if uc.etudiantPresent %}
+                                                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 2em;color:green"></span></td>
+                                                    {% else %}
+                                                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 2em;color:red"></span></td>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
             </div>
         </div>
     </div>
