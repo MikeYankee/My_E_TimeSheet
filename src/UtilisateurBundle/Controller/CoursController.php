@@ -72,16 +72,22 @@ class CoursController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function validerCoursAction()
+    public function validerCoursAction(Cours $leCours = null)
     {
         $this->denyAccessUnlessGranted(array('ROLE_ENSEIGNANT'));
         $user = $this->getUser();
 
+        if(is_null($leCours)/* or $leCours->getEnseignant() != $user*/){
+            $this->addFlash('error', "Vous ne pouvez pas traiter ce cours.");
+            return $this->redirect($this->generateUrl("visionner_ets_jour"));
+        }
 
-        return $this->render('UtilisateurBundle:Default:validation_cours.html.twig', array(
-            'user' => $user
-        ));
+        $leCours->setEstValide(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
 
+
+        return $this->redirect($this->generateUrl("visionner_ets_jour"));
     }
 
     /**

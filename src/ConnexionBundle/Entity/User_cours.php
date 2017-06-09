@@ -115,52 +115,6 @@ class User_cours
     }
 
     /**
-     * Set lesEtudiants
-     *
-     * @param string $lesEtudiants
-     * @return User_cours
-     */
-    public function setLesEtudiants($lesEtudiants)
-    {
-        $this->lesEtudiants = $lesEtudiants;
-
-        return $this;
-    }
-
-    /**
-     * Get lesEtudiants
-     *
-     * @return string 
-     */
-    public function getLesEtudiants()
-    {
-        return $this->lesEtudiants;
-    }
-
-    /**
-     * Set lesCours
-     *
-     * @param string $lesCours
-     * @return User_cours
-     */
-    public function setLesCours($lesCours)
-    {
-        $this->lesCours = $lesCours;
-
-        return $this;
-    }
-
-    /**
-     * Get lesCours
-     *
-     * @return string 
-     */
-    public function getLesCours()
-    {
-        return $this->lesCours;
-    }
-
-    /**
      * Set leCours
      *
      * @param \ConnexionBundle\Entity\Cours $leCours

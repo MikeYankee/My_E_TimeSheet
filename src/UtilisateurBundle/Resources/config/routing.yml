@@ -2,17 +2,19 @@ signaler_presence:
     path:   /signaler-presence/{leCours}
     defaults: { _controller: UtilisateurBundle:Cours:signalerPresence, leCours:null }
     requirements:
-                leCours: \d+
+        leCours: \d+
 
 signaler_absence_enseignant:
     path:   /signaler-absence-enseignant/{leCours}
     defaults: { _controller: UtilisateurBundle:Cours:signalerAbsenceEnseignant, leCours:null }
     requirements:
-                leCours: \d+
+        leCours: \d+
 
 valider_cours:
-    path:   /valider-cours
-    defaults: { _controller: UtilisateurBundle:Cours:validerCours }
+    path:   /valider-cours/{leCours}
+    defaults: { _controller: UtilisateurBundle:Cours:validerCours, leCours:null }
+    requirements:
+        leCours: \d+
 
 creer_feuille_presence:
     path:   /creer-feuille-presence

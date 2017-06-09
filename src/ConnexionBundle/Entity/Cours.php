@@ -297,5 +297,16 @@ class Cours
         $this->lesEtudiants->removeElement($lesEtudiants);
     }
 
+    public function getNbAbsents(){
+        $nb = 0;
+
+        foreach ($this->lesEtudiants as $user_cours) {
+            if(!$user_cours->getEtudiantPresent()){
+                $nb++;
+            }
+        }
+
+        return $nb;
+    }
 
 }

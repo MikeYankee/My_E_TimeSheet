@@ -20,14 +20,29 @@
                 <div class="tab-content">
                     {% for onglet in lesCours %}
                         <div id="{{ onglet.promo }}" class="tab-pane fade in {% if loop.index == 1 %}active{% endif %}" >
-
-                            <b>Nombre d'élèves :</b> {#{{ etudiantsPresents|length }}/{{ nbMaxEtudiants }} {{ etudiantsAbsents|length }}#} absents<br><br>
                             <table class="table" style="background-color: white">
                                 <thead>
                                 <tr bgcolor="">
                                     <th></th>
                                     {% for cours in onglet.cours %}
-                                        <th><a href="{{ path('valider_cours', {'leCours':cours.cours.id}) }}"><button type="button" class="btn btn-success">Valider</button></a></th>
+                                        {%  if cours.cours.estValide %}
+                                            <th valign="center">
+                                                <span style="color: white;display:inline-block; background-color: darkgrey; padding: 5px;border: 2px solid darkgrey;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;">
+                                                    Validé
+                                                    {% if cours.cours.getNbAbsents > 0 %}
+                                                        <span class="badge" style="background-color: red">{{ cours.cours.getNbAbsents }}</span>
+                                                    {% endif %}
+                                                </span>
+                                            </th>
+                                        {% else %}
+                                            <th valign="center">
+                                                <a href="{{ path('valider_cours', {'leCours':cours.cours.id}) }}"><button type="button" class="btn btn-success">
+                                                        Valider
+                                                        {% if cours.cours.getNbAbsents > 0 %}
+                                                            <span class="badge" style="color:white;background-color: red">{{ cours.cours.getNbAbsents }}</span>
+                                                        {% endif %}                                                </button></a>
+                                            </th>
+                                        {% endif %}
                                     {% endfor %}
                                 </tr>
                                 <tr>
