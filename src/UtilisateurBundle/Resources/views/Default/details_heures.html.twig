@@ -11,7 +11,6 @@
             <div class="container">
                 <h3>Horaire par matière</h3><br>
                 <button type="button" class="btn btn-primary pull-right">Générer la facture</button>
-                {{ dump(recapHeuresMatiere) }}
                 <ul class="nav nav-tabs">
                     {% for onglet in recapHeuresMatiere %}
 
@@ -40,30 +39,54 @@
                                         <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ ligne.matiere.libelle }}</div></th>
                                         {% for num, mois in moisScolaire %}
                                             {% if ligne|last.matiere[num] is defined  %}
-                                                <td style="text-align: center">{{ ligne|last.matiere[num] }}</td>
+                                                <td style="text-align: center"><b>{{ ligne|last.matiere[num] }}</b></td>
                                             {% else %}
-                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center"><b>0</b></td>
                                             {% endif %}
                                         {% endfor %}
                                         <td class="warning" style="text-align: center"><b>{{ ligne|last.TotalMatiere }}</b></td>
                                         <td class="warning" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] - ligne|last.TotalMatiere }}</b></td>
                                         <td class="info" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] }}</b></td>
                                     </tr>
-                                    {% for type, compteurs in ligne|last.types %}
-                                        <tr class="toggleable">
-                                            <td class="info" scope="row">{{ type }}</td>
-                                            {% for num, mois in moisScolaire %}
-                                                {% if compteurs[num] is defined  %}
-                                                    <td style="text-align: center">{{ compteurs[num] }}</td>
-                                                {% else %}
-                                                    <td style="text-align: center">0</td>
-                                                {% endif %}
-                                            {% endfor %}
-                                            <td class="success" style="text-align: center">{{ ligne|last.totalTypes[type] }}</td>
-                                            <td class="success" style="text-align: center">{{ ligne[type] - ligne|last.totalTypes[type] }}</td>
-                                            <td class="info" style="text-align: center">{{ ligne[type] }}</td>
-                                        </tr>
+
+
+                                    {% for leType in types %}
+                                        {% if leType in ligne|last.types|keys %}
+                                            <tr class="toggleable">
+                                                <td class="info" scope="row">{{ leType }}</td>
+                                                {% for num, mois in moisScolaire %}
+                                                    {% if ligne|last.types[leType][num] is defined  %}
+                                                        <td style="text-align: center">{{ ligne|last.types[leType][num] }}</td>
+                                                    {% else %}
+                                                        <td style="text-align: center">0</td>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <td class="success" style="text-align: center">{{ ligne|last.totalTypes[leType] }}</td>
+                                                <td class="success" style="text-align: center">{{ ligne[leType] - ligne|last.totalTypes[leType] }}</td>
+                                                <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr class="toggleable">
+                                                <td class="info" scope="row">{{ leType }}</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td style="text-align: center">0</td>
+                                                <td class="danger" style="text-align: center">0</td>
+                                                <td class="danger" style="text-align: center">{{ ligne[leType] }}</td>
+                                                <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
+                                            </tr>
+                                        {% endif %}
                                     {% endfor %}
+
+
                                 {% endfor %}
                                 <tr>
                                     <th class="info" scope="row">Total effectuées</th>

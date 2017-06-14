@@ -117,6 +117,11 @@ class CoursController extends Controller
 
         $user = $this->getUser();
 
+        $types = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
+        $types = array_map(function($t){
+            return $t->getLibelle();
+        }, $types);
+
         $mois_scolaire = array(
             "09"  => 'Septe',
             "10"  => 'Octob',
@@ -140,14 +145,15 @@ class CoursController extends Controller
             $promotion_cible = $user->getPromotionResp();
         }
 
-        $recap_heures_matiere = $this->container->get('recapHeuresMatiere')->getNbHeuresCours($promotion_cible);
+        $recap_heures_matiere = $this->container->get('recapHeuresMatiere')->getNbHeuresCours($promotion_cible, $mois_scolaire);
 
         //dump($recap_heures_matiere); die;
 
         return $this->render('UtilisateurBundle:Default:details_heures.html.twig', array(
             'user' => $user,
             'recapHeuresMatiere' => $recap_heures_matiere,
-            'moisScolaire' => $mois_scolaire
+            'moisScolaire' => $mois_scolaire,
+            'types' => $types
         ));
     }
 }
