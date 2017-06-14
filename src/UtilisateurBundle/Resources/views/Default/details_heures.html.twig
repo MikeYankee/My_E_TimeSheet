@@ -67,20 +67,18 @@
                                 {% endfor %}
                                 <tr>
                                     <th class="info" scope="row">Total effectuées</th>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>40</b></td>
-                                    <td class="active" style="text-align: center"><b>36</b></td>
-                                    <td class="active" style="text-align: center"><b>36</b></td>
-                                    <td class="active" style="text-align: center"><b>36</b></td>
-                                    <td class="active" style="text-align: center"><b>36</b></td>
-                                    <td class="active" style="text-align: center"><b>36</b></td>
-                                    <td class="danger" style="text-align: center"><b>404</b></td>
-                                    <td class="danger" style="text-align: center"><b>16</b></td>
-                                    <td class="info" style="text-align: center"><b>420</b></td>
+
+                                    {% for num, mois in moisScolaire %}
+                                        {% if onglet.totalMois[num] is defined  %}
+                                            <td style="text-align: center">{{ onglet.totalMois[num] }}</td>
+                                        {% else %}
+                                            <td style="text-align: center">0</td>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <td class="danger" style="text-align: center"><b>{{ onglet.totalEffectue }}</b></td>
+                                    <td class="danger" style="text-align: center"><b>{{ onglet.totalPrevu - onglet.totalEffectue }}</b></td>
+                                    <td class="info" style="text-align: center"><b>{{ onglet.totalPrevu }}</b></td>
                                 </tr>
                                 </tbody>
                             </table>
