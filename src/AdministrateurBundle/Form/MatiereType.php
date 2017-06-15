@@ -19,7 +19,7 @@ class MatiereType extends AbstractType {
                 "label" => "Libellé :"
             ))
             ->add('nbHeuresMaquetteCours', 'integer', array(
-                "label" => "Nombre d'heures de cours :",
+                "label" => "Nombre d'heures de cours magistral:",
                 'required' => true,
             ))
             ->add('nbHeuresMaquetteTD', 'integer', array(

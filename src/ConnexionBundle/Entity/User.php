@@ -227,39 +227,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add lesEtudiants
-     *
-     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
-     * @return User
-     */
-    public function addLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
-    {
-        $this->lesEtudiants[] = $lesEtudiants;
-
-        return $this;
-    }
-
-    /**
-     * Remove lesEtudiants
-     *
-     * @param \ConnexionBundle\Entity\User_cours $lesEtudiants
-     */
-    public function removeLesEtudiant(\ConnexionBundle\Entity\User_cours $lesEtudiants)
-    {
-        $this->lesEtudiants->removeElement($lesEtudiants);
-    }
-
-    /**
-     * Get lesEtudiants
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLesEtudiants()
-    {
-        return $this->lesEtudiants;
-    }
-
-    /**
      * To string
      *
      * @return string
@@ -268,6 +235,17 @@ class User extends BaseUser
     {
         if(!is_null($this->prenom) or !is_null($this->nom)){
             $return = $this->prenom." ".strtoupper($this->nom);
+        }
+        else{
+            $return = $this->email;
+        }
+        return $return;
+    }
+
+    public function initiale()
+    {
+        if(!is_null($this->prenom) or !is_null($this->nom)){
+            $return = substr(strtoupper($this->getPrenom()), 0, 1) . "" . substr(strtoupper($this->getNom()), 0, 1);
         }
         else{
             $return = $this->email;

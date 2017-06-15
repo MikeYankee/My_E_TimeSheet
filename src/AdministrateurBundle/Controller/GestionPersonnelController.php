@@ -18,10 +18,10 @@ class GestionPersonnelController extends Controller
     {
         $user = $this->getUser();
         $liste_personnel = $this->getDoctrine()->getRepository('ConnexionBundle:User')->findByRole(array('ROLE_ENSEIGNANT', 'ROLE_CFA', 'ROLE_SECRETAIRE', 'ROLE_RESPONSABLE', 'ROLE_SUPER_RESPONSABLE', 'ROLE_ADMIN'));
+
         return $this->render('AdministrateurBundle:Default:liste_personnel.html.twig', array(
             'liste_personnel' => $liste_personnel,
             'user' => $user
-
         ));
     }
 
