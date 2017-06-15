@@ -104,20 +104,19 @@ class CoursService
         //boucle sur promos et matieres
         foreach ($recap_heures_matiere as $promo)
         {
-           foreach (array_slice($promo, 1, 1)["matieres"] as $matiere)
-            {
-
-                //test pour incrémenter ou initialiser nbHeures pour total prévu
-                if (isset($recap_heures_matiere[$promotion->getId()]["totalPrevu"])) {
-                    $recap_heures_matiere[$promotion->getId()]["totalPrevu"] += $matiere["nbHeuresPrevuesTotal"];
-                }
-                else
+            if(isset(array_slice($promo, 1, 1)["matieres"])){
+                foreach (array_slice($promo, 1, 1)["matieres"] as $matiere)
                 {
-                    $recap_heures_matiere[$promotion->getId()]["totalPrevu"] = $matiere["nbHeuresPrevuesTotal"];
+                    //test pour incrémenter ou initialiser nbHeures pour total prévu
+                    if (isset($recap_heures_matiere[$promo["promotion"]->getId()]["totalPrevu"])) {
+                        $recap_heures_matiere[$promo["promotion"]->getId()]["totalPrevu"] += $matiere["nbHeuresPrevuesTotal"];
+                    }
+                    else
+                    {
+                        $recap_heures_matiere[$promo["promotion"]->getId()]["totalPrevu"] = $matiere["nbHeuresPrevuesTotal"];
+                    }
                 }
-
             }
-            //dump($promo[2]); die;
         }
         return $recap_heures_matiere;
     }

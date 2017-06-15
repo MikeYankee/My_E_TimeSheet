@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
-    {{ user.initiale }} | Voir le détail des heures de cours
+    {{ user.initiale }} | Voir le détail des heures effectuées
 {% endblock title %}
 
 {% block body %}
@@ -9,8 +9,8 @@
         {% include '::menu.html.twig' %}
         <div class="content_text">
             <div class="container">
-                <h3>Horaire par matière</h3><br>
-                <button type="button" class="btn btn-primary pull-right">Générer la facture</button>
+                <h3>Voir le détail des heures effectuées</h3><br>
+                <button type="button" class="btn btn-primary pull-right disabled">Générer la facture</button>
                 <ul class="nav nav-tabs">
                     {% for onglet in recapHeuresMatiere %}
 
@@ -20,91 +20,100 @@
                 <div class="tab-content">
                     {% for onglet in recapHeuresMatiere %}
                         <div id="{{ onglet.promotion.libelle }}" class="tab-pane fade in {% if loop.index == 1 %}active {% endif %}" >
-                            <table class="table table-bordered" id="tableToggle" style="background-color: white">
-                                <thead>
-                                <tr>
-                                    <th class="info" ></th>
-                                    {% for mois in moisScolaire %}
-                                        <th class="info" style="text-align: center">{{ mois }}</th>
-                                    {% endfor %}
-                                    <th class="info" style="text-align: center">Total effectuées</th>
-                                    <th class="info" style="text-align: center">Heures manquées</th>
-                                    <th class="info" style="text-align: center">Total prévu</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                {% for ligne in onglet|slice(1)|first %}
+                            {% if onglet.totalPrevu is defined %}
+                                <table class="table table-bordered" id="tableToggle" style="background-color: white">
+                                    <thead>
                                     <tr>
-                                        <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ ligne.matiere.libelle }}</div></th>
+                                        <th class="info" ></th>
+                                        {% for mois in moisScolaire %}
+                                            <th class="info" style="text-align: center">{{ mois }}</th>
+                                        {% endfor %}
+                                        <th class="info" style="text-align: center">Total effectuées</th>
+                                        <th class="info" style="text-align: center">Heures manquées</th>
+                                        <th class="info" style="text-align: center">Total prévu</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for ligne in onglet|slice(1)|first %}
+                                        <tr>
+                                            <th class="info" scope="row" style="cursor:pointer"><div class="tableToggleButton"><span class="glyphicon glyphicon-chevron-right"></span> {{ ligne.matiere.libelle }}</div></th>
+                                            {% for num, mois in moisScolaire %}
+                                                {% if ligne|last.matiere[num] is defined  %}
+                                                    <td style="text-align: center"><b>{{ ligne|last.matiere[num] }}</b></td>
+                                                {% else %}
+                                                    <td style="text-align: center"><b>0</b></td>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% set difference = ligne["nbHeuresPrevuesTotal"] - ligne|last.TotalMatiere %}
+                                            <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %} " style="text-align: center"><b>{{ ligne|last.TotalMatiere }}</b></td>
+                                            <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %} " style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] - ligne|last.TotalMatiere }}</b></td>
+                                            <td class="info" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] }}</b></td>
+                                        </tr>
+
+
+                                        {% for leType in types %}
+                                            {% if leType in ligne|last.types|keys %}
+                                                <tr class="toggleable">
+                                                    <td class="info" scope="row">{{ leType }}</td>
+                                                    {% for num, mois in moisScolaire %}
+                                                        {% if ligne|last.types[leType][num] is defined  %}
+                                                            <td style="text-align: center">{{ ligne|last.types[leType][num] }}</td>
+                                                        {% else %}
+                                                            <td style="text-align: center">0</td>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% set difference = ligne[leType] - ligne|last.totalTypes[leType] %}
+                                                    <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %}" style="text-align: center">{{ ligne|last.totalTypes[leType] }}</td>
+                                                    <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %}" style="text-align: center">{{ ligne[leType] - ligne|last.totalTypes[leType] }}</td>
+                                                    <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr class="toggleable">
+                                                    <td class="info" scope="row">{{ leType }}</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td style="text-align: center">0</td>
+                                                    <td class="{% if ligne[leType] > 0 %} danger {% else %} success {% endif %}" style="text-align: center">0</td>
+                                                    <td class="{% if ligne[leType] > 0 %} danger {% else %} success {% endif %}" style="text-align: center">{{ ligne[leType] }}</td>
+                                                    <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+
+                                    {% endfor %}
+                                    <tr>
+
+                                        <th class="info" scope="row">Total effectuées</th>
+
                                         {% for num, mois in moisScolaire %}
-                                            {% if ligne|last.matiere[num] is defined  %}
-                                                <td style="text-align: center"><b>{{ ligne|last.matiere[num] }}</b></td>
+                                            {% if onglet.totalMois[num] is defined  %}
+                                                <td style="text-align: center"><b>{{ onglet.totalMois[num] }}</b></td>
                                             {% else %}
                                                 <td style="text-align: center"><b>0</b></td>
                                             {% endif %}
                                         {% endfor %}
-                                        <td class="warning" style="text-align: center"><b>{{ ligne|last.TotalMatiere }}</b></td>
-                                        <td class="warning" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] - ligne|last.TotalMatiere }}</b></td>
-                                        <td class="info" style="text-align: center"><b>{{ ligne["nbHeuresPrevuesTotal"] }}</b></td>
-                                    </tr>
 
+                                        {% set difference = onglet.totalPrevu - onglet.totalEffectue %}
+                                        <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %}" style="text-align: center"><b>{{ onglet.totalEffectue }}</b></td>
+                                        <td class="{% if difference >= 10 %} danger {% elseif difference > 0 %} warning {% else %} success {% endif %}" style="text-align: center"><b>{{ onglet.totalPrevu - onglet.totalEffectue }}</b></td>
+                                        <td class="info" style="text-align: center"><b>{{ onglet.totalPrevu }}</b></td>
 
-                                    {% for leType in types %}
-                                        {% if leType in ligne|last.types|keys %}
-                                            <tr class="toggleable">
-                                                <td class="info" scope="row">{{ leType }}</td>
-                                                {% for num, mois in moisScolaire %}
-                                                    {% if ligne|last.types[leType][num] is defined  %}
-                                                        <td style="text-align: center">{{ ligne|last.types[leType][num] }}</td>
-                                                    {% else %}
-                                                        <td style="text-align: center">0</td>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                <td class="success" style="text-align: center">{{ ligne|last.totalTypes[leType] }}</td>
-                                                <td class="success" style="text-align: center">{{ ligne[leType] - ligne|last.totalTypes[leType] }}</td>
-                                                <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
-                                            </tr>
-                                        {% else %}
-                                            <tr class="toggleable">
-                                                <td class="info" scope="row">{{ leType }}</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td style="text-align: center">0</td>
-                                                <td class="danger" style="text-align: center">0</td>
-                                                <td class="danger" style="text-align: center">{{ ligne[leType] }}</td>
-                                                <td class="info" style="text-align: center">{{ ligne[leType] }}</td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-
-
-                                {% endfor %}
-                                <tr>
-                                    <th class="info" scope="row">Total effectuées</th>
-
-                                    {% for num, mois in moisScolaire %}
-                                        {% if onglet.totalMois[num] is defined  %}
-                                            <td style="text-align: center">{{ onglet.totalMois[num] }}</td>
-                                        {% else %}
-                                            <td style="text-align: center">0</td>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                    <td class="danger" style="text-align: center"><b>{{ onglet.totalEffectue }}</b></td>
-                                    <td class="danger" style="text-align: center"><b>{{ onglet.totalPrevu - onglet.totalEffectue }}</b></td>
-                                    <td class="info" style="text-align: center"><b>{{ onglet.totalPrevu }}</b></td>
                                 </tr>
                                 </tbody>
                             </table>
+                            {% else %} {#ca veut dire qu'il n'y a aucune ligne#}
+                                <div>Il n'y a aucune donnée à afficher.</div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
