@@ -16,7 +16,7 @@
 * **Gestion de logs :** Monolog 
 * **Gestion des tests :** PhpUnit
 
-## Ojectif
+## Objectifs
 1. Dématérialiser la feuille de présence
 2. Optimiser et automatiser le processus "présence" pour gagner en efficacité et en temps, être éfficient.
 3. Réduire les coûts en papier (archivage, gestion des dossiers, ...)
@@ -77,7 +77,7 @@ database_password: null
 * **Logs Management :** Monolog 
 * **Tests Management :** PhpUnit
 
-## Goal
+## Goals
 1. Dematerialize timesheet
 2. Optimize et computerize process "Presence" to increase efficiency, save time, be efficient.
 3. Reduce paper costs (archiving, file management, ...)
