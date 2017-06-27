@@ -40,16 +40,16 @@
 
 ## Installation 
 1. Clone du répository
-'''
+```
 $ git clone https://github.com/MikeYankee/My_E_TimeSheet
-'''
+```
 2. Créer la base de données "my_ets"
  Se placer à la racine du projet et exécuter la commande suivante :
-'''
+```
 php app/console doctrine:schema:update --force
-'''
+```
 3. Modifier le fichier app/config/parameters.yml en indiquant les différentes informations de connexion à la base de données.
-'''
+```
 ...
 database_host: 127.0.0.1
 database_port: 3306
@@ -57,7 +57,7 @@ database_name: my_ets
 database_user: root
 database_password: null
 ...
-'''
+```
 Des fonctionnalités sont à venir !
 ---------------------------------------------------------ANGLAIS | ENGLISH------------------------------------------------------
 # My_E_TimeSheet
@@ -101,17 +101,16 @@ Des fonctionnalités sont à venir !
 
 ## Setup 
 1. clone the repository
-'''
+```
 $ git clone https://github.com/MikeYankee/My_E_TimeSheet
-'''
+```
 2. Create database "my_ets"
- Se placer à la racine du projet et exécuter la commande suivante :
- Go to the of the project and run the following command
-'''
+ Go to the of the project and run the following command :
+```
 php app/console doctrine:schema:update --force
-'''
+```
 3. Update and complete file app/config/parameters.yml with information of connection to database.
-'''
+```
 ...
 database_host: 127.0.0.1
 database_port: 3306
@@ -119,5 +118,5 @@ database_name: my_ets
 database_user: root
 database_password: null
 ...
-'''
+```
 Some new features coming soon !
