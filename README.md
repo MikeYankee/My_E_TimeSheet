@@ -58,7 +58,7 @@ database_user: root
 database_password: null
 ...
 ```
-Des fonctionnalités sont à venir !<br/>
+Des fonctionnalités sont à venir !<br/><br/><br/>
 ---------------------------------------------------------ANGLAIS | ENGLISH------------------------------------------------------
 # My_E_TimeSheet
 
