@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0aa6e8a-bb8b-4107-bf5d-5f927a7feffe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ps.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/images/ueve.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/pdf.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/app/SymfonyRequirements.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Convention.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Convention.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Type.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Type.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Repository/CoursRepository.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Repository/CoursRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/details_heures.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/details_heures.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,7 +55,7 @@
       <file leaf-file-name="FeuillePresenceController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
+            <state relative-caret-position="2550">
               <caret line="159" column="9" lean-forward="false" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
               <folding />
             </state>
@@ -223,6 +237,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -459,8 +475,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -628,11 +642,12 @@
       <workItem from="1497517648336" duration="104000" />
       <workItem from="1498491410645" duration="9609000" />
       <workItem from="1498568983250" duration="3000" />
+      <workItem from="1498569220290" duration="13000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="465420000" />
+    <option name="totallyTimeSpent" value="465433000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -940,7 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -981,7 +995,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
+        <state relative-caret-position="2550">
           <caret line="159" column="9" lean-forward="false" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
           <folding />
         </state>

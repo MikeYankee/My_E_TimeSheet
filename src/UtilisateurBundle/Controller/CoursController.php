@@ -119,7 +119,7 @@ class CoursController extends Controller
      */
     public function visionnerDetailsHeuresAction()
     {
-        $this->denyAccessUnlessGranted(array('ROLE_RESPONSABLE'));
+        $this->denyAccessUnlessGranted(array('ROLE_RESPONSABLE', "ROLE_SUPER_RESPONSABLE", "ROLE_CFA"));
 
         $user = $this->getUser();
 
@@ -142,7 +142,7 @@ class CoursController extends Controller
             "07" => 'Juill'
         );
 
-        if($user->hasRole('ROLE_SUPER_RESPONSABLE'))
+        if($user->hasRole('ROLE_SUPER_RESPONSABLE') or $user->hasRole('ROLE_CFA'))
         {
             $promotion_cible = $this->getDoctrine()->getRepository('ConnexionBundle:Promotion')->findAll();
         }
