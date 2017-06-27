@@ -7,8 +7,8 @@
 - Yann BOURGUES
 
 ### Environnement de développement :
-* **FrameWork :** Symfony 2 (https://symfony.com/) - The web framework used
-* **Base de données :** MySQL (inclu dans EasyPHP) - Dependency Management
+* **FrameWork :** Symfony 2 (https://symfony.com/)
+* **Base de données :** MySQL (inclu dans EasyPHP)
 * **SGBDR :** PhpMyAdmin (inclu dans EasyPHP)
 * **IDE :** PhpStorm
 * **ORM :** Doctrine
@@ -23,14 +23,14 @@
 4. Centraliser toutes les informations pour qu'elles soient accessibles par tous
 
 ## Fonctionnalités principales
-** Partie Administrateur **
+**Partie Administrateur**
 * Gestion des promotions
 * Gestion du personnel
 * Gestion des étudiants
 * Gestion des conventions
 * Gestion des matières
 
-** Partie Utilisateur **
+**Partie Utilisateur**
 * Créer une feuille de présence (délégué)
 * Signaler sa présence (étudiant)
 * Signaler enseignant absent (délégué)
@@ -39,12 +39,16 @@
 * Editer une facture pour le CFA (responsable)
 
 ## Installation 
-1.
+1. 
 2.
 3.
 4.
 
 ## Utilisation
+1. 
+2. 
+3.
+4.
 
 ---------------------------------------------------------ANGLAIS | ENGLISH------------------------------------------------------
 # My_E_TimeSheet
@@ -55,8 +59,8 @@
 - Yann BOURGUES
 
 ### Development Environment :
-* **FrameWork :** Symfony 2 (https://symfony.com/) - The web framework used
-* **Database :** MySQL (inclu dans EasyPHP) - Dependency Management
+* **FrameWork :** Symfony 2 (https://symfony.com/)
+* **Database :** MySQL (inclu dans EasyPHP)
 * **SGBDR :** PhpMyAdmin (inclu dans EasyPHP)
 * **IDE :** PhpStorm
 * **ORM :** Doctrine
@@ -70,15 +74,15 @@
 3. Reduce paper costs (archiving, file management, ...)
 4. Centralize information for them to be accessible for anyone.
 
-## Fonctionnalités principales
-** Partie Administrateur **
+## Primary Features
+**Admin Features**
 * class Management
 * Staff Management
 * Student Management
 * Covenant Management
 * Subject Management
 
-** Partie Utilisateur **
+**User Features**
 * Create E-TimeSheet (Class representative)
 * Reports its presence (student)
 * Reports teacher absence (Class representative)
