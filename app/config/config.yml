@@ -33,6 +33,16 @@ framework:
     fragments:       ~
     http_method_override: true
 
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

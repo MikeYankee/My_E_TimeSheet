@@ -22,7 +22,7 @@ class Convention
     private $id;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="prixHeure", type="decimal", precision=10, scale=2)
      */

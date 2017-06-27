@@ -123,4 +123,48 @@ class Type
     {
         return $this->lesCours;
     }
+
+
+    /**
+     * Add lesConventions
+     *
+     * @param \ConnexionBundle\Entity\Convention $lesConventions
+     * @return Type
+     */
+    public function addLesConvention(\ConnexionBundle\Entity\Convention $lesConventions)
+    {
+        $this->lesConventions[] = $lesConventions;
+
+        return $this;
+    }
+
+    /**
+     * Remove lesConventions
+     *
+     * @param \ConnexionBundle\Entity\Convention $lesConventions
+     */
+    public function removeLesConvention(\ConnexionBundle\Entity\Convention $lesConventions)
+    {
+        $this->lesConventions->removeElement($lesConventions);
+    }
+
+    /**
+     * Get lesConventions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLesConventions()
+    {
+        return $this->lesConventions;
+    }
+
+    public function getConventionPromo($promo)
+    {
+        foreach ($this->lesConventions as $conv) {
+            if($conv->getPromotion() == $promo){
+                return $conv;
+            }
+        }
+        return null;
+    }
 }

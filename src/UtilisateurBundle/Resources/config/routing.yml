@@ -60,3 +60,9 @@ getEnseignantPourMatiere:
     path:   /getEnseignantPourMatiere
     defaults: { _controller: UtilisateurBundle:FeuillePresence:getEnseignantPourMatiere }
     methods: [post]
+
+generer_facture:
+    path:   /facture/{promo}
+    defaults: { _controller: UtilisateurBundle:FeuillePresence:pdf, promo:null }
+    requirements:
+        leCours: \d+

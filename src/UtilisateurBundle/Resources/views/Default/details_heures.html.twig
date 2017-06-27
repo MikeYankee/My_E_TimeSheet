@@ -10,7 +10,6 @@
         <div class="content_text">
             <div class="container">
                 <h3>Voir le détail des heures effectuées</h3><br>
-                <button type="button" class="btn btn-primary pull-right disabled">Générer la facture</button>
                 <ul class="nav nav-tabs">
                     {% for onglet in recapHeuresMatiere %}
 
@@ -111,6 +110,7 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <button type="button" onclick="location.href='{{ path('generer_facture', {'promo' : onglet.promotion.id}) }}';" class="btn btn-primary pull-right">Générer la facture</button>
                             {% else %} {#ca veut dire qu'il n'y a aucune ligne#}
                                 <div>Il n'y a aucune donnée à afficher.</div>
                             {% endif %}

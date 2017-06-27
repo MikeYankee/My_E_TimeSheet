@@ -1,0 +1,53 @@
+{% block body %}
+    <div>
+        {% block content %}
+            <div class="row col-lg-8 col-lg-push-2">
+                <div class="row col-lg-8">
+                    <img width="20%" src="{{ absolute_url(asset('images/ps.png')) }}">
+                    <img width="10%" class="pull-right" src="{{ absolute_url(asset('images/ueve.png')) }}">
+                </div>
+
+                <br>
+
+                    <h1 class="text-center">Facture n°{{ promo }}{{ "now"|date("dmY") }}</h1><br>
+
+
+                <h4>Promotion : {{ promo }}</h4>
+                <h4>Date : {{ "now"|date("d/m/Y") }}</h4>
+
+                <br><br>
+                <table class="table">
+                    <thead class="thead-inverse" style="background-color: #005A4B; color: white">
+                        <tr>
+                            <th>Type</th>
+                            <th>Total du type</th>
+                        </tr>
+                    </thead>
+                    {% for type, prix in tab %}
+                        <tr>
+                            <td width="50%">{{ type }}</td>
+                            <td>{{ prix }} €</td>
+                        </tr>
+                    {% endfor %}
+                    <thead class="thead-inverse" style="background-color: #049283; color: white">
+                        <tr>
+                            <th>Total général</th>
+                            <th>{{ total }} €</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <br><br><br>
+            <div class="pull-right">
+                <h4>DAte etsignature :</h4>
+            </div>
+
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ absolute_url(asset('css/bootstrap.css')) }}" rel="stylesheet" type="text/css">
+    <link href="{{ absolute_url(asset('css/bootstrap-theme.css')) }}" rel="stylesheet" type="text/css">
+{% endblock %}

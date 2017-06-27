@@ -109,6 +109,7 @@ class GestionPromotionController extends Controller
                 {
                     if(strtolower($promotion->getLibelle()) == strtolower($libelle->getLibelle()))
                     {
+                        dump("jj");die;
                         $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
                         return $this->redirect($this->generateUrl("liste_promotions")); // Redirection après l'erreur
                     }

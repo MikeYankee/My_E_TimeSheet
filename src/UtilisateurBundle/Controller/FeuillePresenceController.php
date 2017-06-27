@@ -2,10 +2,12 @@
 
 namespace UtilisateurBundle\Controller;
 
+use ConnexionBundle\Entity\Promotion;
 use ConnexionBundle\Entity\User_cours;
+use ConnexionBundle\Repository\promotionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ConnexionBundle\Entity\ETimeSheet;
-use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Tests\JsonResponseTest;
 use UtilisateurBundle\Form\ETimeSheetType;
 use Symfony\Component\HttpFoundation\Request;
@@ -199,6 +201,48 @@ class FeuillePresenceController extends Controller
             return new JsonResponse(array('data' => json_encode($return)));
 
 
+    }
+
+    public function pdfAction(Promotion $promo = null)
+    {
+        /**/
+
+        $this->denyAccessUnlessGranted(array("ROLE_RESPONSABLE"));
+
+        $tab = array();
+        $types = $this->getDoctrine()->getRepository('ConnexionBundle:Type')->findAll();
+        $nbEtudiantPromo = count($promo->getLesEtudiants());
+
+        $total = 0;
+
+        foreach ($types as $type) {
+            $prixStandard = $type->getConventionPromo($promo)->getPrixHeure();
+            $totalType = $prixStandard * 1.5 * count($this->getDoctrine()->getRepository('ConnexionBundle:Cours')->getCountByType($promo, $type));
+            if($totalType != 0){
+                $totalType =  $totalType + (8.3 * $nbEtudiantPromo);
+            }
+            $tab[$type->getLibelle()] = $totalType;
+            $total += $totalType;
+        }
+
+        $html = $this->renderView('UtilisateurBundle:Default:pdf.html.twig', array(
+            'tab' => $tab,
+            'total' => $total,
+            'promo' => $promo
+        ));
+
+        $filename = sprintf('Facture-%s.pdf', $promo.date('Ymd'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
+                'encoding' => 'utf-8'
+            )),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
     }
 
 }
