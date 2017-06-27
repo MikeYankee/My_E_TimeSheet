@@ -1,8 +1,18 @@
-# My E-TimeSheet
-Projet de dématérialisation du processus de vérification des présences étudiantes de MASTER MIAGE Evry
+************************************************************FRANCAIS************************************************************
+# My_E_TimeSheet
 
-Auteur :
-MG
-YB
+Nom projet : My E-TimeSheet
+Equipe : Mélanie GALVAN
+         Yann BOURGUES
+         
+FrameWork : Symfony 2
+Base de données : MySQL
+# Ojectif
 
-Faire use case + scénario
+# Fonctionnalités principales
+
+## Installation 
+
+## Utilisation
+
+************************************************************ANGLAIS************************************************************
