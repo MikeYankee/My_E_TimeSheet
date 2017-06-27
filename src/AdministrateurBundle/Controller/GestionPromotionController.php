@@ -107,8 +107,7 @@ class GestionPromotionController extends Controller
             if ($form->isValid()) { //Si tous les champs sont valides
                 foreach ($libellesPromotionsExistants as $libelle)
                 {
-                    if(strtolower($promotion->getLibelle()) == strtolower($libelle->getLibelle()))
-                    {
+                    if (strtolower($promotion->getLibelle()) == strtolower($libelle->getLibelle())) {
                         $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
                         return $this->redirect($this->generateUrl("liste_promotions")); // Redirection après l'erreur
                     }
@@ -151,14 +150,14 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                /*foreach ($etudiantsExistants as $etudiantExistant)
+                foreach ($etudiantsExistants as $etudiantExistant)
                 {
                     if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()))
                     {
                         $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
                         return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
                     }
-                }*/
+                }
                 $username = substr(strtolower($etudiant->getPrenom()), 0, 1) . "" . substr(strtolower($etudiant->getNom()), 0, strlen(strtolower($etudiant->getNom())));
 
                 $role = $request->get("role");
@@ -211,14 +210,15 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                /*foreach ($etudiantsExistants as $etudiantExistant)
+                foreach ($etudiantsExistants as $etudiantExistant)
                 {
-                    if(strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom()))
-                    {
-                        $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom(). " existe déjà !");
-                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId()))); // Redirection après l'erreur
+                    if($etudiantExistant != $etudiant) { //SI on ne regarde pas l'objet en cours de modification
+                        if (strtolower($etudiant->getNom()) == strtolower($etudiantExistant->getNom()) and strtolower($etudiant->getPrenom()) == strtolower($etudiantExistant->getPrenom())) {
+                            $this->addFlash('error', "L'étudiant " . $etudiant->getPrenom() . " " . $etudiant->getNom() . " existe déjà !");
+                            return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $etudiant->getPromotion()->getId()))); // Redirection après l'erreur
+                        }
                     }
-                }*/
+                }
                 $username = substr($etudiant->getPrenom(), 0, 1) . "" . substr($etudiant->getNom(), 0, strlen($etudiant->getNom()));
                 $role = $request->get("role");
                 if ($role == "on") {
@@ -335,10 +335,11 @@ class GestionPromotionController extends Controller
 
                 foreach ($matieresExistantes as $matiereExistante)
                 {
-                    if(strtolower($matiere->getLibelle()) == strtolower($matiereExistante->getLibelle()))
-                    {
-                        $this->addFlash('error', "La matière " . $matiere->getLibelle() . " existe déjà !");
-                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId()))); // Redirection après l'erreur
+                    if($matiereExistante != $matiere) { //SI on ne regarde pas l'objet en cours de modification
+                        if (strtolower($matiere->getLibelle()) == strtolower($matiereExistante->getLibelle())) {
+                            $this->addFlash('error', "La matière " . $matiere->getLibelle() . " existe déjà !");
+                            return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $matiere->getPromotion()->getId()))); // Redirection après l'erreur
+                        }
                     }
                 }
 
@@ -384,14 +385,16 @@ class GestionPromotionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                /*foreach ($promotionsExistantes as $promotionExistante)
+
+                foreach ($promotionsExistantes as $promotionExistante)
                 {
-                    if($promotion->getLibelle() == $promotionExistante->getLibelle())
-                    {
-                        $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
-                        return $this->redirectToRoute("liste_promotions"); // Redirection après l'erreur
+                    if($promotionExistante != $promotion) { //SI on ne regarde pas l'objet en cours de modification
+                        if ($promotion->getLibelle() == $promotionExistante->getLibelle()) {
+                            $this->addFlash('error', "La promotion " . $promotion->getLibelle() . " existe déjà !");
+                            return $this->redirectToRoute("liste_promotions"); // Redirection après l'erreur
+                        }
                     }
-                }*/
+                }
 
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
@@ -441,7 +444,7 @@ class GestionPromotionController extends Controller
 
                 foreach ($conventionsExistantes as $conventionExistante)
                 {
-                    if(strtolower($convention->getType()) == strtolower($conventionExistante->getType()))
+                    if($convention->getType() == $conventionExistante->getType() && $convention->getPromotion() == $conventionExistante->getPromotion())
                     {
                         $this->addFlash('error', "La convention " . $convention->getType() . " existe déjà !");
                         return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $promotion->getId()))); // Redirection après l'erreur
@@ -492,10 +495,11 @@ class GestionPromotionController extends Controller
 
                 foreach ($conventionsExistantes as $conventionExistante)
                 {
-                    if(strtolower($convention->getType()) == strtolower($conventionExistante->getType()))
-                    {
-                        $this->addFlash('error', "La convention " . $convention->getType() . " existe déjà !");
-                        return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $convention->getPromotion()->getId()))); // Redirection après l'erreur
+                    if($conventionExistante != $convention) { //SI on ne regarde pas l'objet en cours de modification
+                        if ($convention->getType() == $conventionExistante->getType() && $convention->getPromotion() == $conventionExistante->getPromotion()) {
+                            $this->addFlash('error', "La convention " . $convention->getType() . " existe déjà !");
+                            return $this->redirect($this->generateUrl("gerer_promotion", array('id' => $convention->getPromotion()->getId()))); // Redirection après l'erreur
+                        }
                     }
                 }
 

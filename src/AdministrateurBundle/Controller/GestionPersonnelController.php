@@ -98,10 +98,12 @@ class GestionPersonnelController extends Controller
 
                 foreach ($personnelsExistants as $personnelExistant)
                 {
-                    if(strtolower($le_personnel->getNom()) == strtolower($personnelExistant->getNom()) and strtolower($le_personnel->getPrenom()) == strtolower($personnelExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
-                    {
-                        $this->addFlash('error', "Le personnel " . $le_personnel->getPrenom() . " " . $le_personnel->getNom(). " existe déjà !");
-                        return $this->redirect($this->generateUrl("gerer_personnel")); // Redirection après l'erreur
+                    if($personnelExistant != $le_personnel){ //SI on ne regarde pas l'objet en cours de modification
+                        if(strtolower($le_personnel->getNom()) == strtolower($personnelExistant->getNom()) and strtolower($le_personnel->getPrenom()) == strtolower($personnelExistant->getPrenom()) /*and strtolower($etudiant->getMail()) == strtolower($etudiantExistant->getMail())*/)
+                        {
+                            $this->addFlash('error', "Le personnel " . $le_personnel->getPrenom() . " " . $le_personnel->getNom(). " existe déjà !");
+                            return $this->redirect($this->generateUrl("gerer_personnel")); // Redirection après l'erreur
+                        }
                     }
                 }
 
