@@ -42,7 +42,7 @@ class AbsenceService
                 if($leCours->getEstValide())
                 {
                     $etsValide = true;
-                    $coursMax ++;
+                    $coursMax += 1;
                 }
             }
 

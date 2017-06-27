@@ -2,31 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0aa6e8a-bb8b-4107-bf5d-5f927a7feffe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Service/CoursService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPersonnelController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Controller/GestionPromotionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Form/MatiereType.php" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Form/MatiereType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_etudiant.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/ajout_etudiant.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/gestion_promo.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_promos.html.twig" afterPath="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_promos.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/Promotion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ConnexionBundle/Repository/MatiereRepository.php" afterPath="$PROJECT_DIR$/src/ConnexionBundle/Repository/MatiereRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/contact.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/contact.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/creation_ets.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/creation_ets.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/details_heures.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/details_heures.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/menu_etudiant.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/menu_etudiant.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_ets.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_ets.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_facture.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_facture.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/profil.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/profil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/recap_absences.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/recap_absences.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/signaler_presence.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/signaler_presence.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/validation_cours.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/validation_cours.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/visionner_ets.html.twig" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/visionner_ets.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php" afterPath="$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,34 +22,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="menu_delegue.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig">
+      <file leaf-file-name="FeuillePresenceController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="414">
+              <caret line="159" column="9" lean-forward="false" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu_responsable.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_responsable.html.twig">
+      <file leaf-file-name="historique_absence.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="60" lean-forward="false" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+            <state relative-caret-position="289">
+              <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu_secretaire.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#37#55#0#Twig" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -153,15 +122,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig" />
-        <option value="$PROJECT_DIR$/src/ConnexionBundle/Entity/Matiere.php" />
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/creation_ets.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/accueil.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_personnel.html.twig" />
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/liste_promos.html.twig" />
-        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_ets.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_facture.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/profil.html.twig" />
@@ -174,7 +138,6 @@
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Repository/UtilisateurRepository.php" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Controller/ContactController.php" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Controller/ProfilController.php" />
-        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Service/ETSService.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Repository/MatiereRepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/menu.html.twig" />
@@ -194,7 +157,6 @@
         <option value="$PROJECT_DIR$/src/AdministrateurBundle/Resources/views/Default/modification_promotion.html.twig" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Repository/ETimeSheetRepository.php" />
-        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/details_heures.html.twig" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php" />
@@ -204,6 +166,13 @@
         <option value="$PROJECT_DIR$/app/Resources/views/menu_enseignant.html.twig" />
         <option value="$PROJECT_DIR$/src/ConnexionBundle/Redirection/AfterLoginRedirection.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/menu_responsable.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php" />
+        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/menu_etudiant.html.twig" />
+        <option value="$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig" />
       </list>
     </option>
   </component>
@@ -217,8 +186,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -247,6 +216,134 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UtilisateurBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UtilisateurBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Service" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UtilisateurBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Default" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UtilisateurBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My_E_TimeSheet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UtilisateurBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,8 +403,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -473,17 +570,18 @@
       <workItem from="1496860514508" duration="7539000" />
       <workItem from="1496903704107" duration="30853000" />
       <workItem from="1497517648336" duration="104000" />
+      <workItem from="1498491410645" duration="7340000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="455808000" />
+    <option name="totallyTimeSpent" value="463148000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15959005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32755905" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -516,56 +614,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/User_coursRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/ContactController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/ProfilController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Service/ETSService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/ConventionRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/CoursRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/FactureRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Repository/promotionRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -599,20 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_admin.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_cfa.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -784,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,25 +835,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="48" column="104" lean-forward="false" selection-start-line="48" selection-start-column="104" selection-end-line="48" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Entity/User_cours.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="111" column="38" lean-forward="false" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -832,13 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/visionner_ets.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="41" column="99" lean-forward="false" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ConnexionBundle/Redirection/AfterLoginRedirection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -846,47 +858,141 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php">
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="74" column="45" lean-forward="false" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
+        <state relative-caret-position="102">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/visionner_ets.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
           <folding>
-            <element signature="e#2979#2999#1#PHP" expanded="true" />
-            <element signature="e#3176#3196#1#PHP" expanded="true" />
+            <element signature="e#2586#2627#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_enseignant.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/recap_absences.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="60" lean-forward="true" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="60" />
+        <state relative-caret-position="51">
+          <caret line="3" column="48" lean-forward="true" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Service/AbsenceService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/CoursController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="102" column="26" lean-forward="true" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_etudiant.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_responsable.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="60" lean-forward="false" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+        <state relative-caret-position="68">
+          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_secretaire.html.twig">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_delegue.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_enseignant.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="60" lean-forward="true" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_cfa.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/prototype.twig">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#37#55#0#Twig" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/menu_admin.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="55" lean-forward="false" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Controller/FeuillePresenceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="159" column="9" lean-forward="false" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UtilisateurBundle/Resources/views/Default/historique_absence.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
