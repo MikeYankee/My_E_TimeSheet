@@ -3,8 +3,8 @@
 
 ### Nom projet : My E-TimeSheet<br />
 ### Equipe : <br />
-- Mélanie GALVAN<br />
-- Yann BOURGUES
+- MG<br />
+- YB
 
 ### Environnement de développement :
 * **FrameWork :** Symfony 2 (https://symfony.com/)
