@@ -64,8 +64,8 @@ database_password: null
 
 ### Project Name : My E-TimeSheet<br />
 ### Team : <br />
-- Mélanie GALVAN<br />
-- Yann BOURGUES
+- MG<br />
+- YB
 
 ### Development Environment :
 * **FrameWork :** Symfony 2 (https://symfony.com/)
